@@ -5,7 +5,7 @@ S = Settings("m", "medium", 15, 24, 30, 280, ["game-changer", "masterstroke"], 1
 
 
 def p(i):
-    return {"article_id": f"id{i}", "post": "x", "reason": "r"}
+    return {"article_id": f"id{i}", "post": "A real one-sentence post.", "reason": "r"}
 
 
 def test_clean_post_has_no_flags():
@@ -51,3 +51,12 @@ def test_card_flags():
     assert check_card("x" * 61) == ["card_too_long"]
     assert check_card("x" * 60) == []
     assert set(check_card("#AI www.x.com")) == {"card_hashtag", "card_link"}
+
+
+def test_validate_picks_drops_placeholder_and_empty_posts():
+    picks = [{"article_id": "id1", "post": "placeholder", "reason": "placeholder", "card_text": "placeholder"},
+             {"article_id": "id2", "post": "  ", "reason": "r", "card_text": "c"},
+             {"article_id": "id3", "post": "TBD", "reason": "r", "card_text": "c"},
+             {"article_id": "id4", "post": "Nvidia made $35B. Still not enough, apparently.", "reason": "r", "card_text": "$35B"}]
+    out = validate_picks(picks, {"id1", "id2", "id3", "id4"}, set(), 3)
+    assert [p["article_id"] for p in out] == ["id4"]

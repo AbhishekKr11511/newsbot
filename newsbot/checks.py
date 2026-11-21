@@ -42,11 +42,23 @@ def check_card(text: str) -> list[str]:
     return flags
 
 
+PLACEHOLDER = re.compile(r"\b(placeholder|lorem ipsum|tbd|todo)\b", re.IGNORECASE)
+MIN_POST_CHARS = 8
+
+
+def _looks_unfinished(post: str) -> bool:
+    """Models occasionally return template text instead of a real draft."""
+    post = (post or "").strip()
+    return len(post) < MIN_POST_CHARS or bool(PLACEHOLDER.search(post))
+
+
 def validate_picks(picks: list[dict], candidate_ids: set[str], already_picked_ids: set[str], max_picks: int) -> list[dict]:
     out, seen = [], set()
     for pick in picks:
         pid = pick.get("article_id")
         if pid not in candidate_ids or pid in already_picked_ids or pid in seen:
+            continue
+        if _looks_unfinished(pick.get("post", "")):
             continue
         seen.add(pid)
         out.append(pick)
