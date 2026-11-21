@@ -1,7 +1,7 @@
 name: publish-page
 
 # The bot runs on the owner's Mac (scripts/run_and_publish.sh) and pushes site/data.
-# This workflow only publishes the site to GitHub Pages when site/ changes.
+# This workflow only publishes the site to GitHub Pages when site/ changes (or on manual run).
 on:
   push:
     branches: [main]
