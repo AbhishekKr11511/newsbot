@@ -17,8 +17,14 @@ case "$(echo "$DRY_RUN_VALUE" | tr '[:upper:]' '[:lower:]')" in true|1) DRY=true
 HAS_REMOTE=false
 git remote get-url origin >/dev/null 2>&1 && HAS_REMOTE=true
 
-if [ "$HAS_REMOTE" = true ]; then
-  git pull --rebase --autostash --quiet || echo "warning: git pull failed; continuing with local copy"
+BRANCH="$(git branch --show-current)"
+
+if [ "$HAS_REMOTE" = true ] && [ "$DRY" = false ]; then
+  if ! git pull --rebase --autostash --quiet; then
+    git rebase --abort >/dev/null 2>&1 || true
+    echo "git pull failed; skipping this run so nothing is committed on top of a conflict"
+    exit 1
+  fi
 fi
 
 if [ "$DRY" = true ]; then
@@ -31,11 +37,17 @@ fi
 .venv/bin/python -m newsbot
 status=$?
 
+if [ "$BRANCH" != "main" ]; then
+  echo "not on main (on '$BRANCH'); data written locally but not committed"
+  exit $status
+fi
+
 git add site/data
-if git diff --cached --quiet; then
+if git diff --cached --quiet -- site/data; then
   echo "no data changes"
 else
-  git commit --quiet -m "data: run $(date -u +%FT%TZ)"
+  # Commit only site/data, even if other changes happen to be staged.
+  git commit --quiet -m "data: run $(date -u +%FT%TZ)" -- site/data
   if [ "$HAS_REMOTE" = true ]; then
     git push --quiet || echo "warning: git push failed; will retry next run"
   else

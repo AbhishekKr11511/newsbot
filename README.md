@@ -37,6 +37,10 @@ bash scripts/install_schedule.sh                       # every 4h: 00, 04, 08, 1
 launchctl kickstart gui/$(id -u)/com.newsbot.run       # optional: run once right now
 tail -f logs/run.log                                   # watch what it did
 ```
+**Check the schedule can actually run.** macOS blocks background jobs from reading `~/Documents`, `~/Desktop` and `~/Downloads` unless you allow it. After the kickstart above, look at `logs/run.log`. If there's no new entry, or `logs/launchd.log` says "Operation not permitted", the easiest fix is to move the project out of those folders (e.g. to `~/code/newsbot`) and rerun `install_schedule.sh`.
+
+The schedule only commits when the repo is on the `main` branch. On any other branch it writes data locally and says so in the log.
+
 When the drafts look good, delete the `DRY_RUN=true` line from `.env`. Each run then commits `site/data` and pushes, and GitHub republishes the page at `https://<you>.github.io/<repo>/`.
 
 Uninstall the schedule: `launchctl bootout gui/$(id -u)/com.newsbot.run && rm ~/Library/LaunchAgents/com.newsbot.run.plist`
