@@ -25,6 +25,7 @@ def check_post(text: str, settings: Settings) -> list[str]:
     return flags
 
 
+PLACEHOLDER = re.compile(r"(placeholder|lorem ipsum.*|tbd|todo|\.\.\.)\W*", re.IGNORECASE)
 CARD_MAX_CHARS = 60
 
 
@@ -32,6 +33,8 @@ def check_card(text: str) -> list[str]:
     text = (text or "").strip()
     if not text:
         return ["card_empty"]
+    if PLACEHOLDER.fullmatch(text):
+        return ["card_placeholder"]
     flags = []
     if len(text) > CARD_MAX_CHARS:
         flags.append("card_too_long")
@@ -42,14 +45,13 @@ def check_card(text: str) -> list[str]:
     return flags
 
 
-PLACEHOLDER = re.compile(r"\b(placeholder|lorem ipsum|tbd|todo)\b", re.IGNORECASE)
 MIN_POST_CHARS = 8
 
 
 def _looks_unfinished(post: str) -> bool:
     """Models occasionally return template text instead of a real draft."""
     post = (post or "").strip()
-    return len(post) < MIN_POST_CHARS or bool(PLACEHOLDER.search(post))
+    return len(post) < MIN_POST_CHARS or bool(PLACEHOLDER.fullmatch(post))
 
 
 def validate_picks(picks: list[dict], candidate_ids: set[str], already_picked_ids: set[str], max_picks: int) -> list[dict]:

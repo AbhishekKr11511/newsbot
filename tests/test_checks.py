@@ -60,3 +60,15 @@ def test_validate_picks_drops_placeholder_and_empty_posts():
              {"article_id": "id4", "post": "Nvidia made $35B. Still not enough, apparently.", "reason": "r", "card_text": "$35B"}]
     out = validate_picks(picks, {"id1", "id2", "id3", "id4"}, set(), 3)
     assert [p["article_id"] for p in out] == ["id4"]
+
+
+def test_real_post_mentioning_tbd_survives():
+    picks = [{"article_id": "id1", "post": "Launch date TBD, as usual.", "reason": "r", "card_text": "c"},
+             {"article_id": "id2", "post": "A todo app raised $40M. Productivity remains elusive.", "reason": "r", "card_text": "c"}]
+    assert len(validate_picks(picks, {"id1", "id2"}, set(), 3)) == 2
+
+
+def test_placeholder_card_text_is_flagged():
+    from newsbot.checks import check_card
+    assert check_card("placeholder") == ["card_placeholder"]
+    assert check_card("Price TBD") == []
