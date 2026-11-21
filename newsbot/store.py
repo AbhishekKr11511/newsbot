@@ -65,9 +65,13 @@ def recent_picks(runs: list[dict], now: datetime, hours: int = 24) -> list[dict]
     return out
 
 
-def save_meta(path: Path, categories: list[Category], last_run_at: datetime, feed_errors: list[str]) -> None:
-    _write(path, {
+def save_meta(path: Path, categories: list[Category], last_run_at: datetime, feed_errors: list[str],
+              card: dict | None = None) -> None:
+    data = {
         "last_run_at": iso(last_run_at),
         "categories": [{"id": c.id, "name": c.name} for c in categories],
         "feed_errors": feed_errors,
-    })
+    }
+    if card is not None:
+        data["card"] = card
+    _write(path, data)

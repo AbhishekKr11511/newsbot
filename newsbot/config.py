@@ -40,6 +40,8 @@ class Settings:
     banned_words: list[str] = field(default_factory=list)
     fetch_timeout_s: int = 15
     backend: str = "claude-code"  # claude-code | api
+    card_handle: str = "@yourhandle"
+    card_tagline: str = ""
 
 
 def _load_list(path: Path) -> list[dict]:
@@ -106,6 +108,8 @@ def load_settings(path: Path) -> Settings:
             banned_words=[str(w) for w in d.get("banned_words", [])],
             fetch_timeout_s=int(d.get("fetch_timeout_s", 15)),
             backend=str(d.get("backend", "claude-code")),
+            card_handle=str(d.get("card_handle", "@yourhandle")),
+            card_tagline=str(d.get("card_tagline") or ""),
         )
     except KeyError as e:
         raise ConfigError(f"{path}: missing {e}") from e

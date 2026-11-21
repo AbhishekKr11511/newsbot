@@ -24,6 +24,10 @@ You get a list of candidate headlines for ONE category, plus the stories already
 - Write to invite replies: a sharp observation or a pointed question beats a summary.
 - Stick to what the headline and summary actually say. Do not invent numbers, names or quotes.
 
+## Card text
+
+For each pick, also write `card_text`: the single most concrete number or short quote from the story, for a picture card that goes with the post (e.g. "$3.79B on day one", "73% revenue jump, 23% bigger loss", "\"Bright red flags\""). Max 60 characters. No hashtags, no links, no emojis. If there is no number or quote, use the sharpest 3–7 word summary of the fact.
+
 ## Reason
 
 For each pick, give a short reason (under 20 words) for why it matters. This is for the account owner, not for posting.

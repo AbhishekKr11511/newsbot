@@ -25,6 +25,7 @@ class Pick(BaseModel):
     article_id: str
     post: str
     reason: str
+    card_text: str
 
 
 class CurationResult(BaseModel):

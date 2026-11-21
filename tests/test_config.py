@@ -54,3 +54,11 @@ def test_load_settings_backend():
     s = load_settings(ROOT / "settings.yaml")
     assert s.backend == "claude-code"
     assert s.model == "haiku"
+
+
+def test_load_settings_card_defaults(tmp_path):
+    p = tmp_path / "s.yaml"
+    p.write_text("model: haiku\n")
+    s = load_settings(p)
+    assert s.card_handle == "@yourhandle" and s.card_tagline == ""
+    assert load_settings(ROOT / "settings.yaml").card_handle.startswith("@")

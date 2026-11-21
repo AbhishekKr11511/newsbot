@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import TextIO
 
 from . import store
-from .checks import check_post, validate_picks
+from .checks import check_card, check_post, validate_picks
 from .config import Category, Settings, load_categories, load_settings, load_sources
 from .curate import (
     USAGE_KEYS, CurationError, Curator, build_system_prompt, build_user_message, select_candidates,
@@ -98,7 +98,8 @@ def curate_all(ctx: Context, curator: Curator, now: datetime) -> dict[str, dict]
             picks.append({
                 "article_id": a.id, "title": a.title, "url": a.url, "source": a.source,
                 "published_at": iso(a.published_at), "post": p["post"].strip(), "reason": p["reason"].strip(),
-                "flags": check_post(p["post"], ctx.settings),
+                "card_text": (p.get("card_text") or "").strip(), "image_url": a.image_url,
+                "flags": check_post(p["post"], ctx.settings) + check_card(p.get("card_text", "")),
             })
             picked_ids.add(a.id)
             this_run.append({**picks[-1], "category": cat.id})
@@ -130,7 +131,8 @@ def run(paths: Paths, now: datetime, dry_run: bool, curator: Curator, http_get=d
     store.save_articles(paths.articles, ctx.articles)
     run_record = {"run_at": iso(now), "categories": result, "usage_total": totals}
     store.save_runs(paths.picks, store.append_run(ctx.runs, run_record, now, ctx.settings.picks_retention_days))
-    store.save_meta(paths.meta, ctx.categories, now, ctx.feed_errors)
+    store.save_meta(paths.meta, ctx.categories, now, ctx.feed_errors,
+                    card={"handle": ctx.settings.card_handle, "tagline": ctx.settings.card_tagline})
     return 1 if failed else 0
 
 

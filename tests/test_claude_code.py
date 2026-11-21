@@ -8,7 +8,7 @@ from newsbot.config import Settings
 from newsbot.curate import CurationError, claude_code_curator, make_curator
 
 S = Settings("haiku", "medium", 15, 24, 30, 280, [], 15, backend="claude-code")
-PICKS = {"picks": [{"article_id": "a1", "post": "p", "reason": "r"}]}
+PICKS = {"picks": [{"article_id": "a1", "post": "p", "reason": "r", "card_text": "c"}]}
 USAGE = {"input_tokens": 2, "cache_creation_input_tokens": 1294, "cache_read_input_tokens": 10,
          "output_tokens": 348, "output_tokens_details": {"thinking_tokens": 190}}
 
@@ -96,3 +96,13 @@ def test_make_curator_model_override(monkeypatch):
     make_curator(S, model_override="sonnet")("s", "u")
     argv = r.calls[0][0]
     assert argv[argv.index("--model") + 1] == "sonnet"
+
+
+def test_cli_schema_requires_card_text():
+    r = Runner(cli_output(structured_output={"picks": [{"article_id": "a1", "post": "p", "reason": "r",
+                                                         "card_text": "$1B"}]}))
+    picks, _ = claude_code_curator(S, runner=r)("s", "u")
+    schema = json.loads(r.calls[0][0][r.calls[0][0].index("--json-schema") + 1])
+    pick_schema = schema["$defs"]["Pick"]
+    assert "card_text" in pick_schema["required"]
+    assert picks[0]["card_text"] == "$1B"

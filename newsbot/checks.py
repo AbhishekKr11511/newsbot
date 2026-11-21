@@ -25,6 +25,23 @@ def check_post(text: str, settings: Settings) -> list[str]:
     return flags
 
 
+CARD_MAX_CHARS = 60
+
+
+def check_card(text: str) -> list[str]:
+    text = (text or "").strip()
+    if not text:
+        return ["card_empty"]
+    flags = []
+    if len(text) > CARD_MAX_CHARS:
+        flags.append("card_too_long")
+    if HASHTAG.search(text):
+        flags.append("card_hashtag")
+    if LINK.search(text):
+        flags.append("card_link")
+    return flags
+
+
 def validate_picks(picks: list[dict], candidate_ids: set[str], already_picked_ids: set[str], max_picks: int) -> list[dict]:
     out, seen = [], set()
     for pick in picks:

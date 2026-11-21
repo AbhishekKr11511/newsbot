@@ -42,3 +42,12 @@ def test_validate_picks_drops_duplicates_and_already_picked():
 def test_validate_picks_truncates_to_max():
     ids = {f"id{i}" for i in range(5)}
     assert validate_picks([p(i) for i in range(5)], ids, set(), 3) == [p(0), p(1), p(2)]
+
+
+def test_card_flags():
+    from newsbot.checks import check_card
+    assert check_card("$3.79B on day one") == []
+    assert check_card("") == ["card_empty"]
+    assert check_card("x" * 61) == ["card_too_long"]
+    assert check_card("x" * 60) == []
+    assert set(check_card("#AI www.x.com")) == {"card_hashtag", "card_link"}

@@ -62,3 +62,9 @@ def test_save_meta_shape(tmp_path):
     assert d == {"last_run_at": "2026-11-18T12:00:00Z",
                  "categories": [{"id": "a", "name": "A"}, {"id": "b", "name": "B"}],
                  "feed_errors": ["X: boom"]}
+
+
+def test_meta_has_card_settings(tmp_path):
+    p = tmp_path / "meta.json"
+    save_meta(p, [Category("a", "A", 3, "", "")], NOW, [], card={"handle": "@me", "tagline": "t"})
+    assert json.loads(p.read_text())["card"] == {"handle": "@me", "tagline": "t"}

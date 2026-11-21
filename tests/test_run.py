@@ -45,9 +45,9 @@ def root(tmp_path):
 class FakeClient:
     """Fake curator: picks the first candidate id; optional post text; can fail for one category."""
 
-    def __init__(self, post="Nvidia made $35B. Shocking.", fail_category=None):
+    def __init__(self, post="Nvidia made $35B. Shocking.", fail_category=None, card="$35B"):
         self.prompts = []
-        self.post, self.fail_category = post, fail_category
+        self.post, self.fail_category, self.card = post, fail_category, card
 
     def __call__(self, system, user):
         self.prompts.append((system, user))
@@ -55,7 +55,7 @@ class FakeClient:
             raise CurationError("boom")
         cand = user.split("Candidates:", 1)[1]
         ids = re.findall(r"^id: (\S+)$", cand, re.M)
-        picks = [{"article_id": ids[0], "post": self.post, "reason": "r"}] if ids else []
+        picks = [{"article_id": ids[0], "post": self.post, "reason": "r", "card_text": self.card}] if ids else []
         usage = {"model": "claude-haiku-5-5", "input_tokens": 100, "cache_creation_input_tokens": 0,
                  "cache_read_input_tokens": 0, "output_tokens": 10, "thinking_tokens": 4, "cost_usd_equiv": 0.001}
         return picks, usage
@@ -139,3 +139,12 @@ def test_summary_prints_tokens(root):
     out = io.StringIO()
     run(Paths(root), NOW, True, FakeClient(), http_get=http_get, out=out)
     assert "tokens" in out.getvalue()
+
+
+def test_pick_has_card_text_and_image_url(root):
+    run(Paths(root), NOW, False, FakeClient(card="x" * 70), http_get=http_get, out=io.StringIO())
+    pick = data(root, "picks")[0]["categories"]["ai-bigtech"]["picks"][0]
+    assert pick["card_text"] == "x" * 70
+    assert "image_url" in pick
+    assert "card_too_long" in pick["flags"]
+    assert data(root, "meta")["card"]["handle"].startswith("@")
