@@ -1,0 +1,13 @@
+model: claude-sonnet-5-5
+effort: medium          # low | medium | high — lower is cheaper
+per_source_cap: 15      # newest N articles per feed sent to Claude
+window_hours: 24
+picks_retention_days: 30
+max_post_chars: 280
+fetch_timeout_s: 15
+banned_words:
+  - game-changer
+  - game changer
+  - masterstroke
+  - master-stroke
+  - revolutionary

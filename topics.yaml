@@ -1,0 +1,27 @@
+# Categories the bot curates. Each one gets its own Claude call and its own tab.
+# Add a category: copy a block, give it a new id, then point feeds at it in sources.yaml.
+- id: ai-bigtech
+  name: AI & Big Tech
+  max_picks: 3
+  covers: AI industry news; major tech companies' moves (Apple, Google, Microsoft, Meta, Amazon, OpenAI, Anthropic, etc.)
+  skip: product how-tos, rumour roundups with no sourcing, minor app updates
+- id: semis
+  name: Semiconductors
+  max_picks: 3
+  covers: "Chip market moves: DRAM/memory, Nvidia, Apple silicon, TSMC, Intel, AMD, fabs, export controls"
+  skip: consumer gadget reviews, benchmark leaks with no source
+- id: gaming
+  name: Gaming
+  max_picks: 3
+  covers: "Gaming industry: business moves, layoffs, acquisitions, pricing, hardware, platform shifts, big releases with real numbers"
+  skip: routine reviews, trailers, deals posts, guides, unless they carry real industry news
+- id: india-tech
+  name: Indian Tech & Startups
+  max_picks: 3
+  covers: Indian tech and startups, including funding, employment opportunities, new job titles/roles, and economic impact
+  skip: routine funding announcements under a few million dollars with no wider signal, award lists
+- id: world-markets
+  name: World & Markets
+  max_picks: 3
+  covers: World events and economics that signal a real market shift
+  skip: routine daily market wraps with no clear driver, local crime, politics with no market angle

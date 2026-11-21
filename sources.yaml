@@ -1,0 +1,7 @@
+# Feeds. Each belongs to exactly one category id from topics.yaml.
+- name: TechCrunch
+  url: https://techcrunch.com/feed/
+  category: ai-bigtech
+- name: IGN
+  url: https://feeds.feedburner.com/ign/all
+  category: gaming
