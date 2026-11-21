@@ -113,13 +113,14 @@ def parse_feed(content: bytes, source: Source, now: datetime, window_hours: int)
 
 def default_get(url: str, timeout: int) -> bytes:
     """GET with a 5 MB body cap and a total wall-clock limit."""
+    started = time.monotonic()
     resp = requests.get(url, timeout=timeout, headers={"User-Agent": "newsbot/1.0"}, stream=True)
     try:
         resp.raise_for_status()
         if int(resp.headers.get("Content-Length") or 0) > MAX_FEED_BYTES:
             raise ValueError("feed too large")
-        started, body = time.monotonic(), bytearray()
-        for chunk in resp.iter_content(chunk_size=65536):
+        body = bytearray()
+        for chunk in resp.iter_content(chunk_size=8192):
             body += chunk
             if len(body) > MAX_FEED_BYTES:
                 raise ValueError("feed too large")

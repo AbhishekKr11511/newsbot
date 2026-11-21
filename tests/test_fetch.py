@@ -137,3 +137,18 @@ def test_default_get_returns_body(monkeypatch):
     from newsbot import fetch
     monkeypatch.setattr(fetch.requests, "get", lambda *a, **k: FakeResp([b"<rss/>"]))
     assert fetch.default_get("https://x.test/rss", 5) == b"<rss/>"
+
+
+def test_default_get_deadline_includes_connect_time(monkeypatch):
+    import pytest
+    from newsbot import fetch
+    clock = {"t": 0.0}
+    monkeypatch.setattr(fetch.time, "monotonic", lambda: clock["t"])
+
+    def slow_get(*a, **k):
+        clock["t"] += fetch.MAX_FETCH_SECONDS + 1  # slow connect/headers
+        return FakeResp([b"x"])
+
+    monkeypatch.setattr(fetch.requests, "get", slow_get)
+    with pytest.raises(TimeoutError):
+        fetch.default_get("https://x.test/rss", 5)
