@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+<title>Skill Up</title>
+<entry><id>yt:video:abc</id><title>The State of AAA Gaming</title>
+<link rel="alternate" href="https://www.youtube.com/watch?v=abc"/>
+<published>2026-11-18T06:00:00+00:00</published><updated>2026-11-18T06:30:00+00:00</updated>
+<media:group><media:description>A look at budgets.</media:description></media:group></entry>
+</feed>

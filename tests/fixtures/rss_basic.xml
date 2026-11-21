@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>Basic</title>
+<item><title>Nvidia posts record $35B quarter</title><link>https://example.com/nvidia?utm_source=rss</link>
+<description><![CDATA[<p>Revenue <b>up</b> 94%.</p>]]></description><pubDate>Wed, 18 Nov 2026 10:00:00 +0000</pubDate></item>
+<item><title>Samsung DRAM prices climb</title><link>https://example.com/dram</link>
+<description>Contract prices rose 12%.</description><pubDate>Wed, 18 Nov 2026 08:30:00 +0000</pubDate></item>
+<item><title>Apple M5 teardown</title><link>https://example.com/m5</link>
+<description>Inside the chip.</description><pubDate>Tue, 17 Nov 2026 20:00:00 +0000</pubDate></item>
+</channel></rss>

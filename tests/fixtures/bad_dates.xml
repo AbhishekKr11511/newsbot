@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>Bad dates</title>
+<item><title>No date here</title><link>https://example.com/nodate</link></item>
+<item><title>Naive date</title><link>https://example.com/naive</link><pubDate>2026-11-18T09:00:00</pubDate></item>
+<item><title>From the future</title><link>https://example.com/future</link><pubDate>Thu, 19 Nov 2026 12:00:00 +0000</pubDate></item>
+<item><title>Too old</title><link>https://example.com/old</link><pubDate>Tue, 17 Nov 2026 06:00:00 +0000</pubDate></item>
+</channel></rss>
