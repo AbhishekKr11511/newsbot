@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>News Bot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <h1>News Bot</h1>
+      <p class="muted" id="last-run">Loading…</p>
+    </div>
+    <nav class="wrap tabs" id="tabs" aria-label="Categories"></nav>
+  </header>
+  <main class="wrap">
+    <section aria-labelledby="picks-h">
+      <h2 id="picks-h">Picks</h2>
+      <div id="picks"></div>
+    </section>
+    <section aria-labelledby="articles-h">
+      <h2 id="articles-h">All articles <span class="muted">(last 24h)</span></h2>
+      <ol id="articles" class="articles"></ol>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
