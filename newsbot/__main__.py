@@ -21,6 +21,9 @@ def main() -> int:
     args = parser.parse_args()
     dry_run = args.dry_run or os.environ.get("DRY_RUN", "").strip().lower() in ("true", "1")
     logging.basicConfig(level=logging.WARNING, format="%(levelname)s %(message)s")
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        print("ANTHROPIC_API_KEY is not set. Add it to .env locally, or as a repo secret on GitHub.", file=sys.stderr)
+        return 2
     return run(Paths(Path.cwd()), datetime.now(UTC), dry_run, anthropic.Anthropic())
 
 

@@ -152,3 +152,10 @@ def test_default_get_deadline_includes_connect_time(monkeypatch):
     monkeypatch.setattr(fetch.requests, "get", slow_get)
     with pytest.raises(TimeoutError):
         fetch.default_get("https://x.test/rss", 5)
+
+
+def test_clean_text_keeps_angle_brackets_in_plain_text():
+    from newsbot.fetch import _clean_text
+    assert _clean_text("GPU < $500 and > 2x faster") == "GPU < $500 and > 2x faster"
+    assert _clean_text("<p>Revenue <b>up</b> 94%.</p>") == "Revenue up 94%."
+    assert _clean_text("AT&amp;T cuts &lt;1% jobs") == "AT&T cuts <1% jobs"

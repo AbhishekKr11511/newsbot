@@ -3,11 +3,11 @@ from __future__ import annotations
 
 import calendar
 import hashlib
-import html
 import logging
 import re
 import time
 from dataclasses import asdict, dataclass
+from html.parser import HTMLParser
 from datetime import UTC, datetime, timedelta
 from typing import Callable
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
@@ -73,9 +73,24 @@ def article_id(url: str) -> str:
     return hashlib.sha1(canonicalize_url(url).encode()).hexdigest()[:16]
 
 
+class _TextExtractor(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.parts: list[str] = []
+
+    def handle_data(self, data):
+        self.parts.append(data)
+
+    def handle_starttag(self, tag, attrs):
+        self.parts.append(" ")
+
+
 def _clean_text(raw: str) -> str:
-    text = html.unescape(re.sub(r"<[^>]+>", " ", raw or ""))
-    return re.sub(r"\s+", " ", text).strip()
+    """Strip real HTML tags but keep plain-text '<' and '>' (e.g. "GPU < $500")."""
+    parser = _TextExtractor()
+    parser.feed(raw or "")
+    parser.close()
+    return re.sub(r"\s+", " ", "".join(parser.parts)).strip()
 
 
 def _entry_date(entry) -> datetime | None:

@@ -103,3 +103,42 @@ def test_api_error_raises_curation_error():
     client = FakeClient(exc=anthropic.APIConnectionError(request=httpx2.Request("POST", "https://x")))
     with pytest.raises(CurationError):
         curate_category(client, S, "sys", "user")
+
+
+def real_client(stop_reason, text):
+    """A real SDK client whose HTTP layer returns a canned Messages response."""
+    import json as _json
+
+    def handler(request):
+        body = {"id": "msg_1", "type": "message", "role": "assistant", "model": "claude-sonnet-5-5",
+                "content": [{"type": "text", "text": text}], "stop_reason": stop_reason,
+                "stop_sequence": None, "usage": {"input_tokens": 1, "output_tokens": 1}}
+        return httpx2.Response(200, json=body)
+
+    return anthropic.Anthropic(api_key="test", max_retries=0,
+                               http_client=httpx2.Client(transport=httpx2.MockTransport(handler)))
+
+
+def test_real_sdk_refusal_becomes_curation_error():
+    with pytest.raises(CurationError):
+        curate_category(real_client("refusal", "I can't help with that."), S, "sys", "user")
+
+
+def test_real_sdk_truncated_json_becomes_curation_error():
+    with pytest.raises(CurationError):
+        curate_category(real_client("max_tokens", '{"picks": [{"article_id": "a", "po'), S, "sys", "user")
+
+
+def test_real_sdk_valid_reply_parses():
+    text = '{"picks": [{"article_id": "a", "post": "p", "reason": "r"}]}'
+    assert curate_category(real_client("end_turn", text), S, "sys", "user") == [
+        {"article_id": "a", "post": "p", "reason": "r"}]
+
+
+def test_missing_api_key_becomes_curation_error(monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    monkeypatch.delenv("ANTHROPIC_AUTH_TOKEN", raising=False)
+    client = anthropic.Anthropic(api_key=None, max_retries=0,
+                                 http_client=httpx2.Client(transport=httpx2.MockTransport(lambda r: httpx2.Response(500))))
+    with pytest.raises(CurationError):
+        curate_category(client, S, "sys", "user")

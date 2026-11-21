@@ -79,6 +79,11 @@ def curate_category(client, settings: Settings, system_prompt: str, user_message
         )
     except anthropic.APIError as e:
         raise CurationError(f"API error: {type(e).__name__}: {e}") from e
+    except Exception as e:
+        # The SDK parses the JSON inside parse(), so a refusal or a cut-off reply surfaces
+        # here as a validation error; a missing API key surfaces as TypeError. Either way
+        # this category fails and the run carries on.
+        raise CurationError(f"{type(e).__name__}: {str(e)[:200]}") from e
     if response.stop_reason in ("refusal", "max_tokens"):
         raise CurationError(f"stop_reason={response.stop_reason}")
     parsed = response.parsed_output

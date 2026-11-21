@@ -1,7 +1,7 @@
-feedparser
-requests
-PyYAML
-anthropic
-pydantic
-python-dotenv
-pytest
+feedparser==6.0.14
+requests==2.34.2
+PyYAML==6.0.4
+anthropic==2.12.0
+pydantic==2.14.4
+python-dotenv==1.2.4
+pytest==9.2.0
