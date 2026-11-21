@@ -3,30 +3,43 @@
 Every 4 hours this bot:
 
 1. Pulls the last 24 hours of headlines from the feeds in `sources.yaml` (Reuters, AP, BBC, TechCrunch, gaming sites, Indian tech outlets…).
-2. Asks Claude Sonnet to pick **0–3 stories per category** (AI & Big Tech, Semiconductors, Gaming, Indian Tech & Startups, World & Markets) and draft a post for each in your voice. Claude skips repeats, gossip, sports and fluff.
+2. Asks Claude (Haiku or Sonnet, through **Claude Code on your Pro plan**, so no API bill) to pick **0–3 stories per category** (AI & Big Tech, Semiconductors, Gaming, Indian Tech & Startups, World & Markets) and draft a post for each in your voice. Claude skips repeats, gossip, sports and fluff.
 3. Publishes everything to a web page: picks with a **Copy** button on top, all articles below, one tab per category.
 
 You read the page, copy the posts you like, and post them to X yourself.
 
-It runs on GitHub Actions and the page is hosted on GitHub Pages, so your Mac can be off.
+The bot runs on your Mac every 4 hours (catching up after sleep) and pushes the results to GitHub, which publishes the page on GitHub Pages.
 
 ---
 
-## One-time setup (about 15 minutes)
+## One-time setup
 
-1. **Create a public repo** on GitHub (e.g. `newsbot`) and push this folder to it:
-   ```bash
-   git remote add origin https://github.com/<you>/newsbot.git
-   git push -u origin main
-   ```
-2. **Add your API key**: repo → Settings → Secrets and variables → Actions → *Secrets* → New repository secret. Name it `ANTHROPIC_API_KEY` and paste your key from console.anthropic.com.
-3. **Turn on dry-run mode**: same page → *Variables* tab → New repository variable. Name it `DRY_RUN`, value `true`.
-4. **Turn on Pages**: Settings → Pages → Source: **GitHub Actions**.
-5. **First run**: Actions tab → enable workflows if asked → *newsbot* → **Run workflow**.
-6. **Review the drafts**: open the run → *Run bot* step. Drafts are printed there, grouped by category. Nothing is published yet.
-7. **Go live**: when you like the curation, change the `DRY_RUN` variable to `false` and run the workflow again. Your page will be at `https://<you>.github.io/<repo>/`.
+**On your Mac** (you need Claude Code installed and logged in with your Pro plan: `claude` works in Terminal):
 
-After that it runs on its own every 4 hours. If a run fails (e.g. Claude was unreachable), GitHub emails you, and the page still updates the articles list.
+```bash
+python3.12 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+echo "DRY_RUN=true" >> .env          # first day: print drafts only
+python -m newsbot --dry-run          # try one run now
+python scripts/compare_models.py     # Haiku vs Sonnet on the same headlines -> compare-*.md
+```
+
+Pick the model in `settings.yaml` (`model: haiku` or `model: sonnet`).
+
+**On GitHub** (for the web page):
+1. Create a public repo (e.g. `newsbot`), then `git remote add origin https://github.com/<you>/newsbot.git && git push -u origin main`.
+2. Settings → Pages → Source: **GitHub Actions**.
+
+**Turn on the schedule:**
+```bash
+bash scripts/install_schedule.sh                       # every 4h: 00, 04, 08, 12, 16, 20
+launchctl kickstart gui/$(id -u)/com.newsbot.run       # optional: run once right now
+tail -f logs/run.log                                   # watch what it did
+```
+When the drafts look good, delete the `DRY_RUN=true` line from `.env`. Each run then commits `site/data` and pushes, and GitHub republishes the page at `https://<you>.github.io/<repo>/`.
+
+Uninstall the schedule: `launchctl bootout gui/$(id -u)/com.newsbot.run && rm ~/Library/LaunchAgents/com.newsbot.run.plist`
 
 ---
 
@@ -41,42 +54,35 @@ All of this is plain text editing. No code changes are needed. Push the change t
 | Change what counts in a category | `topics.yaml`: edit `covers` / `skip` |
 | Change the voice or rules | `prompts/curator.md`. You can add a few of your own past posts at the bottom as examples. |
 | Pick more or fewer per category | `topics.yaml`: `max_picks` |
-| Run more or less often | `.github/workflows/run.yml`: the `cron` line (`0 */6 * * *` = every 6 hours) |
-| Cut cost | `settings.yaml`: lower `per_source_cap`, or set `effort: low` |
+| Run more or less often | `scripts/com.newsbot.run.plist.template` hours, then rerun `install_schedule.sh` |
+| Use less of your Pro allowance | `settings.yaml`: `model: haiku`, or lower `per_source_cap` |
+| Switch model | `settings.yaml`: `model: haiku` / `sonnet` |
 
 After adding a feed, check it works: `python scripts/check_feeds.py`
 
 ---
 
-## Running it on your Mac
+## Handy commands
 
 ```bash
-python3.12 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env            # then paste your API key into .env
-python -m newsbot --dry-run     # prints drafts, writes nothing
-python scripts/check_feeds.py   # checks every feed URL
+python -m newsbot --dry-run [--model sonnet]   # one run, prints drafts + token usage
+python scripts/check_feeds.py                  # checks every feed URL
+python scripts/sample_data.py site/data && python -m http.server -d site 8000   # preview page with fake data
+rm site/data/*.json                            # clean up the fake data before committing
+pytest                                         # tests
 ```
-
-To preview the page with fake data:
-
-```bash
-python scripts/sample_data.py site/data
-python -m http.server -d site 8000   # open http://localhost:8000
-rm site/data/*.json                  # clean up before committing
-```
-
-Run the tests: `pytest`
 
 ---
 
 ## Cost
 
-Each run makes one Claude Sonnet call per category (5 today), 6 runs a day. Sonnet 5.5 costs $2 per million input tokens and $10 per million output tokens. A typical call sends ~60–120 headlines. Rough estimate: **$1–2 a day**. Check your real usage at console.anthropic.com after the first day. The cheapest levers are `per_source_cap`, `effort: low`, or running every 6 hours.
+**₹0 extra.** Curation runs through Claude Code on your Pro plan. Each run uses ~50–60k tokens (5 categories), which counts against your Pro usage limits. Haiku uses less of the allowance than Sonnet. On a day you use Claude heavily yourself, a run might hit the limit. Those categories then show "curation failed" and the next run tries again. Every run prints its token usage, and `site/data/picks.json` keeps it.
+
+Prefer the paid API instead? Set `backend: api` and a full model id (e.g. `claude-haiku-5-5`) in `settings.yaml`, and put `ANTHROPIC_API_KEY` in `.env`.
 
 ## Notes
 
 - Reuters and AP have no public RSS feeds, so they come through Google News searches. Their article links go through a Google redirect, which is fine for reading.
 - Moneycontrol is not included: its RSS feed blocks bots.
-- If Claude's safety filter declines a category's request, the API automatically retries it on another model (`fallbacks: "default"`). If that fails too, that tab shows "Curation failed this run".
+- If Claude can't curate a category (usage limit, refusal, timeout), that tab shows "Curation failed this run" and the other categories still publish.
 - Posts are flagged on the page (⚠) if they're over 280 characters or contain a hashtag, a link, or a banned hype word (list in `settings.yaml`).
