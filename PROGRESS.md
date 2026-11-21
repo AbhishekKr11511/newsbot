@@ -1,6 +1,6 @@
 # Progress
 
-**Status (2026-11-21):** v1.1 is built and tested (78 tests passing). It runs end to end on the Mac through Claude Code on the Pro plan. It isn't on GitHub yet, and the schedule isn't installed.
+**Status (2026-11-21):** v1.2 is built and tested (89 tests passing). It runs end to end on the Mac through Claude Code on the Pro plan. It isn't on GitHub yet, and the schedule isn't installed.
 
 ## Done
 
@@ -20,12 +20,19 @@
 - [x] First live comparison run (results below)
 - [x] Final review fixes: the schedule commits only `site/data`, only on `main`, and stops cleanly if `git pull` fails
 
+### v1.2: images for posts
+- [x] Claude writes a `card_text` (key number or quote, max 60 chars) per pick
+- [x] Page draws a downloadable 1200×675 stat card per post, with your handle
+- [x] Article's own image link saved from the feed, with an "Open original image" button (Reuters/AP have none)
+- [x] Guard: picks whose draft is placeholder text are dropped
+
 ## Next steps (owner)
 
 1. **Decide Haiku or Sonnet** after reading `compare-2026-11-21-1304.md`. Run the comparison a couple more times on different days.
 2. **Put it on GitHub:** create a public repo and push. In Settings → Pages, set the source to "GitHub Actions". See the README.
 3. **Merge to `main`**, then **install the schedule:** `bash scripts/install_schedule.sh` and `launchctl kickstart gui/$(id -u)/com.newsbot.run`. Check `logs/run.log` for a new entry: macOS may block background jobs in `~/Documents` (see the README). If it does, move the project to e.g. `~/code/newsbot`. Keep `DRY_RUN=true` in `.env` for the first day, then remove it.
-4. Optional: add a few of your own past posts at the bottom of `prompts/curator.md` to sharpen the voice.
+4. Put your X handle in `settings.yaml` → `card_handle`.
+5. Optional: add a few of your own past posts at the bottom of `prompts/curator.md` to sharpen the voice.
 
 ## Open decisions
 
@@ -58,5 +65,6 @@ On Pro you don't pay the $ column. Sonnet uses more of your Pro allowance per ru
 - **2026-11-17**: Design agreed: categories, 0–3 picks each, static page, GitHub Pages.
 - **2026-11-18**: v1 plan written.
 - **2026-11-21**: v1 built (52 tests). Final review fixed: refusal crash, `<` in titles, pinned deps, push race. Moneycontrol dropped (blocks bots); YourStory and Mint added.
+- **2026-11-21**: v1.2 stat cards and article images (89 tests). Live run: 9 picks, 6 with article images, ~61k tokens. Caught Haiku returning "placeholder" drafts once, so validation now drops them.
 - **2026-11-21**: v1.1 review: fixed scoped commit, branch guard, and clean stop on a failed pull (78 tests).
 - **2026-11-21**: Switched to Claude Code on the Pro plan (v1.1). Token tracking, model comparison, Mac schedule. First live dry run: 527 articles, 14 Haiku drafts, ~58k tokens.

@@ -13,7 +13,7 @@ Curation runs through the **Claude Code CLI on the owner's Pro plan** (`claude -
 - `newsbot/store.py`: `site/data/*.json` read/write/merge/prune (atomic writes)
 - `newsbot/run.py`: `prepare` → `curate_all` → summary → save; `python -m newsbot`
 - `prompts/curator.md`: the system prompt / voice (owner-editable)
-- `site/`: static page (`index.html`, `app.js`, `style.css`) reading `site/data/*.json`
+- `site/`: static page (`index.html`, `app.js`, `style.css`) reading `site/data/*.json`; `drawCard` in `app.js` draws the 1200×675 stat cards on canvas (never draw cross-origin article images onto the canvas, because that blocks Download)
 - `scripts/`: `check_feeds.py`, `compare_models.py`, `sample_data.py`, `run_and_publish.sh`, `install_schedule.sh`
 - `docs/superpowers/specs/`: design; `docs/superpowers/plans/`: implementation plans
 

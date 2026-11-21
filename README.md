@@ -5,6 +5,7 @@ Every 4 hours this bot:
 1. Pulls the last 24 hours of headlines from the feeds in `sources.yaml` (Reuters, AP, BBC, TechCrunch, gaming sites, Indian tech outlets…).
 2. Asks Claude (Haiku or Sonnet, through **Claude Code on your Pro plan**, so no API bill) to pick **0–3 stories per category** (AI & Big Tech, Semiconductors, Gaming, Indian Tech & Startups, World & Markets) and draft a post for each in your voice. Claude skips repeats, gossip, sports and fluff.
 3. Publishes everything to a web page: picks with a **Copy** button on top, all articles below, one tab per category.
+4. Draws a **stat card** image (1200×675) for each post, the key number or quote in big type with your handle, and links the article's own picture when the feed has one. Use **Download card** and **Open original image** on each pick.
 
 You read the page, copy the posts you like, and post them to X yourself.
 
@@ -58,6 +59,8 @@ All of this is plain text editing. No code changes are needed. Push the change t
 | Change what counts in a category | `topics.yaml`: edit `covers` / `skip` |
 | Change the voice or rules | `prompts/curator.md`. You can add a few of your own past posts at the bottom as examples. |
 | Pick more or fewer per category | `topics.yaml`: `max_picks` |
+| Put your handle on the cards | `settings.yaml`: `card_handle` (and optional `card_tagline`) |
+| Change the card look | `site/app.js`: `drawCard` (colours, sizes) |
 | Run more or less often | `scripts/com.newsbot.run.plist.template` hours, then rerun `install_schedule.sh` |
 | Use less of your Pro allowance | `settings.yaml`: `model: haiku`, or lower `per_source_cap` |
 | Switch model | `settings.yaml`: `model: haiku` / `sonnet` |
