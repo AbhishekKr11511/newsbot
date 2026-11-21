@@ -4,11 +4,10 @@ import re
 import shutil
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
-from types import SimpleNamespace
 
 import pytest
 
-from newsbot.curate import CurationError, CurationResult, Pick
+from newsbot.curate import CurationError
 from newsbot.run import Paths, run
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -44,24 +43,22 @@ def root(tmp_path):
 
 
 class FakeClient:
-    """Picks the first candidate id; optional post text; can fail for one category."""
+    """Fake curator: picks the first candidate id; optional post text; can fail for one category."""
 
     def __init__(self, post="Nvidia made $35B. Shocking.", fail_category=None):
         self.prompts = []
-        outer = self
+        self.post, self.fail_category = post, fail_category
 
-        class Messages:
-            def parse(self, system, messages, **kw):
-                user = messages[0]["content"]
-                outer.prompts.append((system, user))
-                if fail_category and f"This category: {fail_category}" in system:
-                    raise CurationError("boom")
-                cand = user.split("Candidates:", 1)[1]
-                ids = re.findall(r"^id: (\S+)$", cand, re.M)
-                picks = [Pick(article_id=ids[0], post=post, reason="r")] if ids else []
-                return SimpleNamespace(stop_reason="end_turn", parsed_output=CurationResult(picks=picks))
-
-        self.beta = SimpleNamespace(messages=Messages())
+    def __call__(self, system, user):
+        self.prompts.append((system, user))
+        if self.fail_category and f"This category: {self.fail_category}" in system:
+            raise CurationError("boom")
+        cand = user.split("Candidates:", 1)[1]
+        ids = re.findall(r"^id: (\S+)$", cand, re.M)
+        picks = [{"article_id": ids[0], "post": self.post, "reason": "r"}] if ids else []
+        usage = {"model": "claude-haiku-5-5", "input_tokens": 100, "cache_creation_input_tokens": 0,
+                 "cache_read_input_tokens": 0, "output_tokens": 10, "thinking_tokens": 4, "cost_usd_equiv": 0.001}
+        return picks, usage
 
 
 def data(root, name):
@@ -126,3 +123,19 @@ def test_second_run_excludes_previous_picks(root):
 def test_flags_attached(root):
     run(Paths(root), NOW, False, FakeClient(post="Chips! #AI"), http_get=http_get, out=io.StringIO())
     assert "hashtag" in data(root, "picks")[0]["categories"]["ai-bigtech"]["picks"][0]["flags"]
+
+
+def test_usage_recorded_per_category_and_total(root):
+    run(Paths(root), NOW, False, FakeClient(), http_get=http_get, out=io.StringIO())
+    r = data(root, "picks")[0]
+    called = [c for c in r["categories"].values() if c["usage"]]
+    assert called and all(c["usage"]["output_tokens"] == 10 for c in called)
+    assert r["categories"]["india-tech"]["usage"] is None
+    assert r["usage_total"]["output_tokens"] == 10 * len(called)
+    assert r["usage_total"]["input_tokens"] == 100 * len(called)
+
+
+def test_summary_prints_tokens(root):
+    out = io.StringIO()
+    run(Paths(root), NOW, True, FakeClient(), http_get=http_get, out=out)
+    assert "tokens" in out.getvalue()
