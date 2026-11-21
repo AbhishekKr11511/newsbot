@@ -95,3 +95,45 @@ def test_fetch_all_dedupes_by_id():
                              http_get=lambda u, t: (FIX / "rss_basic.xml").read_bytes())
     assert len(arts) == 3 and not errors
     assert [x.published_at for x in arts] == sorted((x.published_at for x in arts), reverse=True)
+
+
+def test_non_http_links_skipped():
+    titles = [a.title for a in parse("bad_links.xml")]
+    assert titles == ["Good link"]
+
+
+class FakeResp:
+    def __init__(self, chunks, headers=None):
+        self.chunks, self.headers = chunks, headers or {}
+
+    def raise_for_status(self):
+        pass
+
+    def iter_content(self, chunk_size):
+        yield from self.chunks
+
+    def close(self):
+        pass
+
+
+def test_default_get_rejects_oversized_body(monkeypatch):
+    import pytest
+    from newsbot import fetch
+    monkeypatch.setattr(fetch.requests, "get", lambda *a, **k: FakeResp([b"x" * 1024] * 6000))
+    with pytest.raises(ValueError, match="too large"):
+        fetch.default_get("https://x.test/rss", 5)
+
+
+def test_default_get_rejects_large_content_length(monkeypatch):
+    import pytest
+    from newsbot import fetch
+    monkeypatch.setattr(fetch.requests, "get",
+                        lambda *a, **k: FakeResp([b"ok"], {"Content-Length": str(50 * 1024 * 1024)}))
+    with pytest.raises(ValueError, match="too large"):
+        fetch.default_get("https://x.test/rss", 5)
+
+
+def test_default_get_returns_body(monkeypatch):
+    from newsbot import fetch
+    monkeypatch.setattr(fetch.requests, "get", lambda *a, **k: FakeResp([b"<rss/>"]))
+    assert fetch.default_get("https://x.test/rss", 5) == b"<rss/>"

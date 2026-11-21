@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>Bad links</title>
+<item><title>JS link</title><link>javascript:alert(1)</link><pubDate>Wed, 18 Nov 2026 10:00:00 +0000</pubDate></item>
+<item><title>Data link</title><link>data:text/html,hi</link><pubDate>Wed, 18 Nov 2026 10:00:00 +0000</pubDate></item>
+<item><title>Userinfo link</title><link>https://user:pw@evil.test/a</link><pubDate>Wed, 18 Nov 2026 10:00:00 +0000</pubDate></item>
+<item><title>Good link</title><link>https://good.test/a</link><pubDate>Wed, 18 Nov 2026 10:00:00 +0000</pubDate></item>
+</channel></rss>

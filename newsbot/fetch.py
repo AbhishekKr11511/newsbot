@@ -6,6 +6,7 @@ import hashlib
 import html
 import logging
 import re
+import time
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime, timedelta
 from typing import Callable
@@ -21,6 +22,8 @@ log = logging.getLogger(__name__)
 TRACKING_PARAMS = {"fbclid", "gclid", "ocid", "cmpid", "ref"}
 FUTURE_TOLERANCE = timedelta(hours=1)
 SUMMARY_CHARS = 300
+MAX_FEED_BYTES = 5 * 1024 * 1024
+MAX_FETCH_SECONDS = 30
 
 
 @dataclass
@@ -61,6 +64,11 @@ def canonicalize_url(url: str) -> str:
     return urlunsplit((parts.scheme.lower(), parts.netloc.lower(), parts.path, urlencode(query), ""))
 
 
+def _is_safe_link(url: str) -> bool:
+    parts = urlsplit(url.strip())
+    return parts.scheme.lower() in ("http", "https") and bool(parts.hostname) and "@" not in parts.netloc
+
+
 def article_id(url: str) -> str:
     return hashlib.sha1(canonicalize_url(url).encode()).hexdigest()[:16]
 
@@ -86,7 +94,7 @@ def parse_feed(content: bytes, source: Source, now: datetime, window_hours: int)
         link = entry.get("link")
         title = _clean_text(entry.get("title", ""))
         published = _entry_date(entry)
-        if not link or not title or published is None:
+        if not link or not _is_safe_link(link) or not title or published is None:
             continue
         if published > now + FUTURE_TOLERANCE:
             published = now
@@ -104,9 +112,22 @@ def parse_feed(content: bytes, source: Source, now: datetime, window_hours: int)
 
 
 def default_get(url: str, timeout: int) -> bytes:
-    resp = requests.get(url, timeout=timeout, headers={"User-Agent": "newsbot/1.0"})
-    resp.raise_for_status()
-    return resp.content
+    """GET with a 5 MB body cap and a total wall-clock limit."""
+    resp = requests.get(url, timeout=timeout, headers={"User-Agent": "newsbot/1.0"}, stream=True)
+    try:
+        resp.raise_for_status()
+        if int(resp.headers.get("Content-Length") or 0) > MAX_FEED_BYTES:
+            raise ValueError("feed too large")
+        started, body = time.monotonic(), bytearray()
+        for chunk in resp.iter_content(chunk_size=65536):
+            body += chunk
+            if len(body) > MAX_FEED_BYTES:
+                raise ValueError("feed too large")
+            if time.monotonic() - started > MAX_FETCH_SECONDS:
+                raise TimeoutError("feed download took too long")
+        return bytes(body)
+    finally:
+        resp.close()
 
 
 def fetch_all(
