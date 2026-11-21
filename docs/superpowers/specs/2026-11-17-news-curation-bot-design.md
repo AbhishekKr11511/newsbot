@@ -196,3 +196,22 @@ About 5 Claude calls per run × 6 runs/day = ~30 calls/day, each with up to a fe
 - Code layout, page styling, exact retention numbers and per-source cap, banned-word list contents (seed with the owner's examples: "game-changer", "masterstroke").
 - Whether to use the SDK's structured output feature or a tool definition for the JSON response.
 - Testing approach.
+
+---
+
+## v1.1 change: run curation through Claude Code on the Pro plan (2026-11-21)
+
+**Why:** The owner has a Claude Pro plan and doesn't want to pay for API usage (~₹6000/month at Sonnet API rates). Claude Code is included in Pro and can run headless.
+
+**Approaches considered:**
+- **`claude -p` subprocess on the owner's Mac (chosen).** Uses the Pro allowance, so it costs nothing extra. Same Claude models. Verified on 2026-11-21: `claude -p --model haiku --tools "" --json-schema … --output-format json` returns `structured_output` plus token `usage`.
+- Claude Code in GitHub Actions with a subscription token (`claude setup-token`). The Mac wouldn't need to be on, but it's unverified on Pro. Revisit later.
+- Free third-party models (Gemini/Groq) or a local model (Ollama). Rejected for now: weaker voice and judgment.
+
+**Design:**
+- `settings.yaml` gains `backend: claude-code` (default) or `api`, and `model` takes `haiku` / `sonnet` for claude-code. The API code stays as the `api` backend.
+- The claude-code backend runs: `claude -p --model <m> --system-prompt <prompt> --json-schema <CurationResult schema> --tools "" --strict-mcp-config --setting-sources "" --no-session-persistence --output-format json`, with the candidate list on stdin and a 5-minute timeout. A missing CLI, non-zero exit, `is_error`, a timeout, or bad JSON makes that category `curation_failed`; other categories continue. Pro usage limits are handled the same way.
+- **Token tracking:** each category result records `usage` (input, cache write, cache read, output, thinking tokens) and `model`. The run summary prints per-category and total tokens. `picks.json` keeps them, so usage can be compared over days.
+- **Model comparison:** `python scripts/compare_models.py` fetches once, runs every category through Haiku and then Sonnet on the **same** candidates, and writes `compare-<date>.md`. That file shows drafts side by side plus a token table, so the owner can judge whether Haiku is good enough. It writes nothing to `site/data`.
+- **Scheduling moves to the Mac:** a `launchd` job runs `scripts/run_and_publish.sh` every 4 hours and catches up after sleep. The script does `git pull`, `python -m newsbot`, then commits and pushes `site/data` if anything changed. The GitHub workflow no longer runs the bot; it only deploys Pages when `site/data` changes on `main`. The `DRY_RUN` switch moves to `.env`.
+- **Trade-offs accepted:** the Mac must be awake for runs (catch-up on wake), and heavy personal Claude use on the same day can exhaust the Pro limit and fail a run.
