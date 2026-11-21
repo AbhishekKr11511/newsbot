@@ -39,6 +39,7 @@ class Settings:
     max_post_chars: int
     banned_words: list[str] = field(default_factory=list)
     fetch_timeout_s: int = 15
+    backend: str = "claude-code"  # claude-code | api
 
 
 def _load_list(path: Path) -> list[dict]:
@@ -104,6 +105,7 @@ def load_settings(path: Path) -> Settings:
             max_post_chars=int(d.get("max_post_chars", 280)),
             banned_words=[str(w) for w in d.get("banned_words", [])],
             fetch_timeout_s=int(d.get("fetch_timeout_s", 15)),
+            backend=str(d.get("backend", "claude-code")),
         )
     except KeyError as e:
         raise ConfigError(f"{path}: missing {e}") from e

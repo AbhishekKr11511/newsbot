@@ -45,7 +45,12 @@ def test_source_defaults(tmp_path):
 
 def test_load_settings():
     s = load_settings(ROOT / "settings.yaml")
-    assert s.model == "claude-sonnet-5-5"
     assert s.effort == "medium"
     assert s.per_source_cap == 15
     assert "masterstroke" in s.banned_words
+
+
+def test_load_settings_backend():
+    s = load_settings(ROOT / "settings.yaml")
+    assert s.backend == "claude-code"
+    assert s.model == "haiku"
