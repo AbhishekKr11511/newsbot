@@ -1,6 +1,6 @@
 # Progress
 
-**Status (2026-11-21):** v1.2 is built and tested (89 tests passing). It runs end to end on the Mac through Claude Code on the Pro plan. It isn't on GitHub yet, and the schedule isn't installed.
+**Status (2026-11-21):** v1.2 is built and tested (91 tests passing). It runs end to end on the Mac through Claude Code on the Pro plan. It isn't on GitHub yet, and the schedule isn't installed.
 
 ## Done
 
@@ -50,6 +50,11 @@
 On Pro you don't pay the $ column. Sonnet uses more of your Pro allowance per run than Haiku does.
 
 ## Known minor issues (deferred)
+
+- Card: a very long handle plus tagline can overlap; the source/date line isn't wrapped; one very long word can truncate to "…".
+- Card: font size and line spacing can be slightly out of step at the smallest size (still fits).
+- One pick missing `card_text` fails its whole category (only if the CLI doesn't enforce the schema).
+- Plain-http article images may not show as thumbnails on the https page ("Open original image" still works).
 
 - The schedule under launchd is untested until you install it (macOS privacy on `~/Documents`; git credentials once a remote exists).
 - `run_and_publish.sh`'s PATH covers `~/.local/bin` and Homebrew, not nvm-installed `claude`.
