@@ -73,3 +73,11 @@ a { color: var(--accent); }
 @media (max-width: 480px) {
   .articles li { grid-template-columns: 1fr; }
 }
+
+.media { margin-top: 12px; display: grid; gap: 8px; }
+.stat-card { width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 8px; border: 1px solid var(--border); display: block; }
+.secondary {
+  background: transparent; color: var(--accent); border: 1px solid var(--border); border-radius: 6px;
+  padding: 4px 10px; font: inherit; font-size: .85rem; cursor: pointer; text-decoration: none;
+}
+.thumb { max-width: 220px; max-height: 140px; border-radius: 6px; object-fit: cover; border: 1px solid var(--border); }

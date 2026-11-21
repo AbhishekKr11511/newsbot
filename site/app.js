@@ -27,6 +27,7 @@
 
   const fmtFull = new Intl.DateTimeFormat(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
   const fmtTime = new Intl.DateTimeFormat(undefined, { hour: "2-digit", minute: "2-digit" });
+  const fmtDate = new Intl.DateTimeFormat(undefined, { day: "numeric", month: "short", year: "numeric" });
 
   function ago(date) {
     const mins = Math.max(0, Math.round((Date.now() - date) / 60000));
@@ -62,6 +63,111 @@
     });
   }
 
+  // ---- Stat card (1200x675, drawn on canvas; feed text only via fillText) ----
+  const CARD_W = 1200, CARD_H = 675, FONT = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+
+  function wrapLines(ctx, text, maxWidth) {
+    const words = text.split(/\s+/).filter(Boolean);
+    const lines = [];
+    let line = "";
+    words.forEach((word) => {
+      // Break a single word that is wider than the box.
+      while (ctx.measureText(word).width > maxWidth && word.length > 1) {
+        let cut = word.length - 1;
+        while (cut > 1 && ctx.measureText(word.slice(0, cut)).width > maxWidth) cut--;
+        if (line) { lines.push(line); line = ""; }
+        lines.push(word.slice(0, cut));
+        word = word.slice(cut);
+      }
+      const test = line ? line + " " + word : word;
+      if (ctx.measureText(test).width <= maxWidth) line = test;
+      else { if (line) lines.push(line); line = word; }
+    });
+    if (line) lines.push(line);
+    return lines;
+  }
+
+  function drawCard(canvas, o) {
+    canvas.width = CARD_W;
+    canvas.height = CARD_H;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#0f0f10";
+    ctx.fillRect(0, 0, CARD_W, CARD_H);
+    ctx.fillStyle = "#60a5fa";
+    ctx.fillRect(80, 80, 72, 6); // short accent line above the text
+
+    const boxW = 1040, boxH = 370, x = 80;
+    let size = 92, lines;
+    do {
+      ctx.font = "700 " + size + "px " + FONT;
+      lines = wrapLines(ctx, o.text, boxW);
+      if (lines.length * size * 1.15 <= boxH) break;
+      size -= 4;
+    } while (size > 44);
+    const maxLines = Math.floor(boxH / (size * 1.15));
+    if (lines.length > maxLines) {
+      lines = lines.slice(0, maxLines);
+      lines[maxLines - 1] = lines[maxLines - 1].replace(/\s*\S*$/, "") + "…";
+    }
+    ctx.fillStyle = "#f5f5f4";
+    ctx.textBaseline = "top";
+    const top = 120 + (boxH - lines.length * size * 1.15) / 2; // centre the block between the bar and the source line
+    lines.forEach((ln, i) => ctx.fillText(ln, x, top + i * size * 1.15));
+
+    ctx.font = "400 30px " + FONT;
+    ctx.fillStyle = "#a8a29e";
+    ctx.fillText(o.source + " · " + o.date, x, 520);
+
+    ctx.font = "600 28px " + FONT;
+    ctx.textBaseline = "alphabetic";
+    if (o.handle) {
+      ctx.fillStyle = "#f5f5f4";
+      ctx.textAlign = "right";
+      ctx.fillText(o.handle, CARD_W - 80, CARD_H - 70);
+      ctx.textAlign = "left";
+    }
+    if (o.tagline) {
+      ctx.fillStyle = "#a8a29e";
+      ctx.font = "400 28px " + FONT;
+      ctx.fillText(o.tagline, x, CARD_H - 70);
+    }
+  }
+
+  function slug(text) {
+    return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "card";
+  }
+
+  function cardBlock(pick) {
+    const card = (state.meta && state.meta.card) || {};
+    const published = new Date(pick.published_at);
+    const canvas = el("canvas", { cls: "stat-card", attrs: { role: "img", "aria-label": "Stat card: " + (pick.card_text || pick.title) } });
+    drawCard(canvas, {
+      text: pick.card_text || pick.title,
+      source: pick.source,
+      date: fmtDate.format(published),
+      handle: card.handle || "",
+      tagline: card.tagline || "",
+    });
+    const dl = el("button", { cls: "secondary", text: "Download card", attrs: { type: "button" } });
+    dl.addEventListener("click", () => {
+      canvas.toBlob((blob) => {
+        if (!blob) return;
+        const a = el("a", { attrs: { href: URL.createObjectURL(blob), download: "newsbot-" + pick.published_at.slice(0, 10) + "-" + slug(pick.title) + ".png" } });
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+      }, "image/png");
+    });
+    const actions = el("div", { cls: "row" }, [dl]);
+    const children = [canvas, actions];
+    const img = pick.image_url ? safeHref(pick.image_url) : "#";
+    if (img !== "#") {
+      actions.appendChild(el("a", { cls: "secondary", text: "Open original image", attrs: { href: img, target: "_blank", rel: "noopener noreferrer" } }));
+      children.push(el("img", { cls: "thumb", attrs: { src: img, alt: "Image from the article", loading: "lazy", referrerpolicy: "no-referrer" } }));
+    }
+    return el("div", { cls: "media" }, children);
+  }
+
   function pickCard(pick, catId) {
     const published = new Date(pick.published_at);
     const copy = el("button", { cls: "copy", text: "Copy", attrs: { type: "button" } });
@@ -89,6 +195,7 @@
       row,
       pick.reason ? el("p", { cls: "reason", text: pick.reason }) : null,
       meta,
+      cardBlock(pick),
     ]);
   }
 
