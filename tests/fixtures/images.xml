@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title>Images</title>
+<item><title>Media content</title><link>https://example.com/m</link><pubDate>Wed, 18 Nov 2026 10:00:00 +0000</pubDate>
+<media:content url="https://img.test/m.jpg" medium="image"/></item>
+<item><title>Thumb</title><link>https://example.com/t</link><pubDate>Wed, 18 Nov 2026 10:00:00 +0000</pubDate>
+<media:thumbnail url="https://img.test/t.jpg"/></item>
+<item><title>Enclosure</title><link>https://example.com/e</link><pubDate>Wed, 18 Nov 2026 10:00:00 +0000</pubDate>
+<enclosure url="https://img.test/e.jpg" type="image/jpeg" length="1"/></item>
+<item><title>Summary img</title><link>https://example.com/s</link><pubDate>Wed, 18 Nov 2026 10:00:00 +0000</pubDate>
+<description><![CDATA[<p><img src="https://img.test/s.png" alt=""> Text</p>]]></description></item>
+<item><title>No image</title><link>https://example.com/n</link><pubDate>Wed, 18 Nov 2026 10:00:00 +0000</pubDate></item>
+<item><title>Bad image</title><link>https://example.com/b</link><pubDate>Wed, 18 Nov 2026 10:00:00 +0000</pubDate>
+<media:content url="javascript:alert(1)" medium="image"/></item>
+<item><title>Relative image</title><link>https://example.com/r</link><pubDate>Wed, 18 Nov 2026 10:00:00 +0000</pubDate>
+<description><![CDATA[<img src="/pic.jpg">]]></description></item>
+</channel></rss>

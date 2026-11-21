@@ -35,6 +35,7 @@ class Article:
     category: str
     published_at: datetime  # tz-aware UTC
     summary: str
+    image_url: str | None = None  # from the feed; never downloaded
 
     def to_dict(self) -> dict:
         d = asdict(self)
@@ -43,7 +44,7 @@ class Article:
 
     @classmethod
     def from_dict(cls, d: dict) -> "Article":
-        return cls(**{**d, "published_at": parse_iso(d["published_at"])})
+        return cls(**{**d, "published_at": parse_iso(d["published_at"]), "image_url": d.get("image_url")})
 
 
 def iso(dt: datetime) -> str:
@@ -85,6 +86,41 @@ class _TextExtractor(HTMLParser):
         self.parts.append(" ")
 
 
+class _FirstImg(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.src: str | None = None
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "img" and self.src is None:
+            self.src = dict(attrs).get("src")
+
+
+def _http_url(url) -> str | None:
+    if not isinstance(url, str):
+        return None
+    parts = urlsplit(url.strip())
+    if parts.scheme.lower() in ("http", "https") and parts.hostname and "@" not in parts.netloc:
+        return url.strip()
+    return None
+
+
+def _entry_image(entry) -> str | None:
+    candidates = [m.get("url") for m in entry.get("media_content") or [] if m.get("medium", "image") == "image"]
+    candidates += [m.get("url") for m in entry.get("media_thumbnail") or []]
+    candidates += [
+        l.get("href") for l in entry.get("links") or []
+        if l.get("rel") == "enclosure" and str(l.get("type", "")).startswith("image/")
+    ]
+    finder = _FirstImg()
+    finder.feed(entry.get("summary", "") or "")
+    candidates.append(finder.src)
+    for c in candidates:
+        if url := _http_url(c):
+            return url
+    return None
+
+
 def _clean_text(raw: str) -> str:
     """Strip real HTML tags but keep plain-text '<' and '>' (e.g. "GPU < $500")."""
     parser = _TextExtractor()
@@ -122,7 +158,8 @@ def parse_feed(content: bytes, source: Source, now: datetime, window_hours: int)
         if len(summary) > SUMMARY_CHARS:
             summary = summary[: SUMMARY_CHARS - 1].rstrip() + "…"
         url = canonicalize_url(link)
-        out.append(Article(article_id(url), title, url, source.name, source.category, published, summary))
+        out.append(Article(article_id(url), title, url, source.name, source.category, published, summary,
+                           _entry_image(entry)))
     return out
 
 

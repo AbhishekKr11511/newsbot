@@ -159,3 +159,33 @@ def test_clean_text_keeps_angle_brackets_in_plain_text():
     assert _clean_text("GPU < $500 and > 2x faster") == "GPU < $500 and > 2x faster"
     assert _clean_text("<p>Revenue <b>up</b> 94%.</p>") == "Revenue up 94%."
     assert _clean_text("AT&amp;T cuts &lt;1% jobs") == "AT&T cuts <1% jobs"
+
+
+def images():
+    return {a.title: a.image_url for a in parse("images.xml")}
+
+
+def test_image_from_media_content_thumbnail_enclosure():
+    im = images()
+    assert im["Media content"] == "https://img.test/m.jpg"
+    assert im["Thumb"] == "https://img.test/t.jpg"
+    assert im["Enclosure"] == "https://img.test/e.jpg"
+
+
+def test_image_from_summary_img():
+    assert images()["Summary img"] == "https://img.test/s.png"
+
+
+def test_no_image_is_none():
+    assert images()["No image"] is None
+
+
+def test_image_url_rejects_non_http():
+    im = images()
+    assert im["Bad image"] is None and im["Relative image"] is None
+
+
+def test_old_article_json_without_image_loads():
+    d = parse("rss_basic.xml")[0].to_dict()
+    d.pop("image_url")
+    assert Article.from_dict(d).image_url is None
