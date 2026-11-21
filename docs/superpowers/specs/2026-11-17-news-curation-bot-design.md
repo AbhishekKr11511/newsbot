@@ -215,3 +215,19 @@ About 5 Claude calls per run × 6 runs/day = ~30 calls/day, each with up to a fe
 - **Model comparison:** `python scripts/compare_models.py` fetches once, runs every category through Haiku and then Sonnet on the **same** candidates, and writes `compare-<date>.md`. That file shows drafts side by side plus a token table, so the owner can judge whether Haiku is good enough. It writes nothing to `site/data`.
 - **Scheduling moves to the Mac:** a `launchd` job runs `scripts/run_and_publish.sh` every 4 hours and catches up after sleep. The script does `git pull`, `python -m newsbot`, then commits and pushes `site/data` if anything changed. The GitHub workflow no longer runs the bot; it only deploys Pages when `site/data` changes on `main`. The `DRY_RUN` switch moves to `.env`.
 - **Trade-offs accepted:** the Mac must be awake for runs (catch-up on wake), and heavy personal Claude use on the same day can exhaust the Pro limit and fail a run.
+
+---
+
+## v1.2 change: stat cards and article images (2026-11-21)
+
+**Why:** Posts with images get more reach on X. The owner wants a branded card per post, plus the article's own picture to edit and use themselves.
+
+**Approaches:** (A, chosen) the page draws the cards in the browser with `<canvas>` and offers them as PNG downloads; (B) Pillow PNGs per run; (C) a headless-Chrome screenshot. B and C were rejected because they commit images every run (~4 MB/day of git history) and re-render whenever the design changes.
+
+**Design:**
+- Claude returns `card_text` per pick: the single most concrete number or short quote, max 60 chars, no hashtags or links. The prompt gets one rule for it. The schema gains the field. `checks.py` flags `card_too_long` when it's over 60 chars.
+- `fetch.py` stores `image_url` per article from the feed (`media:content`, `media:thumbnail`, enclosure of type image, or the first `<img>` in the summary). Only http(s) is kept; otherwise `null`. Nothing is downloaded or re-hosted.
+- Picks carry `card_text` and `image_url`. Older picks without them still render (no card text → a card from the headline).
+- `settings.yaml` gains `card_handle` (default `"@yourhandle"`) and `card_tagline` (optional). Both are written to `meta.json`.
+- The page shows a 1200×675 dark card preview per pick: big `card_text`, source and date small, handle/tagline in a corner, text wrapped to fit. There's a **Download card** button (canvas → PNG, filename from the date and title). When the article has an image, there's a thumbnail and an **Open original image** link (new tab, `safeHref`).
+- **Cost:** about 150 extra output tokens per run.
