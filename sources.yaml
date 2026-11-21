@@ -1,7 +1,116 @@
-# Feeds. Each belongs to exactly one category id from topics.yaml.
+# Feeds the bot reads. Each belongs to exactly one category id from topics.yaml.
+# Add a feed: copy a block, change name/url/category. Check it with: python scripts/check_feeds.py
+# Reuters and AP have no public RSS, so they come through Google News searches (titles end in " - Reuters").
+
+# ---- AI & Big Tech ----
+- name: Reuters Technology
+  url: "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=site:reuters.com+(AI+OR+technology)+when:1d"
+  category: ai-bigtech
+  strip_title_suffix: " - Reuters"
+- name: Reuters Media
+  url: "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=site:reuters.com+media+when:1d"
+  category: ai-bigtech
+  strip_title_suffix: " - Reuters"
+- name: AP Technology
+  url: "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=site:apnews.com+technology+when:1d"
+  category: ai-bigtech
+  strip_title_suffix: " - AP News"
+- name: BBC Technology
+  url: https://feeds.bbci.co.uk/news/technology/rss.xml
+  category: ai-bigtech
 - name: TechCrunch
   url: https://techcrunch.com/feed/
   category: ai-bigtech
+- name: TechCrunch AI
+  url: https://techcrunch.com/category/artificial-intelligence/feed/
+  category: ai-bigtech
+- name: TechCrunch Startups
+  url: https://techcrunch.com/category/startups/feed/
+  category: ai-bigtech
+
+# ---- Semiconductors ----
+- name: Reuters Chips
+  url: "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=site:reuters.com+(chip+OR+semiconductor+OR+Nvidia+OR+TSMC+OR+DRAM)+when:1d"
+  category: semis
+  strip_title_suffix: " - Reuters"
+- name: EE Times
+  url: https://www.eetimes.com/feed/
+  category: semis
+
+# ---- Gaming ----
+- name: Reuters Gaming
+  url: "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=site:reuters.com+(%22video+game%22+OR+gaming)+when:1d"
+  category: gaming
+  strip_title_suffix: " - Reuters"
 - name: IGN
   url: https://feeds.feedburner.com/ign/all
   category: gaming
+- name: GameSpot
+  url: https://www.gamespot.com/feeds/news/
+  category: gaming
+- name: Polygon
+  url: https://www.polygon.com/rss/index.xml
+  category: gaming
+- name: Eurogamer
+  url: https://www.eurogamer.net/feed
+  category: gaming
+- name: PC Gamer
+  url: https://www.pcgamer.com/rss/
+  category: gaming
+- name: Kotaku
+  url: https://kotaku.com/rss
+  category: gaming
+- name: Rock Paper Shotgun
+  url: https://www.rockpapershotgun.com/feed
+  category: gaming
+- name: Skill Up
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UCZ7AeeVbyslLM_8-nVy2B8Q
+  category: gaming
+  kind: youtube
+
+# ---- Indian Tech & Startups ----
+- name: Inc42
+  url: https://inc42.com/feed/
+  category: india-tech
+- name: ET Tech
+  url: https://economictimes.indiatimes.com/tech/rssfeeds/13357270.cms
+  category: india-tech
+# Moneycontrol was dropped: its RSS returns 403 to bots.
+- name: YourStory
+  url: https://yourstory.com/feed
+  category: india-tech
+- name: Mint Technology
+  url: https://www.livemint.com/rss/technology
+  category: india-tech
+- name: Reuters India Tech
+  url: "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=site:reuters.com+India+(startup+OR+tech+OR+jobs)+when:1d"
+  category: india-tech
+  strip_title_suffix: " - Reuters"
+
+# ---- World & Markets ----
+- name: Reuters World
+  url: "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=site:reuters.com+world+when:1d"
+  category: world-markets
+  strip_title_suffix: " - Reuters"
+- name: Reuters Business
+  url: "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=site:reuters.com+business+when:1d"
+  category: world-markets
+  strip_title_suffix: " - Reuters"
+- name: Reuters Markets
+  url: "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=site:reuters.com+(economy+OR+markets)+when:1d"
+  category: world-markets
+  strip_title_suffix: " - Reuters"
+- name: AP Top Stories
+  url: "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=site:apnews.com+when:1d"
+  category: world-markets
+  strip_title_suffix: " - AP News"
+- name: AP Business
+  url: "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=site:apnews.com+business+when:1d"
+  category: world-markets
+  strip_title_suffix: " - AP News"
+- name: BBC News
+  url: https://feeds.bbci.co.uk/news/rss.xml
+  category: world-markets
+- name: BBC Business
+  url: https://feeds.bbci.co.uk/news/business/rss.xml
+  category: world-markets
