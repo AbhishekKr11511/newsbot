@@ -7,7 +7,7 @@ per_source_cap: 15      # newest N articles per feed sent to Claude
 window_hours: 24
 picks_retention_days: 30
 max_post_chars: 280
-card_handle: "@yourhandle"   # shown on the stat cards — put your X handle here
+card_handle: "@nomicsexpress"   # shown on the stat cards
 card_tagline: ""             # optional, bottom-left of the card
 fetch_timeout_s: 15
 banned_words:
