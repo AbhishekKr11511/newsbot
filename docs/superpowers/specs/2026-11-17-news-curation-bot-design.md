@@ -231,3 +231,16 @@ About 5 Claude calls per run × 6 runs/day = ~30 calls/day, each with up to a fe
 - `settings.yaml` gains `card_handle` (default `"@yourhandle"`) and `card_tagline` (optional). Both are written to `meta.json`.
 - The page shows a 1200×675 dark card preview per pick: big `card_text`, source and date small, handle/tagline in a corner, text wrapped to fit. There's a **Download card** button (canvas → PNG, filename from the date and title). When the article has an image, there's a thumbnail and an **Open original image** link (new tab, `safeHref`).
 - **Cost:** about 150 extra output tokens per run.
+
+---
+
+## v1.3 change: drama voice and new topic mix (2026-11-23)
+
+**Why:** The live drafts read as neutral, insider and sarcastic, and the World/India/markets topics didn't fit. The owner wants posts that start arguments in the comments, modelled on @Pirat_Nation: plain-English news bulletins about gaming, pop-tech and AI drama that any regular person can have an opinion on.
+
+**Decided with the owner:**
+- Categories become: **Gaming** (core, up to 3), **Tech & AI drama** (core, up to 3), **Trending for everyone** (up to 1; only stories a regular person cares about and that could trend). Indian startups and World & Markets stop being categories; their feeds, plus the chip feeds, feed "Trending".
+- Voice: first line is the story in plain words (big name + concrete fact), then one line of context plus the tension (contrast, backlash, contradiction) that makes people take sides. Confident framing ("players are furious") only when the article supports it. Never invent facts, numbers or quotes. No sarcasm, no "I", no hashtags, no links, no jargon. Max 280 chars (the owner has no X Premium; `max_post_chars` is the single switch), 2–3 short lines separated by line breaks.
+- New sources, added if their feeds verify: The Verge, Dexerto, VGC, Insider Gaming, Windows Central, 9to5Mac.
+- Page: the article's own image is shown larger and first; the stat card comes second.
+- The owner reviews a dry run (new style next to the last live drafts) before it goes live.
