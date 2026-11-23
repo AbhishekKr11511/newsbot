@@ -38,6 +38,12 @@ bash scripts/install_schedule.sh                       # every 4h: 00, 04, 08, 1
 launchctl kickstart gui/$(id -u)/com.newsbot.run       # optional: run once right now
 tail -f logs/run.log                                   # watch what it did
 ```
+**How it's set up on this Mac:** macOS blocks background jobs from reading `~/Documents`, so the schedule runs from a second copy at `~/code/newsbot` (cloned from GitHub, with its own `.venv` and `.env`). Keep editing in your usual folder and `git push`. The scheduled copy runs `git pull` at the start of every run, so it picks up your changes. Its log is `~/code/newsbot/logs/run.log`. Go live by deleting `DRY_RUN=true` from **`~/code/newsbot/.env`**.
+
+To set it up on another Mac: `git clone … ~/code/newsbot && cd ~/code/newsbot && python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt && cp .env.example .env && bash scripts/install_schedule.sh`.
+
+After each run you get a macOS notification ("News Bot: 13 drafts ready" or "News Bot: run failed"). If none appears, allow notifications for **Script Editor** in System Settings → Notifications.
+
 **Check the schedule can actually run.** macOS blocks background jobs from reading `~/Documents`, `~/Desktop` and `~/Downloads` unless you allow it. After the kickstart above, look at `logs/run.log`. If there's no new entry, or `logs/launchd.log` says "Operation not permitted", the easiest fix is to move the project out of those folders (e.g. to `~/code/newsbot`) and rerun `install_schedule.sh`.
 
 The schedule only commits when the repo is on the `main` branch. On any other branch it writes data locally and says so in the log.

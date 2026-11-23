@@ -1,6 +1,6 @@
 # Progress
 
-**Status (2026-11-21):** v1.2 is built and tested (91 tests passing). It runs end to end on the Mac through Claude Code on the Pro plan. It's on GitHub (https://github.com/AbhishekKr11511/newsbot), merged to `main`, and the page is live at https://abhishekkr11511.github.io/newsbot/ (empty until the first published run). The schedule isn't installed yet.
+**Status (2026-11-21):** v1.2 is built and tested (91 tests passing). It runs end to end on the Mac through Claude Code on the Pro plan. It's on GitHub (https://github.com/AbhishekKr11511/newsbot), merged to `main`, and the page is live at https://abhishekkr11511.github.io/newsbot/ (empty until the first published run). The schedule is installed and runs from `~/code/newsbot` (still in dry-run mode).
 
 ## Done
 
@@ -28,9 +28,11 @@
 
 ## Next steps (owner)
 
+0. **Go live:** after a day of dry runs looks good, delete `DRY_RUN=true` from `~/code/newsbot/.env` (not the Documents copy).
+
 1. **Decide Haiku or Sonnet** after reading `compare-2026-11-21-1304.md`. Run the comparison a couple more times on different days.
 2. ~~Put it on GitHub~~ ✅ done 2026-11-21 (Pages enabled via the workflow).
-3. **Install the schedule** (already on `main`): `bash scripts/install_schedule.sh` and `launchctl kickstart gui/$(id -u)/com.newsbot.run`. Check `logs/run.log` for a new entry: macOS may block background jobs in `~/Documents` (see the README). If it does, move the project to e.g. `~/code/newsbot`. Keep `DRY_RUN=true` in `.env` for the first day, then remove it.
+3. ~~Install the schedule~~ ✅ done 2026-11-23, running from `~/code/newsbot` (macOS blocked `~/Documents`). Earlier notes: `bash scripts/install_schedule.sh` and `launchctl kickstart gui/$(id -u)/com.newsbot.run`. Check `logs/run.log` for a new entry: macOS may block background jobs in `~/Documents` (see the README). If it does, move the project to e.g. `~/code/newsbot`. Keep `DRY_RUN=true` in `.env` for the first day, then remove it.
 4. Put your X handle in `settings.yaml` → `card_handle`.
 5. Optional: add a few of your own past posts at the bottom of `prompts/curator.md` to sharpen the voice.
 
@@ -70,6 +72,7 @@ On Pro you don't pay the $ column. Sonnet uses more of your Pro allowance per ru
 - **2026-11-17**: Design agreed: categories, 0–3 picks each, static page, GitHub Pages.
 - **2026-11-18**: v1 plan written.
 - **2026-11-21**: v1 built (52 tests). Final review fixed: refusal crash, `<` in titles, pinned deps, push race. Moneycontrol dropped (blocks bots); YourStory and Mint added.
+- **2026-11-23**: Schedule installed from a clone at `~/code/newsbot` (macOS privacy blocked launchd in `~/Documents`, exit 126). First scheduled dry run: exit 0, 467 articles, 13 drafts. Added macOS notifications. Pull now runs on dry runs too.
 - **2026-11-21**: Merged to `main`, created public repo AbhishekKr11511/newsbot, enabled Pages; first deploy succeeded.
 - **2026-11-21**: v1.2 stat cards and article images (89 tests). Live run: 9 picks, 6 with article images, ~61k tokens. Caught Haiku returning "placeholder" drafts once, so validation now drops them.
 - **2026-11-21**: v1.1 review: fixed scoped commit, branch guard, and clean stop on a failed pull (78 tests).

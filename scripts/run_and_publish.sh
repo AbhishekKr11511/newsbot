@@ -36,7 +36,8 @@ git remote get-url origin >/dev/null 2>&1 && HAS_REMOTE=true
 
 BRANCH="$(git branch --show-current)"
 
-if [ "$HAS_REMOTE" = true ] && [ "$DRY" = false ]; then
+# Always pull first, so config you pushed from your editing copy is used (dry runs too).
+if [ "$HAS_REMOTE" = true ]; then
   if ! git pull --rebase --autostash --quiet; then
     git rebase --abort >/dev/null 2>&1 || true
     echo "git pull failed; skipping this run so nothing is committed on top of a conflict"
