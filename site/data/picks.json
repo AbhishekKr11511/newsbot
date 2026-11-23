@@ -1,0 +1,270 @@
+[
+ {
+  "run_at": "2026-11-23T11:37:39Z",
+  "categories": {
+   "ai-bigtech": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "716c53fa8fcebb04",
+      "title": "OpenAI’s chief scientist has thoughts on how to limit AI development",
+      "url": "https://techcrunch.com/2026/11/22/openais-chief-scientist-has-thoughts-on-how-to-limit-ai-development/",
+      "source": "TechCrunch",
+      "published_at": "2026-11-22T21:14:07Z",
+      "post": "Before anyone sets a speed limit on AI development, someone has to agree on how to measure speed. Good luck with that one.",
+      "reason": "OpenAI's chief scientist on AI pacing, a sharp framing of the regulation debate.",
+      "card_text": "Speed limit needs an agreed measure of speed",
+      "image_url": null,
+      "flags": []
+     },
+     {
+      "article_id": "8940422c30a46a76",
+      "title": "Europe's STOXX 600 rises as tech shares rebound after AI-driven rout",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNdDFuaFRyaktlcVA5TVR0eXF2QlktZ3ZVU3JkbzZycU8zTU90WEhFSlhuVTc5RTRCdVctYVpuQzZhdUJnN1BlZWdOYkZEQXg5alR6d1BDVWEwMEszRTlRUFB1aG9ueFhHWmZmbkI1dmFSSmNZMVF6VzlhZFpBOG5BaVJ0QlprZnRVRmVIZ2djcXFzM3VrU2VQa3FQelVLU2Qzd2MwT19jTUdkRnVWYmc?oc=5",
+      "source": "Reuters Technology",
+      "published_at": "2026-11-23T10:26:47Z",
+      "post": "Tech shares bounced back after an AI-driven rout, which is the market's way of saying it has already forgotten last week. Give it a few days.",
+      "reason": "Market-level signal on AI stock sentiment after a sharp selloff.",
+      "card_text": "Tech shares rebound after AI-driven rout",
+      "image_url": null,
+      "flags": []
+     },
+     {
+      "article_id": "04504f1c4726c38b",
+      "title": "How Notable Capital, GIC, and Baillie Gifford bet big on Anthropic before its IPO",
+      "url": "https://techcrunch.com/2026/11/22/how-notable-capital-gic-and-baillie-gifford-bet-big-on-anthropic-before-its-ipo/",
+      "source": "TechCrunch",
+      "published_at": "2026-11-23T01:25:53Z",
+      "post": "Notable Capital, GIC and Baillie Gifford explain why they bet billions on Anthropic before its IPO. Conviction is cheap to describe in hindsight; the IPO price will do the grading.",
+      "reason": "Pre-IPO backers of Anthropic detailing big bets, relevant to frontier AI valuations.",
+      "card_text": "Backers bet billions before Anthropic's IPO",
+      "image_url": null,
+      "flags": []
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 4607,
+     "cache_read_input_tokens": 1469,
+     "output_tokens": 1795,
+     "thinking_tokens": 1337,
+     "cost_usd_equiv": 0.00183379
+    }
+   },
+   "semis": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "5cf4ff4ef3d32cb6",
+      "title": "Insight: How Nvidia’s billion-dollar turnaround in China is threatened by Huang’s exit",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPMzBhLWJfeFVoaXlNajJPVmVaNHl3bFFPR3lveEhDV3dlNXU3MTNlcm1MNVp0OGM5MmtvcmVxVHg2SXBCZ0U1WkdBX0NGYmNZR1NrUXI2MVZFdXQtQnlhUXN6bm9SRGJOSnYxb1QzRklGZWd1bm9tdnlSNnVGLUpLWllkZFB2MVF0UXd3T3NDbWRUQUtmVzZkUml4cXJjdmhXVXFkYWdLZ3o4TGI0T2tIZG5KMHZlSWpSczNIVg?oc=5",
+      "source": "Reuters Chips",
+      "published_at": "2026-11-23T11:03:59Z",
+      "post": "Nvidia's billion-dollar China turnaround is now threatened by Jensen Huang's exit. So the comeback depended on one person's calendar. Curious how much of it survives without him.",
+      "reason": "Nvidia China revenue recovery at risk from leadership change; directly relevant to the chip market.",
+      "card_text": "Billion-dollar China turnaround, now at risk",
+      "image_url": null,
+      "flags": []
+     },
+     {
+      "article_id": "7e1a2677a3b79311",
+      "title": "The Enigma of SoftBank’s $1 Trillion SK Hynix Buyout Attempt",
+      "url": "https://www.eetimes.com/the-enigma-of-softbanks-1-trillion-sk-hynix-buyout-attempt/",
+      "source": "EE Times",
+      "published_at": "2026-11-23T08:30:00Z",
+      "post": "SoftBank floated a $1 trillion buyout of SK Hynix, which EE Times says was a non-starter from the start. Still, it shows how badly everyone wants memory capacity for the AI buildout.",
+      "reason": "Shows strategic value of memory chipmakers in the AI buildout, even for a deal that never had a chance.",
+      "card_text": "$1 trillion SK Hynix buyout attempt",
+      "image_url": "https://www.eetimes.com/wp-content/uploads/Hero-image-SK-hynix.png",
+      "flags": []
+     },
+     {
+      "article_id": "ed3305080997f3ec",
+      "title": "Consortium in talks to buy LCY's $600 million China chip chemicals business, people say",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNeFNUV09SVEdIUDhEX25NakRwVEYzVHRHbHVpZnlNSXNzS1VTUGtNejlkaFh1cm91WmFibTR4UkxCRm4zMzJWaWF5MXhjTENaYUoybHBtVnZpS2hneF9nVzlFa0RCd1ZYOGxtWHFkOWtmcXcyWmQtZnJpa3hQeDRjVjdhRGREaFhZLTBxdVg0SndzSHY5bHQzMkhmTjlkVGFqbE9ycGlqUVRIVTBHVDItMTF5SE5MN3oxZDhnU2xINGxpSEdS?oc=5",
+      "source": "Reuters Chips",
+      "published_at": "2026-11-23T11:15:28Z",
+      "post": "A consortium is reportedly in talks for LCY's $600 million China chip chemicals business. Everyone wants a piece of the chip supply chain, just not the parts that make the headlines.",
+      "reason": "Chip materials M&A in China; a supply-chain signal, though a smaller story.",
+      "card_text": "$600 million China chip chemicals business",
+      "image_url": null,
+      "flags": []
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 2808,
+     "cache_read_input_tokens": 1458,
+     "output_tokens": 1390,
+     "thinking_tokens": 887,
+     "cost_usd_equiv": 0.0012713800000000001
+    }
+   },
+   "gaming": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "90ebdca55f21f23b",
+      "title": "Over half of all console players active on GTA 6's launch day played it, says Circana",
+      "url": "https://www.eurogamer.net/gta-6-launch-day-engagement-circana",
+      "source": "Eurogamer",
+      "published_at": "2026-11-22T12:02:30Z",
+      "post": "Circana says more than half of everyone playing on PS5 and Xbox on GTA 6's launch day was playing GTA 6. Impressive reach, though nobody has measured how many of those players were just ignoring the rest of their library.",
+      "reason": "Concrete platform-wide engagement figure from a credible market tracker.",
+      "card_text": "More than half of console players, launch day",
+      "image_url": "https://assetsio.gnwcdn.com/GTA6_5nov-(12).jpg?width=690&quality=85&format=jpg&auto=webp",
+      "flags": []
+     },
+     {
+      "article_id": "058b341487b4ed5c",
+      "title": "Unreal Engine 6 to jettison key scripting feature earlier than planned in favor of AI coding",
+      "url": "https://www.pcgamer.com/gaming-industry/unreal-engine-6-to-jettison-key-scripting-feature-earlier-than-planned-in-favor-of-ai-coding/",
+      "source": "PC Gamer",
+      "published_at": "2026-11-22T20:33:57Z",
+      "post": "Unreal Engine 6 will drop Blueprints earlier than planned in favor of AI coding. Visual scripting existed so people didn't have to write code, so retiring it for a tool that writes code is an interesting choice.",
+      "reason": "Major engine platform shift toward AI-assisted development, affecting many studios.",
+      "card_text": "Blueprints cut early for AI coding",
+      "image_url": "https://cdn.mos.cms.futurecdn.net/ZoNnbwEE9xr6vSMNfPbQVN-1920-80.jpg",
+      "flags": []
+     },
+     {
+      "article_id": "521d1ea360cc3de7",
+      "title": "Activision patents AI voice system that learns from in-game chat and creates audio for NPCs who can even speak in place of you",
+      "url": "https://www.eurogamer.net/activision-ai-voice-chat-npc-patent",
+      "source": "Eurogamer",
+      "published_at": "2026-11-23T09:27:50Z",
+      "post": "Activision has patented a system that listens to player voice chat after key moments and recreates it for NPCs, who can speak in place of you. Turning players' trash talk into training data is a bold move from a company that still needs everyone to log in.",
+      "reason": "Notable AI-in-games patent tying voice chat to NPC generation; signals publisher direction.",
+      "card_text": "Patent: NPCs trained on player voice chat",
+      "image_url": "https://assetsio.gnwcdn.com/modern-warfare-4-beta-shot-crop-2.jpeg?width=690&quality=85&format=jpg&auto=webp",
+      "flags": []
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 8078,
+     "cache_read_input_tokens": 1459,
+     "output_tokens": 1854,
+     "thinking_tokens": 1348,
+     "cost_usd_equiv": 0.00255739
+    }
+   },
+   "india-tech": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "b8279c20cfce09fc",
+      "title": "VC funding rebounds as startups raise $255M; Women founders driving social change",
+      "url": "https://yourstory.com/2026/11/vc-funding-rebounds-women-founders-social-change",
+      "source": "YourStory",
+      "published_at": "2026-11-23T02:00:00Z",
+      "post": "22 new-age tech companies made their public market debut in FY26. That's a lot of listings to justify in one year, and I'm curious how many are still trading above their issue price.",
+      "reason": "Concrete count of new-age tech IPOs in FY26, a clear signal for the Indian listings market.",
+      "card_text": "22 new-age tech companies listed in FY26",
+      "image_url": null,
+      "flags": []
+     },
+     {
+      "article_id": "1960e9be31ad4dd9",
+      "title": "Sarvam clarifies AI strategy amid debate over hosting Chinese models",
+      "url": "https://yourstory.com/2026/11/sarvam-clarifies-ai-strategy-amid-debate-over-hosting-chinese-models",
+      "source": "YourStory",
+      "published_at": "2026-11-23T07:22:02Z",
+      "post": "Sarvam says a model's country of origin and where it runs are \"two different matters.\" For a company pitching homegrown AI, the hosting bill is the part people will read closely.",
+      "reason": "Sarvam's defence of hosting Chinese models touches on sovereignty and the credibility of India's AI push.",
+      "card_text": "Origin and hosting are \"two different matters\"",
+      "image_url": null,
+      "flags": []
+     },
+     {
+      "article_id": "595052a9aa4b51f7",
+      "title": "India may emerge as long-term AI winner despite dependence on foreign tech: Deutsche Bank",
+      "url": "https://www.livemint.com/technology/india-may-emerge-as-long-term-ai-winner-despite-dependence-on-foreign-tech-deutsche-bank-11795413563934.html",
+      "source": "Mint Technology",
+      "published_at": "2026-11-23T05:59:23Z",
+      "post": "Deutsche Bank says India could be one of the biggest long-term AI winners, citing population, digital infrastructure and talent. Long-term winner is a comfortable phrase for a report; the open question is who captures the value.",
+      "reason": "Broker view on India's AI economic upside, useful context on whether the thesis holds.",
+      "card_text": "One of the biggest long-term AI beneficiaries",
+      "image_url": "https://www.livemint.com/lm-img/img/2024/12/18/1600x900/logo/tech4_1734536476058_1734536482186.png",
+      "flags": []
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 8607,
+     "cache_read_input_tokens": 1451,
+     "output_tokens": 2443,
+     "thinking_tokens": 1948,
+     "cost_usd_equiv": 0.00295761
+    }
+   },
+   "world-markets": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "2bdbc17d3ea64044",
+      "title": "Capita shares plunge 70% as boss quits after civil service pensions failure",
+      "url": "https://www.bbc.co.uk/news/articles/c65y1qqw3kjxo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "published_at": "2026-11-23T11:24:37Z",
+      "post": "Capita shares are down 70% after the boss quit over delayed civil service pension payments. Outsourcing a pension scheme was supposed to move the risk off the government, but the people still waiting for their money seem to be carrying it.",
+      "reason": "A 70% share collapse tied to a specific operational failure. Shows outsourcing risk landing on the public.",
+      "card_text": "Shares down 70% as boss quits",
+      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3d59/live/4828e850-e726-11f1-914b-6d226d813a52.jpg",
+      "flags": []
+     },
+     {
+      "article_id": "2cf0a37d6dab049e",
+      "title": "Catering giant to switch main share listing to US in further blow to UK",
+      "url": "https://www.bbc.co.uk/news/articles/ckz74098jq5po?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "published_at": "2026-11-23T09:54:04Z",
+      "post": "Another UK company is moving its main listing to the US, with a catering giant the latest to decide London isn't worth the trouble. Which household name gets to turn off the lights next?",
+      "reason": "Part of a sustained UK listing exodus, a real structural shift in capital markets.",
+      "card_text": "Main share listing moving to US",
+      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2d35/live/6c293750-e726-11f1-914b-6d226d813a52.jpg",
+      "flags": []
+     },
+     {
+      "article_id": "e75ad5ef70f287d3",
+      "title": "Poundland is facing collapse - what's gone wrong?",
+      "url": "https://www.bbc.co.uk/news/articles/cm4g10p2r0g9o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "published_at": "2026-11-23T10:09:25Z",
+      "post": "Poundland has days to find a buyer or collapse into administration. A chain built on cheap prices running out of buyers is a strange sign for a cost-of-living story.",
+      "reason": "Concrete distress signal for UK retail and consumer spending, with a days-long deadline.",
+      "card_text": "Days left to find a buyer",
+      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/419f/live/4c718920-e713-11f1-99a1-253766e7ad8b.jpg",
+      "flags": []
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 6154,
+     "cache_read_input_tokens": 1428,
+     "output_tokens": 1707,
+     "thinking_tokens": 1235,
+     "cost_usd_equiv": 0.0020987799999999997
+    }
+   }
+  },
+  "usage_total": {
+   "input_tokens": 10,
+   "cache_creation_input_tokens": 30254,
+   "cache_read_input_tokens": 7265,
+   "output_tokens": 9189,
+   "thinking_tokens": 6755,
+   "cost_usd_equiv": 0.010719
+  }
+ }
+]

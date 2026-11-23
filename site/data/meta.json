@@ -1,0 +1,30 @@
+{
+ "last_run_at": "2026-11-23T11:37:39Z",
+ "categories": [
+  {
+   "id": "ai-bigtech",
+   "name": "AI & Big Tech"
+  },
+  {
+   "id": "semis",
+   "name": "Semiconductors"
+  },
+  {
+   "id": "gaming",
+   "name": "Gaming"
+  },
+  {
+   "id": "india-tech",
+   "name": "Indian Tech & Startups"
+  },
+  {
+   "id": "world-markets",
+   "name": "World & Markets"
+  }
+ ],
+ "feed_errors": [],
+ "card": {
+  "handle": "@nomicsexpress",
+  "tagline": ""
+ }
+}
