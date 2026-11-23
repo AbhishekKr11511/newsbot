@@ -17,11 +17,11 @@ def cats():
     return load_categories(ROOT / "topics.yaml")
 
 
-def test_load_categories_reads_five():
+def test_load_categories_reads_three():
     c = cats()
-    assert [x.id for x in c] == ["ai-bigtech", "semis", "gaming", "india-tech", "world-markets"]
-    assert all(x.max_picks == 3 for x in c)
-    assert c[2].name == "Gaming"
+    assert [x.id for x in c] == ["gaming", "tech-ai", "trending"]
+    assert [x.max_picks for x in c] == [3, 3, 1]
+    assert c[0].name == "Gaming"
 
 
 def test_unknown_category_raises(tmp_path):

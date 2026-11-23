@@ -72,3 +72,9 @@ def test_placeholder_card_text_is_flagged():
     from newsbot.checks import check_card
     assert check_card("placeholder") == ["card_placeholder"]
     assert check_card("Price TBD") == []
+
+
+def test_post_newlines_count_toward_limit():
+    post = ("a" * 139) + "\n" + ("b" * 140)  # 280 chars including the newline
+    assert check_post(post, S) == []
+    assert "too_long" in check_post(post + "c", S)

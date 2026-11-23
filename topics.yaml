@@ -1,27 +1,17 @@
-# Categories the bot curates. Each one gets its own Claude call and its own tab.
-# Add a category: copy a block, give it a new id, then point feeds at it in sources.yaml.
-- id: ai-bigtech
-  name: AI & Big Tech
-  max_picks: 3
-  covers: AI industry news; major tech companies' moves (Apple, Google, Microsoft, Meta, Amazon, OpenAI, Anthropic, etc.)
-  skip: product how-tos, rumour roundups with no sourcing, minor app updates
-- id: semis
-  name: Semiconductors
-  max_picks: 3
-  covers: "Chip market moves: DRAM/memory, Nvidia, Apple silicon, TSMC, Intel, AMD, fabs, export controls"
-  skip: consumer gadget reviews, benchmark leaks with no source
+# Categories the bot curates. Each gets its own Claude call and its own tab.
+# Goal: posts a regular person can have an opinion on, and that start arguments in the comments.
 - id: gaming
   name: Gaming
   max_picks: 3
-  covers: "Gaming industry: business moves, layoffs, acquisitions, pricing, hardware, platform shifts, big releases with real numbers"
-  skip: routine reviews, trailers, deals posts, guides, unless they carry real industry news
-- id: india-tech
-  name: Indian Tech & Startups
+  covers: "Gaming drama and big moments: fan backlash, review-bombing, user vs critic score splits, studio and publisher controversies, price rises, delays, layoffs, leaks, cancelled games, big sales or flop numbers, console and Game Pass changes, famous developers saying something bold"
+  skip: routine reviews, trailers with no news, deals posts, guides, patch notes with nothing controversial, esports results
+- id: tech-ai
+  name: Tech & AI drama
   max_picks: 3
-  covers: Indian tech and startups, including funding, employment opportunities, new job titles/roles, and economic impact
-  skip: routine funding announcements under a few million dollars with no wider signal, award lists
-- id: world-markets
-  name: World & Markets
-  max_picks: 3
-  covers: World events and economics that signal a real market shift
-  skip: routine daily market wraps with no clear driver, local crime, politics with no market angle
+  covers: "Tech and AI drama regular people feel: famous CEOs (Musk, Altman, Zuckerberg, Huang, Nadella, Pichai, Cook, Amodei) saying or doing something wild, AI taking jobs, AI controversies and lawsuits, privacy scandals, bans, outages, price hikes, forced features, Windows/iPhone/Android changes that annoy or delight users"
+  skip: enterprise software deals, funding rounds with no wider story, chip-industry jargon, product how-tos, minor app updates
+- id: trending
+  name: Trending for everyone
+  max_picks: 1
+  covers: "Only a story that a regular person anywhere would care about and that could trend: a shock collapse of a household brand, a price change everyone pays, a viral controversy, a huge job-loss story, a major outage. India stories count when they affect everyday people"
+  skip: market wraps, earnings, central bank decisions, politics with no everyday impact, funding rounds, anything you'd need finance knowledge to care about. Picking nothing is the normal answer.

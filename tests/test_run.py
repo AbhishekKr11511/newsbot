@@ -17,13 +17,13 @@ NOW = datetime(2026, 11, 18, 12, 0, tzinfo=UTC)
 SOURCES = """
 - name: Chips
   url: https://chips.test/rss
-  category: semis
+  category: trending
 - name: Games
   url: https://games.test/rss
   category: gaming
 - name: Reuters
   url: https://reuters.test/rss
-  category: ai-bigtech
+  category: tech-ai
   strip_title_suffix: " - Reuters"
 """
 
@@ -78,27 +78,27 @@ def test_live_run_writes_three_files(root):
     assert run(Paths(root), NOW, False, FakeClient(), http_get=http_get, out=io.StringIO()) == 0
     runs = data(root, "picks")
     assert len(runs) == 1
-    assert set(runs[0]["categories"]) == {"ai-bigtech", "semis", "gaming", "india-tech", "world-markets"}
-    pick = runs[0]["categories"]["ai-bigtech"]["picks"][0]
+    assert set(runs[0]["categories"]) == {"gaming", "tech-ai", "trending"}
+    pick = runs[0]["categories"]["tech-ai"]["picks"][0]
     assert pick["title"] == "TSMC raises capex to $42 billion"
     assert {"article_id", "title", "url", "source", "published_at", "post", "reason", "flags"} <= set(pick)
     assert len(data(root, "articles")) > 0
-    assert data(root, "meta")["categories"][0]["id"] == "ai-bigtech"
+    assert data(root, "meta")["categories"][0]["id"] == "gaming"
 
 
 def test_empty_category_skips_claude(root):
     client = FakeClient()
     run(Paths(root), NOW, False, client, http_get=http_get, out=io.StringIO())
-    assert data(root, "picks")[0]["categories"]["india-tech"]["status"] == "no_candidates"
-    assert not any("This category: Indian Tech" in s for s, _ in client.prompts)
+    assert data(root, "picks")[0]["categories"]["gaming"]["status"] == "no_candidates"
+    assert not any("This category: Gaming" in s for s, _ in client.prompts)
 
 
 def test_failed_category_does_not_stop_others(root):
-    code = run(Paths(root), NOW, False, FakeClient(fail_category="Semiconductors"), http_get=http_get, out=io.StringIO())
+    code = run(Paths(root), NOW, False, FakeClient(fail_category="Trending"), http_get=http_get, out=io.StringIO())
     cats = data(root, "picks")[0]["categories"]
     assert code == 1
-    assert cats["semis"]["status"] == "curation_failed" and "boom" in cats["semis"]["error"]
-    assert cats["ai-bigtech"]["status"] == "ok"
+    assert cats["trending"]["status"] == "curation_failed" and "boom" in cats["trending"]["error"]
+    assert cats["tech-ai"]["status"] == "ok"
 
 
 def test_same_article_not_picked_twice_in_one_run(root):
@@ -122,7 +122,7 @@ def test_second_run_excludes_previous_picks(root):
 
 def test_flags_attached(root):
     run(Paths(root), NOW, False, FakeClient(post="Chips! #AI"), http_get=http_get, out=io.StringIO())
-    assert "hashtag" in data(root, "picks")[0]["categories"]["ai-bigtech"]["picks"][0]["flags"]
+    assert "hashtag" in data(root, "picks")[0]["categories"]["tech-ai"]["picks"][0]["flags"]
 
 
 def test_usage_recorded_per_category_and_total(root):
@@ -130,7 +130,7 @@ def test_usage_recorded_per_category_and_total(root):
     r = data(root, "picks")[0]
     called = [c for c in r["categories"].values() if c["usage"]]
     assert called and all(c["usage"]["output_tokens"] == 10 for c in called)
-    assert r["categories"]["india-tech"]["usage"] is None
+    assert r["categories"]["gaming"]["usage"] is None
     assert r["usage_total"]["output_tokens"] == 10 * len(called)
     assert r["usage_total"]["input_tokens"] == 100 * len(called)
 
@@ -143,7 +143,7 @@ def test_summary_prints_tokens(root):
 
 def test_pick_has_card_text_and_image_url(root):
     run(Paths(root), NOW, False, FakeClient(card="x" * 70), http_get=http_get, out=io.StringIO())
-    pick = data(root, "picks")[0]["categories"]["ai-bigtech"]["picks"][0]
+    pick = data(root, "picks")[0]["categories"]["tech-ai"]["picks"][0]
     assert pick["card_text"] == "x" * 70
     assert "image_url" in pick
     assert "card_too_long" in pick["flags"]

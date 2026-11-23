@@ -22,7 +22,7 @@ def test_compare_markdown_has_table_and_drafts(root):
                                                    "sonnet": FakeClient(post="sonnet draft")}, http_get=http_get)
     assert "| haiku |" in md and "| sonnet |" in md
     assert "haiku draft" in md and "sonnet draft" in md
-    assert "### AI & Big Tech" in md
+    assert "### Tech & AI drama" in md
 
 
 def test_compare_writes_nothing_to_site_data(root):
