@@ -159,12 +159,14 @@
       }, "image/png");
     });
     const actions = el("div", { cls: "row" }, [dl]);
-    const children = [canvas, actions];
+    const children = [];
     const img = pick.image_url ? safeHref(pick.image_url) : "#";
     if (img !== "#") {
-      actions.appendChild(el("a", { cls: "secondary", text: "Open original image", attrs: { href: img, target: "_blank", rel: "noopener noreferrer" } }));
-      children.push(el("img", { cls: "thumb", attrs: { src: img, alt: "Image from the article", loading: "lazy", referrerpolicy: "no-referrer" } }));
+      // The article's own picture comes first: real images get the most reach on X.
+      children.push(el("img", { cls: "hero", attrs: { src: img, alt: "Image from the article", loading: "lazy", referrerpolicy: "no-referrer" } }));
+      actions.insertBefore(el("a", { cls: "secondary", text: "Open original image", attrs: { href: img, target: "_blank", rel: "noopener noreferrer" } }), dl);
     }
+    children.push(canvas, actions);
     return el("div", { cls: "media" }, children);
   }
 

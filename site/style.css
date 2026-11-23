@@ -80,4 +80,4 @@ a { color: var(--accent); }
   background: transparent; color: var(--accent); border: 1px solid var(--border); border-radius: 6px;
   padding: 4px 10px; font: inherit; font-size: .85rem; cursor: pointer; text-decoration: none;
 }
-.thumb { max-width: 220px; max-height: 140px; border-radius: 6px; object-fit: cover; border: 1px solid var(--border); }
+.hero { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); display: block; }

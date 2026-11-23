@@ -41,7 +41,7 @@ def main(out_dir: str) -> None:
     runs = [{
         "run_at": iso(now - timedelta(minutes=10)),
         "categories": {
-            "ai-bigtech": {"status": "ok", "error": None, "picks": [pick(6, "10 gigawatts. For a chatbot. The grid would like a word.", "AI power demand story", card="10 gigawatts for a chatbot")]},
+            "ai-bigtech": {"status": "ok", "error": None, "picks": [pick(6, "OpenAI has signed a deal for 10 gigawatts of power to run its AI models.\n\nThat's roughly what 8 million homes use, and critics are asking who pays the bill.", "AI power demand story", card="10 gigawatts for a chatbot")]},
             "semis": {"status": "ok", "error": None, "picks": [pick(0, "$42 billion in capex, which is TSMC's way of saying the AI bubble isn't popping on their watch.", "Signals sustained AI chip demand", card="$42B capex for 2027"),
                                                               pick(1, "Nvidia ships samples again. Hold the champagne. #chips", "Roadmap on schedule", ["hashtag"])]},
             "gaming": {"status": "ok", "error": None, "picks": [pick(2, "Long headline test.", "wrap test")]},
