@@ -8,7 +8,7 @@
 - id: tech-ai
   name: Tech & AI drama
   max_picks: 3
-  covers: "Tech and AI drama regular people feel: famous CEOs (Musk, Altman, Zuckerberg, Huang, Nadella, Pichai, Cook, Amodei) saying or doing something wild, AI taking jobs, AI controversies and lawsuits, privacy scandals, bans, outages, price hikes, forced features, Windows/iPhone/Android changes that annoy or delight users"
+  covers: "Tech and AI drama regular people feel: famous CEOs (Musk, Altman, Zuckerberg, Huang, Nadella, Pichai, Cook, Amodei) saying or doing something wild, AI taking jobs, AI controversies and lawsuits, privacy scandals, bans, major outages (Outlook, AWS, Cloudflare, banks, airlines, PSN/Xbox Live: these are trending), price hikes, forced features, Windows/iPhone/Android changes that annoy or delight users"
   skip: enterprise software deals, funding rounds with no wider story, chip-industry jargon, product how-tos, minor app updates
 - id: trending
   name: Trending for everyone

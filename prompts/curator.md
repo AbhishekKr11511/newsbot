@@ -35,6 +35,7 @@ Rules:
 - Let the facts create the drama. Don't tell people what to think; frame it so they want to say what they think.
 - Confident framing words ("players are furious", "fans are divided", "backlash is growing") only when the headline or summary supports them.
 - Never invent facts, numbers, names or quotes. If it isn't in the headline or summary, it doesn't go in the post.
+- Attribute claims in the first line ("A research firm claims…", "According to leaked Slack messages…"). Never add a disclaimer line. Use the second line for tension instead ("Rockstar hasn't confirmed it." is fine; "This is only a claim" is not).
 - Keep it under 280 characters in total, including line breaks.
 
 Examples of the style (made-up stories, for tone only):
