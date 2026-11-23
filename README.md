@@ -42,7 +42,7 @@ tail -f logs/run.log                                   # watch what it did
 
 To set it up on another Mac: `git clone … ~/code/newsbot && cd ~/code/newsbot && python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt && cp .env.example .env && bash scripts/install_schedule.sh`.
 
-After each run you get a macOS notification ("News Bot: 13 drafts ready" or "News Bot: run failed"). If none appears, allow notifications for **Script Editor** in System Settings → Notifications.
+After each run you get a macOS notification ("News Bot: 13 drafts ready" or "News Bot: run failed"). macOS sends these as **Script Editor** and silently drops them until it is allowed: open Script Editor once, run `display notification "hello" with title "News Bot"`, click **Allow**, and keep its alert style on Banners.
 
 **Check the schedule can actually run.** macOS blocks background jobs from reading `~/Documents`, `~/Desktop` and `~/Downloads` unless you allow it. After the kickstart above, look at `logs/run.log`. If there's no new entry, or `logs/launchd.log` says "Operation not permitted", the easiest fix is to move the project out of those folders (e.g. to `~/code/newsbot`) and rerun `install_schedule.sh`.
 

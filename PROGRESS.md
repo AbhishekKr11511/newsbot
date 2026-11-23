@@ -72,6 +72,7 @@ On Pro you don't pay the $ column. Sonnet uses more of your Pro allowance per ru
 - **2026-11-17**: Design agreed: categories, 0–3 picks each, static page, GitHub Pages.
 - **2026-11-18**: v1 plan written.
 - **2026-11-21**: v1 built (52 tests). Final review fixed: refusal crash, `<` in titles, pinned deps, push race. Moneycontrol dropped (blocks bots); YourStory and Mint added.
+- **2026-11-23**: Notifications confirmed working from the schedule (needed Script Editor to be allowed once). Second scheduled dry run: exit 0, 10 drafts.
 - **2026-11-23**: Schedule installed from a clone at `~/code/newsbot` (macOS privacy blocked launchd in `~/Documents`, exit 126). First scheduled dry run: exit 0, 467 articles, 13 drafts. Added macOS notifications. Pull now runs on dry runs too.
 - **2026-11-21**: Merged to `main`, created public repo AbhishekKr11511/newsbot, enabled Pages; first deploy succeeded.
 - **2026-11-21**: v1.2 stat cards and article images (89 tests). Live run: 9 picks, 6 with article images, ~61k tokens. Caught Haiku returning "placeholder" drafts once, so validation now drops them.
