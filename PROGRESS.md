@@ -1,6 +1,6 @@
 # Progress
 
-**Status (2026-11-21):** v1.2 is built and tested (91 tests passing). It runs end to end on the Mac through Claude Code on the Pro plan. It's on GitHub (https://github.com/AbhishekKr11511/newsbot), merged to `main`, and the page is live at https://abhishekkr11511.github.io/newsbot/ (empty until the first published run). The schedule is installed and runs from `~/code/newsbot` (still in dry-run mode).
+**Status (2026-11-21):** v1.2 is built and tested (91 tests passing). It runs end to end on the Mac through Claude Code on the Pro plan. It's on GitHub (https://github.com/AbhishekKr11511/newsbot), merged to `main`, and the page is live at https://abhishekkr11511.github.io/newsbot/ (empty until the first published run). **LIVE since 2026-11-23.** The schedule runs from `~/code/newsbot` every 4 hours and publishes to the page.
 
 ## Done
 
@@ -28,7 +28,7 @@
 
 ## Next steps (owner)
 
-0. **Go live:** after a day of dry runs looks good, delete `DRY_RUN=true` from `~/code/newsbot/.env` (not the Documents copy).
+0. ~~Go live~~ ✅ 2026-11-23.
 
 1. ~~Decide Haiku or Sonnet~~: Haiku (2026-11-23).
 2. ~~Put it on GitHub~~ ✅ done 2026-11-21 (Pages enabled via the workflow).
@@ -72,6 +72,7 @@ On Pro you don't pay the $ column. Sonnet uses more of your Pro allowance per ru
 - **2026-11-17**: Design agreed: categories, 0–3 picks each, static page, GitHub Pages.
 - **2026-11-18**: v1 plan written.
 - **2026-11-21**: v1 built (52 tests). Final review fixed: refusal crash, `<` in titles, pinned deps, push race. Moneycontrol dropped (blocks bots); YourStory and Mint added.
+- **2026-11-23**: Went live. First live scheduled run: 15 drafts, committed and pushed from launchd, Pages deployed, page shows @nomicsexpress cards.
 - **2026-11-23**: Model decision: Haiku.
 - **2026-11-23**: Notifications confirmed working from the schedule (needed Script Editor to be allowed once). Second scheduled dry run: exit 0, 10 drafts.
 - **2026-11-23**: Schedule installed from a clone at `~/code/newsbot` (macOS privacy blocked launchd in `~/Documents`, exit 126). First scheduled dry run: exit 0, 467 articles, 13 drafts. Added macOS notifications. Pull now runs on dry runs too.
