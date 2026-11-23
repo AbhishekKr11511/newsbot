@@ -20,6 +20,9 @@
 - [x] First live comparison run (results below)
 - [x] Final review fixes: the schedule commits only `site/data`, only on `main`, and stops cleanly if `git pull` fails
 
+### v1.3: drama voice
+- [x] Pirat_Nation-style bulletin voice; 3 categories; 36 feeds; image-first page
+
 ### v1.2: images for posts
 - [x] Claude writes a `card_text` (key number or quote, max 60 chars) per pick
 - [x] Page draws a downloadable 1200×675 stat card per post, with your handle
@@ -72,6 +75,7 @@ On Pro you don't pay the $ column. Sonnet uses more of your Pro allowance per ru
 - **2026-11-17**: Design agreed: categories, 0–3 picks each, static page, GitHub Pages.
 - **2026-11-18**: v1 plan written.
 - **2026-11-21**: v1 built (52 tests). Final review fixed: refusal crash, `<` in titles, pinned deps, push race. Moneycontrol dropped (blocks bots); YourStory and Mint added.
+- **2026-11-23**: v1.3: drama voice modelled on @Pirat_Nation. Categories are now Gaming, Tech & AI drama (incl. outages), and Trending for everyone (max 1). Six new feeds (36 total). Article image shown first. Claims attributed in the first line, no disclaimer lines.
 - **2026-11-23**: Went live. First live scheduled run: 15 drafts, committed and pushed from launchd, Pages deployed, page shows @nomicsexpress cards.
 - **2026-11-23**: Model decision: Haiku.
 - **2026-11-23**: Notifications confirmed working from the schedule (needed Script Editor to be allowed once). Second scheduled dry run: exit 0, 10 drafts.
