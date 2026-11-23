@@ -1,28 +1,22 @@
 {
- "last_run_at": "2026-11-23T11:37:39Z",
+ "last_run_at": "2026-11-23T14:37:51Z",
  "categories": [
-  {
-   "id": "ai-bigtech",
-   "name": "AI & Big Tech"
-  },
-  {
-   "id": "semis",
-   "name": "Semiconductors"
-  },
   {
    "id": "gaming",
    "name": "Gaming"
   },
   {
-   "id": "india-tech",
-   "name": "Indian Tech & Startups"
+   "id": "tech-ai",
+   "name": "Tech & AI drama"
   },
   {
-   "id": "world-markets",
-   "name": "World & Markets"
+   "id": "trending",
+   "name": "Trending for everyone"
   }
  ],
- "feed_errors": [],
+ "feed_errors": [
+  "Reuters India Tech: ReadTimeout: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out. (read timeout=15)"
+ ],
  "card": {
   "handle": "@nomicsexpress",
   "tagline": ""

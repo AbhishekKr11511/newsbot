@@ -266,5 +266,147 @@
    "thinking_tokens": 6755,
    "cost_usd_equiv": 0.010719
   }
+ },
+ {
+  "run_at": "2026-11-23T14:37:51Z",
+  "categories": {
+   "gaming": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "1df8250ca36d227a",
+      "title": "GTA 6 Has Already Sold 45 Million Copies, Says Research Firm",
+      "url": "https://insider-gaming.com/gta-6-45-million-copies/",
+      "source": "Insider Gaming",
+      "published_at": "2026-11-23T12:37:07Z",
+      "post": "A research firm claims GTA 6 has sold nearly 45 million copies in its launch weekend, worth over $4 billion.\n\nThe number comes from the research firm, not the publisher.",
+      "reason": "Huge number everyone can compare to their own spending; the source question invites debate.",
+      "card_text": "Nearly 45 million copies, over $4B",
+      "image_url": null,
+      "flags": []
+     },
+     {
+      "article_id": "4d49a7c8d58176a1",
+      "title": "Metacritic's user review problem worsens, as GTA 6's launch prompts review-bombing for completely unrelated games like Soul Calibur and The Ocarina of Time",
+      "url": "https://www.eurogamer.net/gta-6-metacritic-review-bomb",
+      "source": "Eurogamer",
+      "published_at": "2026-11-23T12:50:50Z",
+      "post": "GTA 6's Metacritic user scores are being review-bombed, and classic games like Soul Calibur and The Ocarina of Time are getting hit too.\n\nEurogamer says the fight is now reaching games with no link to GTA 6 at all.",
+      "reason": "Fan war over user scores hitting beloved unrelated classics; people will pick sides fast.",
+      "card_text": "Review-bombing reaches Ocarina of Time",
+      "image_url": "https://assetsio.gnwcdn.com/grand-theft-auto-6-man-with-flour-on-his-nose.png?width=690&quality=85&format=jpg&auto=webp",
+      "flags": []
+     },
+     {
+      "article_id": "c60940c1141ea32c",
+      "title": "Binding of Isaac DLC adds AI music in GTA 6-parodying update despite not having an AI disclosure, Steam reviews drop to Overwhelmingly Negative, music gets pulled",
+      "url": "https://www.pcgamer.com/games/roguelike/binding-of-isaac-dlc-adds-ai-music-in-gta-6-parodying-update-despite-not-having-an-ai-disclosure-steam-reviews-drop-to-overwhelmingly-negative-music-gets-pulled/",
+      "source": "PC Gamer",
+      "published_at": "2026-11-23T01:11:23Z",
+      "post": "Nicalis has pulled undisclosed AI-generated music from The Binding of Isaac: Repentance+ after a GTA 6 parody update went out.\n\nSteam reviews have dropped to Overwhelmingly Negative.",
+      "reason": "AI music without disclosure, a backlash that tanked Steam reviews, and a publisher reversing course.",
+      "card_text": "Steam reviews: Overwhelmingly Negative",
+      "image_url": "https://cdn.mos.cms.futurecdn.net/HNtA6QWZH23oHdCY8geRZU-1920-80.jpg",
+      "flags": []
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 18108,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 3037,
+     "thinking_tokens": 2507,
+     "cost_usd_equiv": 0.0051403
+    }
+   },
+   "tech-ai": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "90f831b4fd3ecc8c",
+      "title": "Nvidia reverses course and brings Jensen Huang back as CEO",
+      "url": "https://techcrunch.com/2026/11/23/nvidia-reverses-course-and-brings-jensen-huang-back-as-ceo/",
+      "source": "TechCrunch",
+      "published_at": "2026-11-23T14:21:59Z",
+      "post": "Nvidia has reinstated Jensen Huang as CEO, effective immediately, after its board voted unanimously to bring him back.\n\nThe share price jumped more than 30%, and senior US government officials reportedly backed the reversal.",
+      "reason": "Huge name, dramatic U-turn, a 30% stock jump, and a government angle people will argue about.",
+      "card_text": "Shares up more than 30%",
+      "image_url": null,
+      "flags": []
+     },
+     {
+      "article_id": "2df581d3f4db4969",
+      "title": "Virginia, Oregon sue Musk's SpaceX over Grok AI's creation of child sexual abuse images and videos",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxObnVxU21QWWFOSHYzcW1sajgxS25DUndFTGd6dTh6UzdyaFR5U0QtMWlROWIxZ01IcU0wNG5FLXRaMWZoS1o0dHhEUUFiaDItWFVIbE01S1pTbDZxYVZGN1hMaHlNYXBZck84N3JPaW1xcW5VMHdNeFBHSWZmRVN6MzlHZjdEcl8wTkVERGhBU3M0dVBXSHBFUHNpM1pCc1Q0MV9HTWlveVJSV1hiSEFaWjJDMEI0b2p2bzBIZEdrampIVFlVWEE?oc=5",
+      "source": "Reuters Technology",
+      "published_at": "2026-11-23T13:15:32Z",
+      "post": "Virginia and Oregon are suing Elon Musk's SpaceX over child sexual abuse images and videos created by its Grok AI.\n\nThe states' attorneys general argue sexual images from the chatbot harmed consumers.",
+      "reason": "Musk, AI-generated child abuse content, and a state lawsuit; people will split on blame and on Grok.",
+      "card_text": "Sued by Virginia and Oregon",
+      "image_url": null,
+      "flags": []
+     },
+     {
+      "article_id": "23de3667e273dfc7",
+      "title": "Uber now lets you book rides that record the drive by default",
+      "url": "https://techcrunch.com/2026/11/23/uber-now-lets-you-book-rides-that-record-the-drive-by-default/",
+      "source": "TechCrunch",
+      "published_at": "2026-11-23T14:00:00Z",
+      "post": "Uber is testing rides that record the entire trip by default, using the driver's front phone camera.\n\nThe option shows up as \"Recorded Rides\" in the app, and is being piloted in the US.",
+      "reason": "Default in-car recording raises privacy questions for both riders and drivers, a feeling everyone has.",
+      "card_text": "Whole ride recorded by default",
+      "image_url": null,
+      "flags": []
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 14540,
+     "cache_read_input_tokens": 633,
+     "output_tokens": 2510,
+     "thinking_tokens": 1986,
+     "cost_usd_equiv": 0.00416953
+    }
+   },
+   "trending": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "7dd9c99fc306cb85",
+      "title": "Pip assessments need 'fundamental overhaul', report to say",
+      "url": "https://www.bbc.co.uk/news/articles/cvlyj3rn201xo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "published_at": "2026-11-23T13:20:32Z",
+      "post": "Poundland has days to find a buyer or collapse into administration.\n\nA chain built on cheap prices is running out of time, and shoppers and staff are left wondering what happens next.",
+      "reason": "Household UK name facing a sudden collapse, with jobs and everyday prices at stake.",
+      "card_text": "Days to find a buyer or collapse",
+      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1e9d/live/6a04c6f0-e6f5-11f1-a094-5fdc692f3e33.jpg",
+      "flags": []
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 17414,
+     "cache_read_input_tokens": 633,
+     "output_tokens": 1297,
+     "thinking_tokens": 1105,
+     "cost_usd_equiv": 0.00413783
+    }
+   }
+  },
+  "usage_total": {
+   "input_tokens": 6,
+   "cache_creation_input_tokens": 50062,
+   "cache_read_input_tokens": 1266,
+   "output_tokens": 6844,
+   "thinking_tokens": 5598,
+   "cost_usd_equiv": 0.013448
+  }
  }
 ]
