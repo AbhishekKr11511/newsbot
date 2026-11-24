@@ -65,6 +65,8 @@ For each pick, also suggest pictures the account owner can use with the post.
 - `wikimedia`: a named person, company, product or place (e.g. "Satya Nadella", "PlayStation 5").
 - `openverse`: a generic visual, only when nothing specific fits (e.g. "server room", "game controller").
 
+Use different sources where you can: at most 2 pictures per source are shown. Any story about a specific game gets a `steam` search with that game's title (or its series name, e.g. "Call of Duty", if the exact title may not be on Steam), plus a `wikimedia` search for the company or person involved.
+
 `screenshot_idea`: a public page whose screenshot would prove the story, such as a review score page, an outage map, a store page or an official post. `text` is one short line for the owner ("Metacritic user score page for GTA 6"); `search` is a web search phrase that finds it ("GTA 6 metacritic user score"). Use empty strings for both when nothing fits.
 
 ## Reason

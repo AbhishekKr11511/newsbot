@@ -99,7 +99,8 @@ def test_steam_no_match_empty():
 def test_openverse_parses_and_drops_unsafe():
     get = Router({"api.openverse.org/v1/images/?": fixture_bytes("openverse.json")})
     out = search_openverse("server room", get, 5)
-    assert "license_type=commercial,modification" in get.calls[0] or "license_type=commercial%2Cmodification" in get.calls[0]
+    assert "license_type=commercial,modification" in get.calls[0]
+    assert "extension=jpg,png" in get.calls[0]
     titles = [c["credit"] for c in out]
     assert len(out) == 3 and not any(c["credit"].startswith("Bad") for c in out)
     assert out[0]["license"] == "CC BY-SA 2.0"
@@ -127,7 +128,7 @@ def test_other_http_errors_propagate():
 import base64  # noqa: E402
 
 from newsbot.config import ImageSettings  # noqa: E402
-from newsbot.images import RankError, find_images, ollama_ranker  # noqa: E402
+from newsbot.images import BadImage, RankError, find_images, ollama_ranker  # noqa: E402
 
 
 class FakePostResp:
@@ -209,14 +210,17 @@ def fake_sources(results, calls=None):
     return {s: make(s) for s in ("wikimedia", "steam", "openverse")}
 
 
+JPEG = b"\xff\xd8\xff"
+
+
 def thumb_get(url, timeout):
-    return url.encode()
+    return JPEG + url.encode()
 
 
 def scorer(scores, calls=None):
     """Ranker scoring by image name; records the order of calls."""
     def rank(img, post, query):
-        name = img.decode().rsplit("/", 1)[1].removesuffix(".jpg")
+        name = img[len(JPEG):].decode().rsplit("/", 1)[1].removesuffix(".jpg")
         if calls is not None:
             calls.append(name)
         return scores[name]
@@ -370,7 +374,7 @@ def test_thumb_download_failure_drops_candidate():
     def get(url, timeout):
         if url.endswith("a.jpg"):
             raise TimeoutError("slow")
-        return url.encode()
+        return JPEG + url.encode()
 
     p = pick(("wikimedia", "q"))
     find_images([p], ImageSettings(), 5, thumb_get=get, ranker=scorer({"b": 8}), sources=src)
@@ -494,3 +498,41 @@ def test_steam_name_match_ignores_case_and_punctuation():
     search = json.dumps({"total": 1, "items": [{"type": "app", "name": "Call of Duty®: Black Ops 7", "id": 3240220}]}).encode()
     get = Router({"storesearch": search, "appdetails": fixture_bytes("steam_appdetails.json")})
     assert len(search_steam("call of duty black ops 7", get, 5)) == 3
+
+
+def test_ranker_http_400_is_bad_image():
+    resp = requests.Response()
+    resp.status_code = 400
+    with pytest.raises(BadImage):
+        ollama_ranker(ImageSettings(), post=fake_post(exc=requests.HTTPError(response=resp)))(b"i", "p", "q")
+    assert issubclass(BadImage, RankError)
+
+
+def test_bad_image_does_not_stop_ranking():
+    src = fake_sources({("wikimedia", "q"): [cand("wikimedia", n) for n in ("a", "b")],
+                        ("steam", "s"): [cand("steam", "c")]})
+    calls = []
+
+    def ranker(img, post, query):
+        name = img[len(JPEG):].decode().rsplit("/", 1)[1].removesuffix(".jpg")
+        calls.append(name)
+        if name == "a":
+            raise BadImage("Failed to load image")
+        return 9
+
+    p = pick(("wikimedia", "q"), ("steam", "s"))
+    find_images([p], ImageSettings(), 5, thumb_get=thumb_get, ranker=ranker, sources=src)
+    assert calls == ["a", "c", "b"]
+    assert names(p) == ["c", "b"] and all(i["score"] == 9 for i in p["images"])
+
+
+def test_non_raster_thumb_is_dropped_without_ranking():
+    src = fake_sources({("openverse", "q"): [cand("openverse", "svg"), cand("openverse", "ok")]})
+    calls = []
+
+    def get(url, timeout):
+        return b"<?xml version='1.0'?><svg/>" if "svg" in url else JPEG + url.encode()
+
+    p = pick(("openverse", "q"))
+    find_images([p], ImageSettings(), 5, thumb_get=get, ranker=scorer({"ok": 9}, calls), sources=src)
+    assert calls == ["ok"] and names(p) == ["ok"]

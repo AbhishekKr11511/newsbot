@@ -133,7 +133,7 @@ def _openverse_license(code: str, version: str) -> str:
 
 def search_openverse(query: str, http_get, timeout: int) -> list[dict]:
     url = (f"https://api.openverse.org/v1/images/?q={quote(query)}&page_size={PER_QUERY}"
-           "&license_type=commercial,modification")
+           "&license_type=commercial,modification&extension=jpg,png")
     data = _get_json(url, http_get, timeout)
     out = []
     for r in data.get("results") or []:
@@ -217,7 +217,18 @@ Ranker = Callable[[bytes, str, str], int]
 
 
 class RankError(Exception):
-    pass
+    """Ranking can't continue this run (Ollama down, model missing, junk answers)."""
+
+
+class BadImage(RankError):
+    """Ollama couldn't read this one image (HTTP 400). Skip it; keep ranking the rest."""
+
+
+RASTER_MAGIC = (b"\xff\xd8\xff", b"\x89PNG", b"GIF8")
+
+
+def _is_raster(data: bytes) -> bool:
+    return data.startswith(RASTER_MAGIC) or (data[:4] == b"RIFF" and data[8:12] == b"WEBP")
 
 
 def ollama_ranker(cfg: ImageSettings, post=requests.post) -> Ranker:
@@ -233,10 +244,17 @@ def ollama_ranker(cfg: ImageSettings, post=requests.post) -> Ranker:
         try:
             resp = post(f"{cfg.ollama_url}/api/chat", json=body, timeout=OLLAMA_TIMEOUT_S)
             resp.raise_for_status()
+        except requests.HTTPError as e:
+            if getattr(e.response, "status_code", None) == 400:
+                raise BadImage(str(e)) from e
+            raise RankError(str(e)) from e
+        except Exception as e:
+            raise RankError(str(e)) from e
+        try:
             answer = json.loads(resp.json()["message"]["content"])
             score = MATCH_SCORES[answer["match"]] - (0 if answer.get("usable", True) else UNUSABLE_PENALTY)
             return max(0, min(10, score))
-        except Exception as e:  # connection refused, model missing, junk output: all mean "can't rank"
+        except Exception as e:  # junk output: can't rank
             raise RankError(str(e)) from e
     return rank
 
@@ -323,10 +341,14 @@ def find_images(picks: list[dict], cfg: ImageSettings, fetch_timeout: int, http_
             try:
                 image = thumb_get(c["thumb"], fetch_timeout)
             except Exception:
+                image = b""
+            if not _is_raster(image):  # failed download, SVG, HTML error page...
                 scores[k][c["url"]] = _DROPPED
                 continue
             try:
                 scores[k][c["url"]] = ranker(image, picks[k].get("post", ""), c.get("query", ""))
+            except BadImage:
+                scores[k][c["url"]] = _DROPPED
             except RankError as e:
                 log.warning("image ranking stopped for this run: %s", e)
                 done[k] -= 1  # not judged
