@@ -1,0 +1,78 @@
+{
+ "batchcomplete": "",
+ "query": {
+  "pages": {
+   "1": {
+    "pageid": 1,
+    "title": "File:Html credit.jpg",
+    "index": 3,
+    "imageinfo": [
+     {
+      "thumburl": "https://upload.wikimedia.org/x/html_640.jpg",
+      "url": "https://upload.wikimedia.org/x/html.jpg",
+      "descriptionurl": "https://commons.wikimedia.org/wiki/File:Satya_Nadella_Talking.jpg",
+      "mime": "image/jpeg",
+      "extmetadata": {
+       "Artist": {
+        "value": "<a href=\"//x\">Jane <b>Doe</b></a><script>x</script>"
+       },
+       "LicenseShortName": {
+        "value": "CC BY-SA 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+       }
+      }
+     }
+    ]
+   },
+   "107568589": {
+    "pageid": 107568589,
+    "title": "File:Satya Nadella Talking.jpg",
+    "index": 2,
+    "imageinfo": [
+     {
+      "thumburl": "https://upload.wikimedia.org/wikipedia/commons/0/03/Satya_Nadella_Talking.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Satya_Nadella_Talking.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "descriptionurl": "https://commons.wikimedia.org/wiki/File:Satya_Nadella_Talking.jpg",
+      "mime": "image/jpeg",
+      "extmetadata": {
+       "Artist": {
+        "value": "Richard Morgenstein",
+        "source": "commons-desc-page"
+       },
+       "LicenseShortName": {
+        "value": "CC BY-SA 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+       }
+      }
+     }
+    ]
+   },
+   "95777523": {
+    "pageid": 95777523,
+    "title": "File:MS-Exec-Nadella-Satya-2017-08-31-22 (cropped).jpg",
+    "index": 1,
+    "imageinfo": [
+     {
+      "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/MS-Exec-Nadella-Satya-2017-08-31-22_%28cropped%29.jpg/960px-MS-Exec-Nadella-Satya-2017-08-31-22_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/78/MS-Exec-Nadella-Satya-2017-08-31-22_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "descriptionurl": "https://commons.wikimedia.org/wiki/File:MS-Exec-Nadella-Satya-2017-08-31-22_(cropped).jpg",
+      "mime": "image/jpeg",
+      "extmetadata": {
+       "Artist": {
+        "value": "<a rel=\"nofollow\" class=\"external text\" href=\"http://www.briansmale.com/\">Brian Smale and Microsoft</a>",
+        "source": "commons-desc-page"
+       },
+       "LicenseShortName": {
+        "value": "CC BY-SA 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+       }
+      }
+     }
+    ]
+   }
+  }
+ }
+}

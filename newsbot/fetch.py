@@ -75,15 +75,25 @@ def article_id(url: str) -> str:
 
 
 class _TextExtractor(HTMLParser):
+    SKIP = ("script", "style")
+
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.parts: list[str] = []
+        self.skipping = 0
 
     def handle_data(self, data):
-        self.parts.append(data)
+        if not self.skipping:
+            self.parts.append(data)
 
     def handle_starttag(self, tag, attrs):
+        if tag in self.SKIP:
+            self.skipping += 1
         self.parts.append(" ")
+
+    def handle_endtag(self, tag):
+        if tag in self.SKIP and self.skipping:
+            self.skipping -= 1
 
 
 class _FirstImg(HTMLParser):

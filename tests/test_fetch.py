@@ -202,3 +202,8 @@ def test_default_get_sends_user_agent(monkeypatch):
     monkeypatch.setattr(fetch.requests, "get", fake_get)
     fetch.default_get("https://x.test/rss", 5)
     assert seen["User-Agent"] == "newsbot/1.4 (+https://github.com/AbhishekKr11511/newsbot)"
+
+
+def test_clean_text_drops_script_and_style_content():
+    from newsbot.fetch import _clean_text
+    assert _clean_text('<a href="//x">Jane <b>Doe</b></a><script>alert(1)</script><style>p{}</style>') == "Jane Doe"
