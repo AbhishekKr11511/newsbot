@@ -1,5 +1,5 @@
 {
- "last_run_at": "2026-11-24T10:30:07Z",
+ "last_run_at": "2026-11-24T14:30:07Z",
  "categories": [
   {
    "id": "gaming",
@@ -14,9 +14,7 @@
    "name": "Trending for everyone"
   }
  ],
- "feed_errors": [
-  "AP Business: HTTPError: 429 Client Error: Too Many Requests for url: https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=site:apnews.com+business+when:1d"
- ],
+ "feed_errors": [],
  "card": {
   "handle": "@nomicsexpress",
   "tagline": ""

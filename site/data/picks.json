@@ -726,5 +726,522 @@
    "thinking_tokens": 5722,
    "cost_usd_equiv": 0.017187
   }
+ },
+ {
+  "run_at": "2026-11-24T14:30:07Z",
+  "categories": {
+   "gaming": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "10f362c336e5dc70",
+      "title": "Dragon Age producer says BioWare struggled under EA because it had to keep choosing ‘the least terrible of the options’",
+      "url": "https://www.videogameschronicle.com/news/dragon-age-producer-says-bioware-struggled-under-ea-because-it-had-to-keep-choosing-the-least-terrible-of-the-options/",
+      "source": "VGC",
+      "published_at": "2026-11-24T13:04:41Z",
+      "post": "A Dragon Age producer says BioWare struggled under EA because it kept choosing \"the least terrible of the options.\"\n\nTheir explanation boils down to: you've got to hit your financials, so what are you going to do?",
+      "reason": "Pits BioWare's creative work against EA's profit demands, with a quote fans will share.",
+      "card_text": "\"The least terrible of the options\"",
+      "image_url": "https://www.videogameschronicle.com/files/2026/07/dragon-age-origins.jpg",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "steam",
+        "query": "Dragon Age"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Electronic Arts"
+       }
+      ],
+      "screenshot_idea": null,
+      "images": [
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1845910/header.jpg?t=1777414790",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1845910/header.jpg?t=1777414790",
+        "page_url": "https://store.steampowered.com/app/1845910/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Dragon Age",
+        "score": 9
+       },
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1845910/ss_a252774678fde933d4fbee722db855b731b0e627.1920x1080.jpg?t=1777414790",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1845910/ss_a252774678fde933d4fbee722db855b731b0e627.600x338.jpg?t=1777414790",
+        "page_url": "https://store.steampowered.com/app/1845910/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Dragon Age",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/78/EA_Building_RedwoodShores.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/EA_Building_RedwoodShores.JPG/960px-EA_Building_RedwoodShores.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:EA_Building_RedwoodShores.JPG",
+        "source": "wikimedia",
+        "credit": "Eliot Lash",
+        "license": "CC BY-SA 3.0",
+        "query": "Electronic Arts",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Electronic_Arts_-_Deutschlandzentrale_K%C3%B6ln.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Electronic_Arts_-_Deutschlandzentrale_K%C3%B6ln.jpg/960px-Electronic_Arts_-_Deutschlandzentrale_K%C3%B6ln.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Electronic_Arts_-_Deutschlandzentrale_K%C3%B6ln.jpg",
+        "source": "wikimedia",
+        "credit": "Raimond Spekking",
+        "license": "CC BY-SA 4.0",
+        "query": "Electronic Arts",
+        "score": 9
+       }
+      ]
+     },
+     {
+      "article_id": "b830e9523ca87b6d",
+      "title": "Rockstar shuts down Discord server trying to make GTA 6 PC port",
+      "url": "https://www.dexerto.com/gta/rockstar-shuts-down-discord-server-trying-to-make-gta-6-pc-port-3430905/",
+      "source": "Dexerto",
+      "published_at": "2026-11-24T12:33:05Z",
+      "post": "Rockstar Games has shut down a Discord server that was trying to build an unofficial PC port of GTA 6.\n\nIt follows CyberLeek's leak of GTA 6 Xbox build files, and there is still no official PC version.",
+      "reason": "Rockstar versus PC modders, with many fans desperate for GTA 6 on PC.",
+      "card_text": "Discord server shut down",
+      "image_url": "https://www.dexerto.com/cdn-image/wp-content/uploads/2025/03/06/rockstar-games-trailer-romantic-comedy-gta-6.jpg?width=1080&quality=75&format=auto",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "steam",
+        "query": "Grand Theft Auto VI"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Rockstar Games"
+       }
+      ],
+      "screenshot_idea": null,
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Rockstar_Games_buses_at_E3_2005.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Rockstar_Games_buses_at_E3_2005.jpg/960px-Rockstar_Games_buses_at_E3_2005.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Rockstar_Games_buses_at_E3_2005.jpg",
+        "source": "wikimedia",
+        "credit": "Cian Ginty",
+        "license": "Attribution",
+        "query": "Rockstar Games",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Biggest_Rockstar_Games_fan_ever_-_Flickr_-_Sergey_Galyonkin.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Biggest_Rockstar_Games_fan_ever_-_Flickr_-_Sergey_Galyonkin.jpg/960px-Biggest_Rockstar_Games_fan_ever_-_Flickr_-_Sergey_Galyonkin.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Biggest_Rockstar_Games_fan_ever_-_Flickr_-_Sergey_Galyonkin.jpg",
+        "source": "wikimedia",
+        "credit": "Sergey Galyonkin from Kyiv, Ukraine",
+        "license": "CC BY-SA 2.0",
+        "query": "Rockstar Games",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Simon_Ramsey%2C_Rockstar_Games_-_New_York_Game_Awards_2019_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Simon_Ramsey%2C_Rockstar_Games_-_New_York_Game_Awards_2019_%28cropped%29.jpg/960px-Simon_Ramsey%2C_Rockstar_Games_-_New_York_Game_Awards_2019_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Simon_Ramsey,_Rockstar_Games_-_New_York_Game_Awards_2019_(cropped).jpg",
+        "source": "wikimedia",
+        "credit": "Ken Questa",
+        "license": "CC BY-SA 4.0",
+        "query": "Rockstar Games",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Rockstar_Games%2C_Game_Developers_Choice_Awards_2019.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Rockstar_Games%2C_Game_Developers_Choice_Awards_2019.jpg/960px-Rockstar_Games%2C_Game_Developers_Choice_Awards_2019.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Rockstar_Games,_Game_Developers_Choice_Awards_2019.jpg",
+        "source": "wikimedia",
+        "credit": "Official GDC",
+        "license": "CC BY 2.0",
+        "query": "Rockstar Games",
+        "score": 9
+       }
+      ]
+     },
+     {
+      "article_id": "6c740f3eb53be0e1",
+      "title": "Mass Effect Universe Would Have Answered Trilogy Ending Questions and Squadmate Fates, Writer Says",
+      "url": "https://www.ign.com/articles/mass-effect-universe-trilogy-endings-squadmate-fates",
+      "source": "IGN",
+      "published_at": "2026-11-24T12:08:22Z",
+      "post": "BioWare's canceled Mass Effect Universe would have answered questions about the Mass Effect 3 endings, a writer says.\n\nIt would also have addressed what happened to Shepard's squadmates.",
+      "reason": "A cancelled game tied to the most argued-over Mass Effect ending.",
+      "card_text": "Would have answered the ME3 endings",
+      "image_url": "https://assets-prd.ignimgs.com/2026/11/06/masseffect-1793984731251.jpg",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "steam",
+        "query": "Mass Effect 3"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Mass Effect"
+       }
+      ],
+      "screenshot_idea": null,
+      "images": [
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1238020/header.jpg?t=1779987586",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1238020/header.jpg?t=1779987586",
+        "page_url": "https://store.steampowered.com/app/1238020/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Mass Effect 3",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/PAX_2009_-_Mass_Effect_2_booth_%283899545854%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/PAX_2009_-_Mass_Effect_2_booth_%283899545854%29.jpg/960px-PAX_2009_-_Mass_Effect_2_booth_%283899545854%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:PAX_2009_-_Mass_Effect_2_booth_(3899545854).jpg",
+        "source": "wikimedia",
+        "credit": "Alex from Calgary, Canada",
+        "license": "CC BY 2.0",
+        "query": "Mass Effect",
+        "score": 9
+       },
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1238020/ss_027ef6b2b0bb33746b09cdb015a86d12aeae2272.1920x1080.jpg?t=1779987586",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1238020/ss_027ef6b2b0bb33746b09cdb015a86d12aeae2272.600x338.jpg?t=1779987586",
+        "page_url": "https://store.steampowered.com/app/1238020/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Mass Effect 3",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Mass_Effect_2_Kasumi_Stolen_Memory_logo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Mass_Effect_2_Kasumi_Stolen_Memory_logo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Mass_Effect_2_Kasumi_Stolen_Memory_logo.jpg",
+        "source": "wikimedia",
+        "credit": "BioWare och Electronic Arts",
+        "license": "Public domain",
+        "query": "Mass Effect",
+        "score": 9
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 26113,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 5292,
+     "thinking_tokens": 4561,
+     "cost_usd_equiv": 0.0078688
+    }
+   },
+   "tech-ai": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "282affe27b97a76e",
+      "title": "Two billion credentials publicly exposed, including everything needed for identity theft",
+      "url": "https://9to5mac.com/2026/11/24/two-billion-credentials-publicly-exposed-including-everything-needed-for-identity-theft/",
+      "source": "9to5Mac",
+      "published_at": "2026-11-24T11:59:25Z",
+      "post": "A security researcher has found a publicly exposed database holding about two billion login credentials.\n\nIt had no password protection or encryption, and it includes everything needed for identity theft.",
+      "reason": "Huge breach number with no password protection makes it a privacy story almost everyone feels.",
+      "card_text": "2 billion credentials, no password protection",
+      "image_url": "https://9to5mac.com/wp-content/uploads/sites/6/2026/11/Banks-FAA-Microsoft-Apple-–-no-systemic-attack-on-the-US-says-White-House.jpg?quality=82&strip=all&w=1600",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "openverse",
+        "query": "server room"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "9to5Mac article on the exposed two billion credentials database",
+       "url": "https://www.google.com/search?q=two+billion+credentials+publicly+exposed+9to5mac"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Argonite_automatic_fire_suppression_system_server_room.jpg",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Argonite_automatic_fire_suppression_system_server_room.jpg/960px-Argonite_automatic_fire_suppression_system_server_room.jpg",
+        "page_url": "https://commons.wikimedia.org/w/index.php?curid=5288522",
+        "source": "openverse",
+        "credit": "Argonite automatic fire suppression system server room by Froztbyte (wikimedia)",
+        "license": "CC BY-SA 3.0",
+        "query": "server room",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/A_view_of_the_server_room_at_The_National_Archives.jpg",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/A_view_of_the_server_room_at_The_National_Archives.jpg/960px-A_view_of_the_server_room_at_The_National_Archives.jpg",
+        "page_url": "https://commons.wikimedia.org/w/index.php?curid=16886979",
+        "source": "openverse",
+        "credit": "A view of the server room at The National Archives by The National Archives (UK) (wikimedia)",
+        "license": "CC BY 3.0",
+        "query": "server room",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Server_room_with_HP_NetServers_-_IMG_0149.jpg",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Server_room_with_HP_NetServers_-_IMG_0149.jpg/960px-Server_room_with_HP_NetServers_-_IMG_0149.jpg",
+        "page_url": "https://commons.wikimedia.org/w/index.php?curid=117755439",
+        "source": "openverse",
+        "credit": "Server room with HP NetServers - IMG 0149 by Jemimus (wikimedia)",
+        "license": "CC BY 2.0",
+        "query": "server room",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/11/PDC_server_room.jpg",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/PDC_server_room.jpg/960px-PDC_server_room.jpg",
+        "page_url": "https://commons.wikimedia.org/w/index.php?curid=15152154",
+        "source": "openverse",
+        "credit": "PDC server room by Esquilo (wikimedia)",
+        "license": "CC BY-SA 3.0",
+        "query": "server room",
+        "score": 9
+       }
+      ]
+     },
+     {
+      "article_id": "834b0144ccd87660",
+      "title": "Uber, Nuro, and Lucid kick off fully driverless robotaxi testing",
+      "url": "https://www.theverge.com/transportation/1040676/uber-nuro-lucid-driverless-robotaxi-testing-bay-area",
+      "source": "The Verge",
+      "published_at": "2026-11-24T13:00:00Z",
+      "post": "Uber, Nuro and Lucid have started fully driverless robotaxi testing on public roads in the San Francisco Bay Area.\n\nEmployee-only rides launch shortly after, with no human driver behind the wheel.",
+      "reason": "Driverless cars on real roads hit safety fears and driver job worries at once.",
+      "card_text": "Fully driverless public road testing",
+      "image_url": null,
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Uber"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Lucid Air"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Uber newsroom post on driverless testing with Nuro and Lucid",
+       "url": "https://www.google.com/search?q=Uber+Nuro+Lucid+driverless+testing+San+Francisco"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Self_driving_Uber_prototype_in_San_Francisco.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/Self_driving_Uber_prototype_in_San_Francisco.jpg/960px-Self_driving_Uber_prototype_in_San_Francisco.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Self_driving_Uber_prototype_in_San_Francisco.jpg",
+        "source": "wikimedia",
+        "credit": "Dllu",
+        "license": "CC BY-SA 4.0",
+        "query": "Uber",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Lucid_Air_IAA_2023_1X7A0548.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Lucid_Air_IAA_2023_1X7A0548.jpg/960px-Lucid_Air_IAA_2023_1X7A0548.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Lucid_Air_IAA_2023_1X7A0548.jpg",
+        "source": "wikimedia",
+        "credit": "Alexander-93",
+        "license": "CC BY-SA 4.0",
+        "query": "Lucid Air",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Hinomaru_Kotsu_6186_JPN_Taxi_with_Uber_Taxi_advertise.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Hinomaru_Kotsu_6186_JPN_Taxi_with_Uber_Taxi_advertise.jpg/960px-Hinomaru_Kotsu_6186_JPN_Taxi_with_Uber_Taxi_advertise.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Hinomaru_Kotsu_6186_JPN_Taxi_with_Uber_Taxi_advertise.jpg",
+        "source": "wikimedia",
+        "credit": "Comyu",
+        "license": "CC BY-SA 4.0",
+        "query": "Uber",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Lucid_Air_Dream_edition%2C_IAA_Open_Space_2023%2C_Munich_%28P1120054%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Lucid_Air_Dream_edition%2C_IAA_Open_Space_2023%2C_Munich_%28P1120054%29.jpg/960px-Lucid_Air_Dream_edition%2C_IAA_Open_Space_2023%2C_Munich_%28P1120054%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Lucid_Air_Dream_edition,_IAA_Open_Space_2023,_Munich_(P1120054).jpg",
+        "source": "wikimedia",
+        "credit": "Matti Blume",
+        "license": "CC BY-SA 4.0",
+        "query": "Lucid Air",
+        "score": 9
+       }
+      ]
+     },
+     {
+      "article_id": "7601f68fa236425c",
+      "title": "Google Search’s AI Mode can now tap into Drive and Wallet for more personalized responses",
+      "url": "https://techcrunch.com/2026/11/23/google-searchs-ai-mode-can-now-tap-into-drive-and-wallet-for-more-personalized-responses/",
+      "source": "TechCrunch",
+      "published_at": "2026-11-23T19:14:46Z",
+      "post": "Google says AI Mode in Search can now draw on your Google Drive and Wallet for more personalized answers.\n\nIt uses personal data Google already holds across its services, and the same feature is coming to the Gemini app.",
+      "reason": "Letting AI read personal files and wallet data raises an easy privacy fight.",
+      "card_text": "AI answers now draw on your Drive and Wallet",
+      "image_url": null,
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Google"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Google AI Mode settings page for personal intelligence",
+       "url": "https://www.google.com/search?q=Google+AI+Mode+personal+intelligence+Drive+Wallet+settings"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/Googleplex_HQ_%28cropped%29.jpg/960px-Googleplex_HQ_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Googleplex_HQ_(cropped).jpg",
+        "source": "wikimedia",
+        "credit": "Asoundd",
+        "license": "CC BY-SA 4.0",
+        "query": "Google",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Google_shopping_s%C3%B8k.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Google_shopping_s%C3%B8k.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Google_shopping_s%C3%B8k.jpg",
+        "source": "wikimedia",
+        "credit": "JOestby",
+        "license": "CC BY-SA 4.0",
+        "query": "Google",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Google_%2823993761232%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Google_%2823993761232%29.jpg/960px-Google_%2823993761232%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Google_(23993761232).jpg",
+        "source": "wikimedia",
+        "credit": "Lukas Plewnia from Winterthur, Schweiz",
+        "license": "CC BY-SA 2.0",
+        "query": "Google",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Google-Tag-Manager.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Google-Tag-Manager.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Google-Tag-Manager.jpg",
+        "source": "wikimedia",
+        "credit": "Google LLC",
+        "license": "Public domain",
+        "query": "Google",
+        "score": 9
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 19600,
+     "cache_read_input_tokens": 904,
+     "output_tokens": 4864,
+     "thinking_tokens": 4094,
+     "cost_usd_equiv": 0.006361240000000001
+    }
+   },
+   "trending": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "4f0dc1c1829b69e1",
+      "title": "Key takeaways from the Timms review into Pip disability benefit",
+      "url": "https://www.bbc.co.uk/news/articles/c69w9gw9wx9no?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "published_at": "2026-11-24T13:46:07Z",
+      "post": "UK disability minister Sir Stephen Timms has published his review of Pip, the personal independence payment, along with recommended changes.\n\nPip helps disabled people with extra living costs, so any change lands directly on claimants.",
+      "reason": "Everyday UK benefit with a direct impact on millions of claimants; any change will split opinion.",
+      "card_text": "Timms review recommends changes to Pip",
+      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2bcc/live/108ab590-e811-11f1-a094-5fdc692f3e33.jpg",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Stephen Timms"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Department for Work and Pensions"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "GOV.UK page for the Timms review of PIP",
+       "url": "https://www.google.com/search?q=Timms+review+PIP+gov.uk"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Official_portrait_of_Stephen_Timms_MP_crop_2%2C_2024.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Official_portrait_of_Stephen_Timms_MP_crop_2%2C_2024.jpg/960px-Official_portrait_of_Stephen_Timms_MP_crop_2%2C_2024.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Official_portrait_of_Stephen_Timms_MP_crop_2,_2024.jpg",
+        "source": "wikimedia",
+        "credit": "©House of Commons / Jessica Taylor",
+        "license": "CC BY 3.0",
+        "query": "Stephen Timms",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Department_of_Work_and_Pensions%2C_Hanover_Way_-_geograph.org.uk_-_114907.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Department_of_Work_and_Pensions%2C_Hanover_Way_-_geograph.org.uk_-_114907.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Department_of_Work_and_Pensions,_Hanover_Way_-_geograph.org.uk_-_114907.jpg",
+        "source": "wikimedia",
+        "credit": "Chris Cole",
+        "license": "CC BY-SA 2.0",
+        "query": "Department for Work and Pensions",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Official_portrait_of_Stephen_Timms_MP%2C_2024.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Official_portrait_of_Stephen_Timms_MP%2C_2024.jpg/960px-Official_portrait_of_Stephen_Timms_MP%2C_2024.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Official_portrait_of_Stephen_Timms_MP,_2024.jpg",
+        "source": "wikimedia",
+        "credit": "©House of Commons / Jessica Taylor",
+        "license": "CC BY 3.0",
+        "query": "Stephen Timms",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Department_for_Work_and_Pensions_%28DWP%29%2C_Adelphi%2C_John_Adam_Street.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Department_for_Work_and_Pensions_%28DWP%29%2C_Adelphi%2C_John_Adam_Street.jpg/960px-Department_for_Work_and_Pensions_%28DWP%29%2C_Adelphi%2C_John_Adam_Street.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Department_for_Work_and_Pensions_(DWP),_Adelphi,_John_Adam_Street.jpg",
+        "source": "wikimedia",
+        "credit": "Steph Gray from London, United Kingdom",
+        "license": "CC BY-SA 3.0",
+        "query": "Department for Work and Pensions",
+        "score": 9
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 22812,
+     "cache_read_input_tokens": 904,
+     "output_tokens": 2455,
+     "thinking_tokens": 2143,
+     "cost_usd_equiv": 0.00579914
+    }
+   }
+  },
+  "usage_total": {
+   "input_tokens": 6,
+   "cache_creation_input_tokens": 68525,
+   "cache_read_input_tokens": 1808,
+   "output_tokens": 12611,
+   "thinking_tokens": 10798,
+   "cost_usd_equiv": 0.020029
+  }
  }
 ]
