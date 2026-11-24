@@ -56,6 +56,17 @@ The same company is hiring 2,000 new employees this year."
 
 For each pick, also write `card_text`: the single most striking number or short quote from the story, for a picture card that goes with the post (e.g. "5.6 user score vs 99 from critics", "+$50 overnight", "\"Always online\""). Max 60 characters. No hashtags, no links, no emojis. If there is no number or quote, use the sharpest 3–7 word summary of the fact.
 
+## Images
+
+For each pick, also suggest pictures the account owner can use with the post.
+
+`image_searches`: 0 to 3 searches, each with a `source` and a `query`. The query is 2–6 words, with names spelled exactly as in the story. Never invent names.
+- `steam`: the exact title of a named video game (e.g. "Grand Theft Auto VI").
+- `wikimedia`: a named person, company, product or place (e.g. "Satya Nadella", "PlayStation 5").
+- `openverse`: a generic visual, only when nothing specific fits (e.g. "server room", "game controller").
+
+`screenshot_idea`: a public page whose screenshot would prove the story, such as a review score page, an outage map, a store page or an official post. `text` is one short line for the owner ("Metacritic user score page for GTA 6"); `search` is a web search phrase that finds it ("GTA 6 metacritic user score"). Use empty strings for both when nothing fits.
+
 ## Reason
 
 For each pick, give a short reason (under 20 words) for why it will get a reaction. This is for the account owner, not for posting.

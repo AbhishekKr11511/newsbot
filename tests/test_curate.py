@@ -71,9 +71,9 @@ def test_user_message_includes_ids_and_covered():
 
 
 def test_curate_returns_picks():
-    client = FakeClient(ok([Pick(article_id="a", post="p1", reason="r", card_text="c"), Pick(article_id="b", post="p2", reason="r", card_text="c")]))
+    client = FakeClient(ok([Pick(article_id="a", post="p1", reason="r", card_text="c", image_searches=[], screenshot_idea={"text": "", "search": ""}), Pick(article_id="b", post="p2", reason="r", card_text="c", image_searches=[], screenshot_idea={"text": "", "search": ""})]))
     out = curate_category(client, S, "sys", "user")
-    assert out == [{"article_id": "a", "post": "p1", "reason": "r", "card_text": "c"}, {"article_id": "b", "post": "p2", "reason": "r", "card_text": "c"}]
+    assert out == [{"article_id": "a", "post": "p1", "reason": "r", "card_text": "c", "image_searches": [], "screenshot_idea": {"text": "", "search": ""}}, {"article_id": "b", "post": "p2", "reason": "r", "card_text": "c", "image_searches": [], "screenshot_idea": {"text": "", "search": ""}}]
 
 
 def test_curate_passes_model_and_effort():
@@ -130,9 +130,9 @@ def test_real_sdk_truncated_json_becomes_curation_error():
 
 
 def test_real_sdk_valid_reply_parses():
-    text = '{"picks": [{"article_id": "a", "post": "p", "reason": "r", "card_text": "c"}]}'
+    text = '{"picks": [{"article_id": "a", "post": "p", "reason": "r", "card_text": "c", "image_searches": [], "screenshot_idea": {"text": "", "search": ""}}]}'
     assert curate_category(real_client("end_turn", text), S, "sys", "user") == [
-        {"article_id": "a", "post": "p", "reason": "r", "card_text": "c"}]
+        {"article_id": "a", "post": "p", "reason": "r", "card_text": "c", "image_searches": [], "screenshot_idea": {"text": "", "search": ""}}]
 
 
 def test_missing_api_key_becomes_curation_error(monkeypatch):

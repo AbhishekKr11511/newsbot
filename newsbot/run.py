@@ -13,6 +13,7 @@ from .config import Category, Settings, load_categories, load_settings, load_sou
 from .curate import (
     USAGE_KEYS, CurationError, Curator, build_system_prompt, build_user_message, select_candidates,
 )
+from .images import clean_searches, screenshot_link
 from .fetch import Article, default_get, fetch_all, iso
 
 
@@ -100,6 +101,8 @@ def curate_all(ctx: Context, curator: Curator, now: datetime) -> dict[str, dict]
                 "published_at": iso(a.published_at), "post": p["post"].strip(), "reason": p["reason"].strip(),
                 "card_text": (p.get("card_text") or "").strip(), "image_url": a.image_url,
                 "flags": check_post(p["post"], ctx.settings) + check_card(p.get("card_text", "")),
+                "image_searches": clean_searches(p.get("image_searches")),
+                "screenshot_idea": screenshot_link(p.get("screenshot_idea")),
             })
             picked_ids.add(a.id)
             this_run.append({**picks[-1], "category": cat.id})

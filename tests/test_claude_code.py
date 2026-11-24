@@ -8,7 +8,8 @@ from newsbot.config import Settings
 from newsbot.curate import CurationError, claude_code_curator, make_curator
 
 S = Settings("haiku", "medium", 15, 24, 30, 280, [], 15, backend="claude-code")
-PICKS = {"picks": [{"article_id": "a1", "post": "p", "reason": "r", "card_text": "c"}]}
+IMG = {"image_searches": [{"source": "steam", "query": "GTA 6"}], "screenshot_idea": {"text": "t", "search": "s"}}
+PICKS = {"picks": [{"article_id": "a1", "post": "p", "reason": "r", "card_text": "c", **IMG}]}
 USAGE = {"input_tokens": 2, "cache_creation_input_tokens": 1294, "cache_read_input_tokens": 10,
          "output_tokens": 348, "output_tokens_details": {"thinking_tokens": 190}}
 
@@ -100,9 +101,19 @@ def test_make_curator_model_override(monkeypatch):
 
 def test_cli_schema_requires_card_text():
     r = Runner(cli_output(structured_output={"picks": [{"article_id": "a1", "post": "p", "reason": "r",
-                                                         "card_text": "$1B"}]}))
+                                                         "card_text": "$1B", **IMG}]}))
     picks, _ = claude_code_curator(S, runner=r)("s", "u")
     schema = json.loads(r.calls[0][0][r.calls[0][0].index("--json-schema") + 1])
     pick_schema = schema["$defs"]["Pick"]
     assert "card_text" in pick_schema["required"]
     assert picks[0]["card_text"] == "$1B"
+
+
+def test_cli_schema_has_image_fields():
+    r = Runner(cli_output(structured_output=PICKS))
+    picks, _ = claude_code_curator(S, runner=r)("s", "u")
+    schema = json.loads(r.calls[0][0][r.calls[0][0].index("--json-schema") + 1])
+    required = schema["$defs"]["Pick"]["required"]
+    assert "image_searches" in required and "screenshot_idea" in required
+    assert picks[0]["image_searches"] == [{"source": "steam", "query": "GTA 6"}]
+    assert picks[0]["screenshot_idea"] == {"text": "t", "search": "s"}

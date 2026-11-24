@@ -45,9 +45,9 @@ def root(tmp_path):
 class FakeClient:
     """Fake curator: picks the first candidate id; optional post text; can fail for one category."""
 
-    def __init__(self, post="Nvidia made $35B. Shocking.", fail_category=None, card="$35B"):
+    def __init__(self, post="Nvidia made $35B. Shocking.", fail_category=None, card="$35B", extra=None):
         self.prompts = []
-        self.post, self.fail_category, self.card = post, fail_category, card
+        self.post, self.fail_category, self.card, self.extra = post, fail_category, card, extra or {}
 
     def __call__(self, system, user):
         self.prompts.append((system, user))
@@ -55,7 +55,7 @@ class FakeClient:
             raise CurationError("boom")
         cand = user.split("Candidates:", 1)[1]
         ids = re.findall(r"^id: (\S+)$", cand, re.M)
-        picks = [{"article_id": ids[0], "post": self.post, "reason": "r", "card_text": self.card}] if ids else []
+        picks = [{"article_id": ids[0], "post": self.post, "reason": "r", "card_text": self.card, **self.extra}] if ids else []
         usage = {"model": "claude-haiku-5-5", "input_tokens": 100, "cache_creation_input_tokens": 0,
                  "cache_read_input_tokens": 0, "output_tokens": 10, "thinking_tokens": 4, "cost_usd_equiv": 0.001}
         return picks, usage
@@ -148,3 +148,19 @@ def test_pick_has_card_text_and_image_url(root):
     assert "image_url" in pick
     assert "card_too_long" in pick["flags"]
     assert data(root, "meta")["card"]["handle"].startswith("@")
+
+
+def test_pick_has_image_fields(root):
+    extra = {"image_searches": [{"source": "steam", "query": " GTA 6 "}, {"source": "pexels", "query": "x"}],
+             "screenshot_idea": {"text": "Metacritic score page", "search": "GTA 6 metacritic"}}
+    run(Paths(root), NOW, False, FakeClient(extra=extra), http_get=http_get, out=io.StringIO())
+    pick = data(root, "picks")[0]["categories"]["tech-ai"]["picks"][0]
+    assert pick["image_searches"] == [{"source": "steam", "query": "GTA 6"}]
+    assert pick["screenshot_idea"] == {"text": "Metacritic score page",
+                                       "url": "https://www.google.com/search?q=GTA+6+metacritic"}
+
+
+def test_old_fake_pick_without_image_fields(root):
+    run(Paths(root), NOW, False, FakeClient(), http_get=http_get, out=io.StringIO())
+    pick = data(root, "picks")[0]["categories"]["tech-ai"]["picks"][0]
+    assert pick["image_searches"] == [] and pick["screenshot_idea"] is None
