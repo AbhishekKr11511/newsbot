@@ -75,15 +75,25 @@ def article_id(url: str) -> str:
 
 
 class _TextExtractor(HTMLParser):
+    SKIP = ("script", "style")
+
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.parts: list[str] = []
+        self.skipping = 0
 
     def handle_data(self, data):
-        self.parts.append(data)
+        if not self.skipping:
+            self.parts.append(data)
 
     def handle_starttag(self, tag, attrs):
+        if tag in self.SKIP:
+            self.skipping += 1
         self.parts.append(" ")
+
+    def handle_endtag(self, tag):
+        if tag in self.SKIP and self.skipping:
+            self.skipping -= 1
 
 
 class _FirstImg(HTMLParser):
@@ -163,24 +173,33 @@ def parse_feed(content: bytes, source: Source, now: datetime, window_hours: int)
     return out
 
 
+# Honest bot identity with a contact link (Wikimedia asks for one). Never a browser UA.
+USER_AGENT = "newsbot/1.4 (+https://github.com/AbhishekKr11511/newsbot)"
+
+
 def default_get(url: str, timeout: int) -> bytes:
     """GET with a 5 MB body cap and a total wall-clock limit."""
     started = time.monotonic()
-    resp = requests.get(url, timeout=timeout, headers={"User-Agent": "newsbot/1.0"}, stream=True)
+    resp = requests.get(url, timeout=timeout, headers={"User-Agent": USER_AGENT}, stream=True)
     try:
         resp.raise_for_status()
-        if int(resp.headers.get("Content-Length") or 0) > MAX_FEED_BYTES:
-            raise ValueError("feed too large")
-        body = bytearray()
-        for chunk in resp.iter_content(chunk_size=8192):
-            body += chunk
-            if len(body) > MAX_FEED_BYTES:
-                raise ValueError("feed too large")
-            if time.monotonic() - started > MAX_FETCH_SECONDS:
-                raise TimeoutError("feed download took too long")
-        return bytes(body)
+        return read_capped(resp, started)
     finally:
         resp.close()
+
+
+def read_capped(resp, started: float) -> bytes:
+    """Read a streamed response body, enforcing the size cap and the wall-clock limit since `started`."""
+    if int(resp.headers.get("Content-Length") or 0) > MAX_FEED_BYTES:
+        raise ValueError("feed too large")
+    body = bytearray()
+    for chunk in resp.iter_content(chunk_size=8192):
+        body += chunk
+        if len(body) > MAX_FEED_BYTES:
+            raise ValueError("feed too large")
+        if time.monotonic() - started > MAX_FETCH_SECONDS:
+            raise TimeoutError("feed download took too long")
+    return bytes(body)
 
 
 def fetch_all(

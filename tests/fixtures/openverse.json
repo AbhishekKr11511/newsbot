@@ -1,0 +1,45 @@
+{
+ "result_count": 4,
+ "results": [
+  {
+   "title": "17\u00b0 Server Room @ Work",
+   "foreign_landing_url": "https://www.flickr.com/photos/29479498@N05/2759159448",
+   "url": "https://live.staticflickr.com/3186/2759159448_17455a0fb2_b.jpg",
+   "thumbnail": "https://api.openverse.org/v1/images/720cb108-319f-47e2-8c7a-c110bc9af59f/thumb/",
+   "creator": "Leonardo Rizzi",
+   "license": "by-sa",
+   "license_version": "2.0",
+   "source": "flickr"
+  },
+  {
+   "title": "Server room",
+   "foreign_landing_url": "https://www.flickr.com/photos/8718930@N07/3463419826",
+   "url": "https://live.staticflickr.com/3555/3463419826_eebe8fcb07_b.jpg",
+   "thumbnail": "https://api.openverse.org/v1/images/5af0ec2b-7409-457d-94a2-7c3b992c2881/thumb/",
+   "creator": "torkildr",
+   "license": "by-sa",
+   "license_version": "2.0",
+   "source": "flickr"
+  },
+  {
+   "title": "Bad",
+   "foreign_landing_url": "https://www.flickr.com/photos/29479498@N05/2759159448",
+   "url": "javascript:alert(1)",
+   "thumbnail": "https://api.openverse.org/v1/images/720cb108-319f-47e2-8c7a-c110bc9af59f/thumb/",
+   "creator": "Leonardo Rizzi",
+   "license": "by-sa",
+   "license_version": "2.0",
+   "source": "flickr"
+  },
+  {
+   "title": "Zero",
+   "foreign_landing_url": "https://www.flickr.com/photos/8718930@N07/3463419826",
+   "url": "https://live.staticflickr.com/zero.jpg",
+   "thumbnail": "https://api.openverse.org/v1/images/5af0ec2b-7409-457d-94a2-7c3b992c2881/thumb/",
+   "creator": "torkildr",
+   "license": "cc0",
+   "license_version": "1.0",
+   "source": "flickr"
+  }
+ ]
+}

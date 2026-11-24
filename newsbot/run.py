@@ -1,11 +1,12 @@
 """One bot run: fetch → curate per category → check → store."""
 from __future__ import annotations
 
+import logging
 import sys
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import TextIO
+from typing import Callable, TextIO
 
 from . import store
 from .checks import check_card, check_post, validate_picks
@@ -13,7 +14,10 @@ from .config import Category, Settings, load_categories, load_settings, load_sou
 from .curate import (
     USAGE_KEYS, CurationError, Curator, build_system_prompt, build_user_message, select_candidates,
 )
+from .images import clean_searches, screenshot_link
 from .fetch import Article, default_get, fetch_all, iso
+
+log = logging.getLogger(__name__)
 
 
 @dataclass
@@ -100,6 +104,8 @@ def curate_all(ctx: Context, curator: Curator, now: datetime) -> dict[str, dict]
                 "published_at": iso(a.published_at), "post": p["post"].strip(), "reason": p["reason"].strip(),
                 "card_text": (p.get("card_text") or "").strip(), "image_url": a.image_url,
                 "flags": check_post(p["post"], ctx.settings) + check_card(p.get("card_text", "")),
+                "image_searches": clean_searches(p.get("image_searches")),
+                "screenshot_idea": screenshot_link(p.get("screenshot_idea")),
             })
             picked_ids.add(a.id)
             this_run.append({**picks[-1], "category": cat.id})
@@ -118,9 +124,14 @@ def total_usage(result: dict[str, dict]) -> dict:
 
 
 def run(paths: Paths, now: datetime, dry_run: bool, curator: Curator, http_get=default_get,
-        out: TextIO = sys.stdout) -> int:
+        out: TextIO = sys.stdout, image_finder: Callable[[list[dict]], None] | None = None) -> int:
     ctx = prepare(paths, now, http_get)
     result = curate_all(ctx, curator, now)
+    if image_finder:
+        try:
+            image_finder([p for r in result.values() for p in r["picks"]])
+        except Exception as e:  # images are a bonus; drafts always publish
+            log.warning("image step failed: %s", e)
     totals = total_usage(result)
     _print_summary(out, now, dry_run, ctx.categories, result, ctx.fetched, ctx.feed_errors, totals)
 
@@ -140,6 +151,16 @@ def fmt_tokens(u: dict) -> str:
     return (f"tokens: in {u['input_tokens']} + cache-write {u['cache_creation_input_tokens']} "
             f"+ cache-read {u['cache_read_input_tokens']}, out {u['output_tokens']} "
             f"(thinking {u['thinking_tokens']}) ≈${u['cost_usd_equiv']:.4f} API-equivalent")
+
+
+def _images_line(images: list[dict]) -> str:
+    if not images:
+        return "images: none"
+    counts: dict[str, int] = {}
+    for i in images:
+        counts[i["source"]] = counts.get(i["source"], 0) + 1
+    kind = "unranked" if any(i.get("score") is None for i in images) else "ranked"
+    return f"images: {len(images)} {kind} ({', '.join(f'{k} {v}' for k, v in counts.items())})"
 
 
 def _print_summary(out, now, dry_run, categories, result, fetched, feed_errors, totals) -> None:
@@ -162,5 +183,11 @@ def _print_summary(out, now, dry_run, categories, result, fetched, feed_errors, 
             if p["flags"]:
                 w(f"    ⚠ flags: {', '.join(p['flags'])}")
             w(f"    why: {p['reason']}")
+            if p.get("image_searches"):
+                w("    searches: " + ", ".join(f'{q["source"]} "{q["query"]}"' for q in p["image_searches"]))
+            if "images" in p:
+                w(f"    {_images_line(p['images'])}")
+            if p.get("screenshot_idea"):
+                w(f"    screenshot: {p['screenshot_idea']['text']}")
     w()
     w(f"TOTAL {fmt_tokens(totals)}")

@@ -11,7 +11,8 @@ Curation runs through the **Claude Code CLI on the owner's Pro plan** (`claude -
 - `newsbot/curate.py`: candidate selection, prompt building, curators (`claude_code_curator`, `api_curator`, `make_curator`), token usage
 - `newsbot/checks.py`: post flags (length, hashtag, link, hype words) and pick validation
 - `newsbot/store.py`: `site/data/*.json` read/write/merge/prune (atomic writes)
-- `newsbot/run.py`: `prepare` → `curate_all` → summary → save; `python -m newsbot`
+- `newsbot/images.py`: image finder: cleans Haiku's `image_searches`, searches Wikimedia/Steam/Openverse (JSON APIs), ranks with local Ollama (`gemma3:4b`, yes/partly/no match), `find_images` (two phases, time budget, mix-then-fill); thumbnails only via `public_get` (refuses non-public hosts)
+- `newsbot/run.py`: `prepare` → `curate_all` → image finder → summary → save; `python -m newsbot` (`--no-images` to skip)
 - `prompts/curator.md`: the system prompt / voice (owner-editable)
 - `site/`: static page (`index.html`, `app.js`, `style.css`) reading `site/data/*.json`; `drawCard` in `app.js` draws the 1200×675 stat cards on canvas (never draw cross-origin article images onto the canvas, because that blocks Download)
 - `scripts/`: `check_feeds.py`, `compare_models.py`, `sample_data.py`, `run_and_publish.sh`, `install_schedule.sh`
@@ -37,7 +38,8 @@ bash scripts/run_and_publish.sh            # what the schedule runs (run + commi
 - The page renders feed text with `textContent` only. Never use `innerHTML` with feed data. Links go through `safeHref`.
 - One failing feed or category must never stop a run; failures become `curation_failed` and other categories still publish.
 - Never commit `.env`, `logs/`, `compare-*.md`, or sample data in `site/data/` (only real run output is committed, by the schedule).
-- Don't spoof User-Agents or scrape sites that block bots; use feeds that allow it.
+- Don't spoof User-Agents or scrape sites that block bots; use feeds and APIs that allow it. Every request sends `fetch.USER_AGENT` (bot name + repo link).
+- The image step must never fail a run; images are a bonus.
 - Commits end with the Co-Authored-By line used in the history.
 
 ## Tracking

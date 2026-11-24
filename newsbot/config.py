@@ -29,6 +29,21 @@ class Category:
     skip: str
 
 
+IMAGE_SOURCES = ("wikimedia", "steam", "openverse")
+
+
+@dataclass(frozen=True)
+class ImageSettings:
+    enabled: bool = True
+    sources: list[str] = field(default_factory=lambda: list(IMAGE_SOURCES))
+    ollama_url: str = "http://localhost:11434"
+    ollama_model: str = "gemma3:4b"
+    keep: int = 4
+    max_scored: int = 8
+    min_score: int = 5
+    budget_s: int = 300
+
+
 @dataclass(frozen=True)
 class Settings:
     model: str
@@ -42,6 +57,51 @@ class Settings:
     backend: str = "claude-code"  # claude-code | api
     card_handle: str = "@yourhandle"
     card_tagline: str = ""
+    images: ImageSettings = field(default_factory=ImageSettings)
+
+
+def _image_int(d: dict, key: str, default: int, path, low: int, high: int | None = None) -> int:
+    value = d.get(key, default)
+    if isinstance(value, bool) or not isinstance(value, (int, str)):
+        raise ConfigError(f"{path}: images.{key} must be a whole number, got {value!r}")
+    try:
+        n = int(value)
+    except ValueError:
+        raise ConfigError(f"{path}: images.{key} must be a whole number, got {value!r}") from None
+    if n < low or (high is not None and n > high):
+        bounds = f"between {low} and {high}" if high is not None else f"at least {low}"
+        raise ConfigError(f"{path}: images.{key} must be {bounds}, got {n}")
+    return n
+
+
+def _load_images(d, path) -> ImageSettings:
+    if d is None:
+        return ImageSettings()
+    if not isinstance(d, dict):
+        raise ConfigError(f"{path}: images must be a mapping")
+    base = ImageSettings()
+    enabled = d.get("enabled", base.enabled)
+    if not isinstance(enabled, bool):
+        raise ConfigError(f"{path}: images.enabled must be true or false (no quotes), got {enabled!r}")
+    raw_sources = d.get("sources", base.sources)
+    if isinstance(raw_sources, str):
+        raw_sources = [raw_sources]
+    if not isinstance(raw_sources, list):
+        raise ConfigError(f"{path}: images.sources must be a list like [wikimedia, steam, openverse]")
+    sources = [str(x).strip() for x in raw_sources]
+    unknown = [x for x in sources if x not in IMAGE_SOURCES]
+    if unknown:
+        raise ConfigError(f"{path}: unknown image source(s) {', '.join(unknown)}; use {', '.join(IMAGE_SOURCES)}")
+    return ImageSettings(
+        enabled=enabled,
+        sources=sources,
+        ollama_url=str(d.get("ollama_url", base.ollama_url)).rstrip("/"),
+        ollama_model=str(d.get("ollama_model", base.ollama_model)),
+        keep=_image_int(d, "keep", base.keep, path, 1),
+        max_scored=_image_int(d, "max_scored", base.max_scored, path, 1),
+        min_score=_image_int(d, "min_score", base.min_score, path, 0, 10),
+        budget_s=_image_int(d, "budget_s", base.budget_s, path, 1),
+    )
 
 
 def _load_list(path: Path) -> list[dict]:
@@ -110,6 +170,7 @@ def load_settings(path: Path) -> Settings:
             backend=str(d.get("backend", "claude-code")),
             card_handle=str(d.get("card_handle", "@yourhandle")),
             card_tagline=str(d.get("card_tagline") or ""),
+            images=_load_images(d.get("images"), path),
         )
     except KeyError as e:
         raise ConfigError(f"{path}: missing {e}") from e

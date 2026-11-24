@@ -45,9 +45,9 @@ def root(tmp_path):
 class FakeClient:
     """Fake curator: picks the first candidate id; optional post text; can fail for one category."""
 
-    def __init__(self, post="Nvidia made $35B. Shocking.", fail_category=None, card="$35B"):
+    def __init__(self, post="Nvidia made $35B. Shocking.", fail_category=None, card="$35B", extra=None):
         self.prompts = []
-        self.post, self.fail_category, self.card = post, fail_category, card
+        self.post, self.fail_category, self.card, self.extra = post, fail_category, card, extra or {}
 
     def __call__(self, system, user):
         self.prompts.append((system, user))
@@ -55,7 +55,7 @@ class FakeClient:
             raise CurationError("boom")
         cand = user.split("Candidates:", 1)[1]
         ids = re.findall(r"^id: (\S+)$", cand, re.M)
-        picks = [{"article_id": ids[0], "post": self.post, "reason": "r", "card_text": self.card}] if ids else []
+        picks = [{"article_id": ids[0], "post": self.post, "reason": "r", "card_text": self.card, **self.extra}] if ids else []
         usage = {"model": "claude-haiku-5-5", "input_tokens": 100, "cache_creation_input_tokens": 0,
                  "cache_read_input_tokens": 0, "output_tokens": 10, "thinking_tokens": 4, "cost_usd_equiv": 0.001}
         return picks, usage
@@ -148,3 +148,77 @@ def test_pick_has_card_text_and_image_url(root):
     assert "image_url" in pick
     assert "card_too_long" in pick["flags"]
     assert data(root, "meta")["card"]["handle"].startswith("@")
+
+
+def test_pick_has_image_fields(root):
+    extra = {"image_searches": [{"source": "steam", "query": " GTA 6 "}, {"source": "pexels", "query": "x"}],
+             "screenshot_idea": {"text": "Metacritic score page", "search": "GTA 6 metacritic"}}
+    run(Paths(root), NOW, False, FakeClient(extra=extra), http_get=http_get, out=io.StringIO())
+    pick = data(root, "picks")[0]["categories"]["tech-ai"]["picks"][0]
+    assert pick["image_searches"] == [{"source": "steam", "query": "GTA 6"}]
+    assert pick["screenshot_idea"] == {"text": "Metacritic score page",
+                                       "url": "https://www.google.com/search?q=GTA+6+metacritic"}
+
+
+def test_old_fake_pick_without_image_fields(root):
+    run(Paths(root), NOW, False, FakeClient(), http_get=http_get, out=io.StringIO())
+    pick = data(root, "picks")[0]["categories"]["tech-ai"]["picks"][0]
+    assert pick["image_searches"] == [] and pick["screenshot_idea"] is None
+
+
+def test_image_finder_called_with_all_picks(root):
+    got = []
+
+    def finder(picks):
+        got.extend(picks)
+        for p in picks:
+            p["images"] = [{"url": "https://i.test/a.jpg", "thumb": "https://i.test/a.jpg", "page_url": "https://i.test",
+                            "source": "steam", "credit": "c", "license": "l", "score": 9}]
+
+    run(Paths(root), NOW, False, FakeClient(), http_get=http_get, out=io.StringIO(), image_finder=finder)
+    saved = [p for c in data(root, "picks")[0]["categories"].values() for p in c["picks"]]
+    assert len(got) == len(saved) >= 2
+    assert all(p["images"][0]["score"] == 9 for p in saved)
+
+
+def test_image_finder_crash_does_not_fail_run(root):
+    def finder(picks):
+        raise RuntimeError("ollama exploded")
+
+    code = run(Paths(root), NOW, False, FakeClient(), http_get=http_get, out=io.StringIO(), image_finder=finder)
+    assert code == 0
+    assert data(root, "picks")[0]["categories"]["tech-ai"]["picks"]
+
+
+def test_summary_prints_images_line(root):
+    extra = {"screenshot_idea": {"text": "Metacritic page", "search": "gta metacritic"}}
+
+    def finder(picks):
+        for p in picks:
+            p["images"] = [{"source": "wikimedia", "score": 9}, {"source": "wikimedia", "score": 6},
+                           {"source": "steam", "score": 9}]
+
+    out = io.StringIO()
+    run(Paths(root), NOW, True, FakeClient(extra=extra), http_get=http_get, out=out, image_finder=finder)
+    text = out.getvalue()
+    assert "images: 3 ranked (wikimedia 2, steam 1)" in text
+    assert "screenshot: Metacritic page" in text
+
+
+def test_summary_unranked_and_none(root):
+    def finder(picks):
+        picks[0]["images"] = [{"source": "steam", "score": None}]
+        for p in picks[1:]:
+            p["images"] = []
+
+    out = io.StringIO()
+    run(Paths(root), NOW, True, FakeClient(), http_get=http_get, out=out, image_finder=finder)
+    assert "images: 1 unranked (steam 1)" in out.getvalue()
+    assert "images: none" in out.getvalue()
+
+
+def test_summary_prints_searches(root):
+    extra = {"image_searches": [{"source": "steam", "query": "Halo"}, {"source": "wikimedia", "query": "Xbox"}]}
+    out = io.StringIO()
+    run(Paths(root), NOW, True, FakeClient(extra=extra), http_get=http_get, out=out)
+    assert 'searches: steam "Halo", wikimedia "Xbox"' in out.getvalue()

@@ -21,3 +21,37 @@ def test_api_backend_missing_key_exits_with_message(monkeypatch, capsys, tmp_pat
     monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
     assert cli.main() == 2
     assert "ANTHROPIC_API_KEY" in capsys.readouterr().err
+
+
+def capture_run(monkeypatch):
+    seen = {}
+
+    def fake_run(paths, now, dry_run, curator, **kw):
+        seen.update(kw)
+        return 0
+
+    monkeypatch.setattr(cli, "run", fake_run)
+    monkeypatch.setattr(cli.shutil, "which", lambda name: "/bin/claude")
+    return seen
+
+
+def test_main_passes_image_finder(monkeypatch, tmp_path):
+    setup(monkeypatch, tmp_path, "backend: claude-code\nmodel: haiku\n")
+    seen = capture_run(monkeypatch)
+    assert cli.main() == 0
+    assert callable(seen["image_finder"])
+
+
+def test_main_no_images_flag(monkeypatch, tmp_path):
+    setup(monkeypatch, tmp_path, "backend: claude-code\nmodel: haiku\n")
+    monkeypatch.setattr(sys, "argv", ["newsbot", "--dry-run", "--no-images"])
+    seen = capture_run(monkeypatch)
+    assert cli.main() == 0
+    assert seen["image_finder"] is None
+
+
+def test_main_images_disabled_in_settings(monkeypatch, tmp_path):
+    setup(monkeypatch, tmp_path, "backend: claude-code\nmodel: haiku\nimages:\n  enabled: false\n")
+    seen = capture_run(monkeypatch)
+    assert cli.main() == 0
+    assert seen["image_finder"] is None

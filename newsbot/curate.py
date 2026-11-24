@@ -21,11 +21,23 @@ CLI_TIMEOUT_S = 300
 Curator = Callable[[str, str], tuple[list[dict], dict]]
 
 
+class ImageSearch(BaseModel):
+    source: str
+    query: str
+
+
+class ScreenshotIdea(BaseModel):
+    text: str
+    search: str
+
+
 class Pick(BaseModel):
     article_id: str
     post: str
     reason: str
     card_text: str
+    image_searches: list[ImageSearch]
+    screenshot_idea: ScreenshotIdea
 
 
 class CurationResult(BaseModel):

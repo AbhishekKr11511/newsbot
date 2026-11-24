@@ -137,6 +137,39 @@
     return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "card";
   }
 
+  function extLink(text, href) {
+    return el("a", { text: text, attrs: { href: safeHref(href), target: "_blank", rel: "noopener noreferrer" } });
+  }
+
+  // Images found by the bot (Wikimedia / Steam / Openverse), best first. Never drawn on the canvas.
+  function foundImages(pick) {
+    const out = [];
+    const images = (pick.images || []).filter((i) => safeHref(i.thumb || i.url) !== "#");
+    if (images.length) {
+      const unranked = images.some((i) => i.score === null || i.score === undefined);
+      const grid = el("div", { cls: "found-grid" }, images.map((i) => el("figure", { cls: "found-item" }, [
+        el("img", { attrs: { src: safeHref(i.thumb || i.url), alt: i.credit || "Found image", loading: "lazy", referrerpolicy: "no-referrer" } }),
+        el("figcaption", {}, [
+          el("span", { cls: "credit", text: [i.credit, i.license].filter(Boolean).join(" · ") }),
+          el("span", { cls: "links" }, [extLink("Open full size", i.url), document.createTextNode(" · "), extLink("Source", i.page_url || i.url)]),
+        ]),
+      ])));
+      out.push(el("div", { cls: "found" }, [
+        el("div", { cls: "found-h", text: "Found images" + (unranked ? " · unranked" : "") }),
+        grid,
+      ]));
+    }
+    const shot = pick.screenshot_idea;
+    if (shot && shot.text && safeHref(shot.url) !== "#") {
+      out.push(el("p", { cls: "shot" }, [
+        el("span", { cls: "shot-label", text: "Screenshot idea: " }),
+        document.createTextNode(shot.text + " "),
+        extLink("Search", shot.url),
+      ]));
+    }
+    return out;
+  }
+
   function cardBlock(pick) {
     const card = (state.meta && state.meta.card) || {};
     const published = new Date(pick.published_at);
@@ -166,7 +199,7 @@
       children.push(el("img", { cls: "hero", attrs: { src: img, alt: "Image from the article", loading: "lazy", referrerpolicy: "no-referrer" } }));
       actions.insertBefore(el("a", { cls: "secondary", text: "Open original image", attrs: { href: img, target: "_blank", rel: "noopener noreferrer" } }), dl);
     }
-    children.push(canvas, actions);
+    children.push(...foundImages(pick), canvas, actions);
     return el("div", { cls: "media" }, children);
   }
 
