@@ -537,3 +537,35 @@ def test_non_raster_thumb_is_dropped_without_ranking():
     p = pick(("openverse", "q"))
     find_images([p], ImageSettings(), 5, thumb_get=get, ranker=scorer({"ok": 9}, calls), sources=src)
     assert calls == ["ok"] and names(p) == ["ok"]
+
+
+def test_ollama_rejecting_every_image_falls_back_to_unranked():
+    # e.g. a non-vision model configured: Ollama answers 400 for every request
+    src = fake_sources({("wikimedia", "q"): [cand("wikimedia", n) for n in ("a", "b", "c", "d")],
+                        ("steam", "s"): [cand("steam", n) for n in ("e", "f")]})
+    calls = []
+
+    def ranker(img, post, query):
+        calls.append(1)
+        raise BadImage("model does not support images")
+
+    p1, p2 = pick(("wikimedia", "q")), pick(("steam", "s"))
+    find_images([p1, p2], ImageSettings(), 5, thumb_get=thumb_get, ranker=ranker, sources=src)
+    assert len(calls) == 3
+    assert names(p1) == ["a", "b", "c", "d"] and names(p2) == ["e", "f"]
+    assert all(i["score"] is None for i in p1["images"] + p2["images"])
+
+
+def test_bad_image_streak_resets_after_a_success():
+    src = fake_sources({("wikimedia", "q"): [cand("wikimedia", n) for n in ("a", "b", "c", "d", "e")]})
+    seq = iter(["bad", "bad", 9, "bad", "bad"])
+
+    def ranker(img, post, query):
+        r = next(seq)
+        if r == "bad":
+            raise BadImage("x")
+        return r
+
+    p = pick(("wikimedia", "q"))
+    find_images([p], ImageSettings(), 5, thumb_get=thumb_get, ranker=ranker, sources=src)
+    assert names(p) == ["c"] and p["images"][0]["score"] == 9

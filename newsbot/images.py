@@ -193,6 +193,7 @@ def public_get(url: str, timeout: int) -> bytes:
 
 OLLAMA_TIMEOUT_S = 60
 MAX_PER_SOURCE = 2
+MAX_BAD_STREAK = 3  # this many unreadable images in a row = the ranker itself is broken
 _DROPPED = object()  # thumbnail couldn't be downloaded: never shown
 
 # A small local model (gemma3:4b) describes images well but gives almost everything 8/10 when asked
@@ -331,6 +332,7 @@ def find_images(picks: list[dict], cfg: ImageSettings, fetch_timeout: int, http_
     queues = [pool[:cfg.max_scored] for pool in pools]
     scores: list[dict] = [{} for _ in picks]
     done = [0] * len(picks)
+    bad_streak: list[tuple[int, str]] = []
     alive = ranker is not None
     while alive and any(done[k] < len(queues[k]) for k in range(len(picks))):
         for k, queue in enumerate(queues):
@@ -350,8 +352,19 @@ def find_images(picks: list[dict], cfg: ImageSettings, fetch_timeout: int, http_
                 continue
             try:
                 scores[k][c["url"]] = ranker(image, picks[k].get("post", ""), c.get("query", ""))
-            except BadImage:
+                bad_streak.clear()
+            except BadImage as e:
+                log.warning("Ollama couldn't read an image (%s): %s", c["thumb"][:80], str(e)[:200])
                 scores[k][c["url"]] = _DROPPED
+                bad_streak.append((k, c["url"]))
+                if len(bad_streak) >= MAX_BAD_STREAK:
+                    # Every image rejected: the model can't take images (or Ollama is too old). Treat as down,
+                    # and give those candidates back so picks fall back to unranked images, not none.
+                    log.warning("image ranking stopped for this run: %d images in a row rejected", len(bad_streak))
+                    for kk, url in bad_streak:
+                        del scores[kk][url]
+                    alive = False
+                    break
             except RankError as e:
                 log.warning("image ranking stopped for this run: %s", e)
                 done[k] -= 1  # not judged
