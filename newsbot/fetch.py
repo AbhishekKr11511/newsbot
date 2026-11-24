@@ -183,18 +183,23 @@ def default_get(url: str, timeout: int) -> bytes:
     resp = requests.get(url, timeout=timeout, headers={"User-Agent": USER_AGENT}, stream=True)
     try:
         resp.raise_for_status()
-        if int(resp.headers.get("Content-Length") or 0) > MAX_FEED_BYTES:
-            raise ValueError("feed too large")
-        body = bytearray()
-        for chunk in resp.iter_content(chunk_size=8192):
-            body += chunk
-            if len(body) > MAX_FEED_BYTES:
-                raise ValueError("feed too large")
-            if time.monotonic() - started > MAX_FETCH_SECONDS:
-                raise TimeoutError("feed download took too long")
-        return bytes(body)
+        return read_capped(resp, started)
     finally:
         resp.close()
+
+
+def read_capped(resp, started: float) -> bytes:
+    """Read a streamed response body, enforcing the size cap and the wall-clock limit since `started`."""
+    if int(resp.headers.get("Content-Length") or 0) > MAX_FEED_BYTES:
+        raise ValueError("feed too large")
+    body = bytearray()
+    for chunk in resp.iter_content(chunk_size=8192):
+        body += chunk
+        if len(body) > MAX_FEED_BYTES:
+            raise ValueError("feed too large")
+        if time.monotonic() - started > MAX_FETCH_SECONDS:
+            raise TimeoutError("feed download took too long")
+    return bytes(body)
 
 
 def fetch_all(

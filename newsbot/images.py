@@ -2,16 +2,18 @@
 from __future__ import annotations
 
 import base64
+import ipaddress
 import json
 import logging
+import socket
 import time
 from typing import Callable
-from urllib.parse import quote, quote_plus
+from urllib.parse import quote, quote_plus, urljoin, urlsplit
 
 import requests
 
 from .config import IMAGE_SOURCES, ImageSettings
-from .fetch import _clean_text, _http_url, default_get
+from .fetch import USER_AGENT, _clean_text, _http_url, default_get, read_capped
 
 log = logging.getLogger(__name__)
 
@@ -139,6 +141,46 @@ def search_openverse(query: str, http_get, timeout: int) -> list[dict]:
 SOURCES = {"wikimedia": search_wikimedia, "steam": search_steam, "openverse": search_openverse}
 
 
+# ---- thumbnail download ---------------------------------------------------------
+# Candidate image URLs come from third-party indexes (Openverse points at arbitrary hosts), so the
+# download used for ranking refuses anything that resolves to a non-public address (router, localhost,
+# cloud metadata) and checks every redirect hop the same way.
+
+MAX_REDIRECTS = 3
+
+
+def _is_public_host(host: str | None) -> bool:
+    if not host:
+        return False
+    try:
+        infos = socket.getaddrinfo(host, None)
+    except OSError:
+        return False
+    for info in infos:
+        ip = ipaddress.ip_address(info[4][0].split("%", 1)[0])
+        if not ip.is_global or ip.is_multicast:
+            return False
+    return bool(infos)
+
+
+def public_get(url: str, timeout: int) -> bytes:
+    started = time.monotonic()
+    for _ in range(MAX_REDIRECTS + 1):
+        if not _http_url(url) or not _is_public_host(urlsplit(url).hostname):
+            raise ValueError(f"refusing non-public image host: {url}")
+        resp = requests.get(url, timeout=timeout, headers={"User-Agent": USER_AGENT}, stream=True,
+                            allow_redirects=False)
+        try:
+            if resp.is_redirect:
+                url = urljoin(url, resp.headers["Location"])
+                continue
+            resp.raise_for_status()
+            return read_capped(resp, started)
+        finally:
+            resp.close()
+    raise ValueError("too many redirects")
+
+
 # ---- ranking -----------------------------------------------------------------
 
 OLLAMA_TIMEOUT_S = 60
@@ -238,7 +280,7 @@ def _select(pool: list[dict], scores: dict, fully_ranked: bool, cfg: ImageSettin
 
 
 def find_images(picks: list[dict], cfg: ImageSettings, fetch_timeout: int, http_get=default_get,
-                ranker: Ranker | None = None, clock=time.monotonic, sources=None) -> None:
+                ranker: Ranker | None = None, clock=time.monotonic, sources=None, thumb_get=public_get) -> None:
     """Set pick["images"] on every pick, in place. Never raises for a single pick's trouble."""
     sources = sources or SOURCES
     start = clock()
@@ -271,7 +313,7 @@ def find_images(picks: list[dict], cfg: ImageSettings, fetch_timeout: int, http_
             c = queue[done[k]]
             done[k] += 1
             try:
-                image = http_get(c["thumb"], fetch_timeout)
+                image = thumb_get(c["thumb"], fetch_timeout)
             except Exception:
                 scores[k][c["url"]] = _DROPPED
                 continue

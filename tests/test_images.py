@@ -242,7 +242,7 @@ def names(p):
 def test_find_images_ranks_and_keeps_top():
     p = pick(("wikimedia", "q"))
     src = fake_sources({("wikimedia", "q"): [cand("wikimedia", n) for n in "abcd"]})
-    find_images([p], ImageSettings(), 5, http_get=thumb_get, ranker=scorer({"a": 9, "b": 3, "c": 7, "d": 6}),
+    find_images([p], ImageSettings(), 5, thumb_get=thumb_get, ranker=scorer({"a": 9, "b": 3, "c": 7, "d": 6}),
                 sources=src)
     # max 2 per source applies, so of 9, 7, 6 only the top two wikimedia stay
     assert names(p) == ["a", "c"]
@@ -253,7 +253,7 @@ def test_scores_sorted_and_low_dropped_across_sources():
     p = pick(("wikimedia", "q"), ("openverse", "q"))
     src = fake_sources({("wikimedia", "q"): [cand("wikimedia", "a"), cand("wikimedia", "b")],
                         ("openverse", "q"): [cand("openverse", "c"), cand("openverse", "d")]})
-    find_images([p], ImageSettings(), 5, http_get=thumb_get,
+    find_images([p], ImageSettings(), 5, thumb_get=thumb_get,
                 ranker=scorer({"a": 9, "b": 3, "c": 7, "d": 6}), sources=src)
     assert names(p) == ["a", "c", "d"]
 
@@ -263,7 +263,7 @@ def test_max_two_per_source():
     src = fake_sources({("steam", "g"): [cand("steam", f"s{i}") for i in range(5)],
                         ("wikimedia", "w"): [cand("wikimedia", "w1")]})
     scores = {f"s{i}": 9 for i in range(5)} | {"w1": 6}
-    find_images([p], ImageSettings(), 5, http_get=thumb_get, ranker=scorer(scores), sources=src)
+    find_images([p], ImageSettings(), 5, thumb_get=thumb_get, ranker=scorer(scores), sources=src)
     assert [i["source"] for i in p["images"]] == ["steam", "steam", "wikimedia"]
 
 
@@ -272,7 +272,7 @@ def test_max_scored_round_robin():
     src = fake_sources({("wikimedia", "1"): [cand("wikimedia", f"1{c}") for c in "abcde"],
                         ("openverse", "2"): [cand("openverse", f"2{c}") for c in "abcde"]})
     calls = []
-    find_images([p], ImageSettings(max_scored=4), 5, http_get=thumb_get,
+    find_images([p], ImageSettings(max_scored=4), 5, thumb_get=thumb_get,
                 ranker=scorer({n: 5 for n in ["1a", "2a", "1b", "2b"]}, calls), sources=src)
     assert calls == ["1a", "2a", "1b", "2b"]
 
@@ -287,7 +287,7 @@ def test_ranker_down_gives_unranked_images():
         calls.append(img)
         raise RankError("connection refused")
 
-    find_images([p1, p2], ImageSettings(), 5, http_get=thumb_get, ranker=dead, sources=src)
+    find_images([p1, p2], ImageSettings(), 5, thumb_get=thumb_get, ranker=dead, sources=src)
     assert len(calls) == 1
     assert names(p1) == ["a1", "a2"] and names(p2) == ["b1", "b2"]
     assert all(i["score"] is None for i in p1["images"] + p2["images"])
@@ -297,7 +297,7 @@ def test_no_ranker_gives_unranked_images():
     p = pick(("wikimedia", "a"), ("openverse", "b"))
     src = fake_sources({("wikimedia", "a"): [cand("wikimedia", n) for n in ("a1", "a2", "a3")],
                         ("openverse", "b"): [cand("openverse", n) for n in ("b1", "b2", "b3")]})
-    find_images([p], ImageSettings(), 5, http_get=thumb_get, ranker=None, sources=src)
+    find_images([p], ImageSettings(), 5, thumb_get=thumb_get, ranker=None, sources=src)
     assert names(p) == ["a1", "b1", "a2", "b2"]
 
 
@@ -313,7 +313,7 @@ def test_budget_exhausted_in_phase1():
 
     src = {**base, "wikimedia": slow_wikimedia}
     rank_calls = []
-    find_images([p1, p2], ImageSettings(budget_s=300), 5, http_get=thumb_get,
+    find_images([p1, p2], ImageSettings(budget_s=300), 5, thumb_get=thumb_get,
                 ranker=scorer({"a1": 9, "b1": 9}, rank_calls), clock=clock, sources=src)
     assert names(p1) == ["a1"] and p1["images"][0]["score"] is None
     assert p2["images"] == []
@@ -332,7 +332,7 @@ def test_rank_round_robin_across_picks():
         clock.t += 100
         return inner(img, post, query)
 
-    find_images([p1, p2], ImageSettings(budget_s=200), 5, http_get=thumb_get, ranker=ranker, clock=clock,
+    find_images([p1, p2], ImageSettings(budget_s=200), 5, thumb_get=thumb_get, ranker=ranker, clock=clock,
                 sources=src)
     assert calls == ["a1", "b1"]
     assert [(i["credit"], i["score"]) for i in p1["images"]] == [("a1", 9), ("a2", None)]
@@ -344,7 +344,7 @@ def test_disabled_source_skipped():
     src = fake_sources({("openverse", "x"): SourceUnavailable("429"), ("openverse", "y"): [cand("openverse", "o")],
                         ("wikimedia", "w"): [cand("wikimedia", "w1")]}, calls)
     p1, p2 = pick(("openverse", "x")), pick(("openverse", "y"), ("wikimedia", "w"))
-    find_images([p1, p2], ImageSettings(), 5, http_get=thumb_get, ranker=None, sources=src)
+    find_images([p1, p2], ImageSettings(), 5, thumb_get=thumb_get, ranker=None, sources=src)
     assert ("openverse", "y") not in calls
     assert names(p2) == ["w1"]
 
@@ -352,7 +352,7 @@ def test_disabled_source_skipped():
 def test_search_exception_isolated():
     src = fake_sources({("steam", "x"): ValueError("bad json"), ("wikimedia", "w"): [cand("wikimedia", "w1")]})
     p = pick(("steam", "x"), ("wikimedia", "w"))
-    find_images([p], ImageSettings(), 5, http_get=thumb_get, ranker=None, sources=src)
+    find_images([p], ImageSettings(), 5, thumb_get=thumb_get, ranker=None, sources=src)
     assert names(p) == ["w1"]
 
 
@@ -360,7 +360,7 @@ def test_source_not_enabled_is_skipped():
     calls = []
     src = fake_sources({("steam", "x"): [cand("steam", "s")]}, calls)
     p = pick(("steam", "x"))
-    find_images([p], ImageSettings(sources=["wikimedia"]), 5, http_get=thumb_get, ranker=None, sources=src)
+    find_images([p], ImageSettings(sources=["wikimedia"]), 5, thumb_get=thumb_get, ranker=None, sources=src)
     assert calls == [] and p["images"] == []
 
 
@@ -373,7 +373,7 @@ def test_thumb_download_failure_drops_candidate():
         return url.encode()
 
     p = pick(("wikimedia", "q"))
-    find_images([p], ImageSettings(), 5, http_get=get, ranker=scorer({"b": 8}), sources=src)
+    find_images([p], ImageSettings(), 5, thumb_get=get, ranker=scorer({"b": 8}), sources=src)
     assert names(p) == ["b"]
 
 
@@ -381,13 +381,13 @@ def test_duplicate_urls_removed():
     src = fake_sources({("wikimedia", "1"): [cand("wikimedia", "a")], ("wikimedia", "2"): [cand("wikimedia", "a"),
                                                                                         cand("wikimedia", "b")]})
     p = pick(("wikimedia", "1"), ("wikimedia", "2"))
-    find_images([p], ImageSettings(), 5, http_get=thumb_get, ranker=None, sources=src)
+    find_images([p], ImageSettings(), 5, thumb_get=thumb_get, ranker=None, sources=src)
     assert names(p) == ["a", "b"]
 
 
 def test_pick_without_searches_gets_empty_images():
     p = {"post": "x"}
-    find_images([p], ImageSettings(), 5, http_get=thumb_get, ranker=None, sources=fake_sources({}))
+    find_images([p], ImageSettings(), 5, thumb_get=thumb_get, ranker=None, sources=fake_sources({}))
     assert p["images"] == []
 
 
@@ -395,6 +395,81 @@ def test_ranker_gets_the_search_query():
     seen = []
     src = fake_sources({("steam", "Halo Infinite"): [cand("steam", "h")]})
     p = pick(("steam", "Halo Infinite"), post="Halo news")
-    find_images([p], ImageSettings(), 5, http_get=thumb_get,
+    find_images([p], ImageSettings(), 5, thumb_get=thumb_get,
                 ranker=lambda img, post, query: seen.append((post, query)) or 9, sources=src)
     assert seen == [("Halo news", "Halo Infinite")]
+
+
+# ---- thumbnail downloads only reach public hosts -------------------------------
+from newsbot import images as images_mod  # noqa: E402
+
+
+class Resp:
+    def __init__(self, status=200, headers=None, body=b"img"):
+        self.status_code, self.headers, self.body = status, headers or {}, body
+        self.is_redirect = status in (301, 302, 303, 307, 308) and "Location" in self.headers
+
+    def raise_for_status(self):
+        if self.status_code >= 400:
+            raise requests.HTTPError(response=self)
+
+    def iter_content(self, chunk_size):
+        yield self.body
+
+    def close(self):
+        pass
+
+
+def fake_dns(monkeypatch, table):
+    def getaddrinfo(host, *a, **k):
+        if host not in table:
+            raise OSError("no such host")
+        return [(2, 1, 6, "", (table[host], 0))]
+    monkeypatch.setattr(images_mod.socket, "getaddrinfo", getaddrinfo)
+
+
+@pytest.mark.parametrize("url", ["http://127.0.0.1/x.jpg", "http://192.168.1.1/x.jpg", "http://10.0.0.5/x.jpg",
+                                 "http://169.254.169.254/latest", "http://localhost/x.jpg", "http://[::1]/x.jpg",
+                                 "http://router.lan/x.jpg"])
+def test_public_get_refuses_private_hosts(monkeypatch, url):
+    fake_dns(monkeypatch, {"localhost": "127.0.0.1", "router.lan": "192.168.0.1", "127.0.0.1": "127.0.0.1",
+                           "192.168.1.1": "192.168.1.1", "10.0.0.5": "10.0.0.5", "169.254.169.254": "169.254.169.254",
+                           "::1": "::1"})
+    called = []
+    monkeypatch.setattr(images_mod.requests, "get", lambda *a, **k: called.append(a) or Resp())
+    with pytest.raises(ValueError):
+        images_mod.public_get(url, 5)
+    assert called == []
+
+
+def test_public_get_checks_redirect_targets(monkeypatch):
+    fake_dns(monkeypatch, {"img.test": "93.184.216.34", "10.1.1.1": "10.1.1.1"})
+    calls = []
+
+    def get(url, **k):
+        calls.append((url, k.get("allow_redirects")))
+        return Resp(302, {"Location": "http://10.1.1.1/admin"})
+
+    monkeypatch.setattr(images_mod.requests, "get", get)
+    with pytest.raises(ValueError):
+        images_mod.public_get("https://img.test/a.jpg", 5)
+    assert calls == [("https://img.test/a.jpg", False)]
+
+
+def test_public_get_follows_public_redirect(monkeypatch):
+    fake_dns(monkeypatch, {"img.test": "93.184.216.34", "cdn.test": "151.101.1.1"})
+    replies = iter([Resp(301, {"Location": "https://cdn.test/a.jpg"}), Resp(200, body=b"pixels")])
+    monkeypatch.setattr(images_mod.requests, "get", lambda url, **k: next(replies))
+    assert images_mod.public_get("https://img.test/a.jpg", 5) == b"pixels"
+
+
+def test_public_get_too_many_redirects(monkeypatch):
+    fake_dns(monkeypatch, {"img.test": "93.184.216.34"})
+    monkeypatch.setattr(images_mod.requests, "get", lambda url, **k: Resp(302, {"Location": "https://img.test/again"}))
+    with pytest.raises(ValueError):
+        images_mod.public_get("https://img.test/a.jpg", 5)
+
+
+def test_find_images_default_thumb_get_is_public_get():
+    import inspect
+    assert inspect.signature(find_images).parameters["thumb_get"].default is images_mod.public_get
