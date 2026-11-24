@@ -244,3 +244,69 @@ About 5 Claude calls per run × 6 runs/day = ~30 calls/day, each with up to a fe
 - New sources, added if their feeds verify: The Verge, Dexerto, VGC, Insider Gaming, Windows Central, 9to5Mac.
 - Page: the article's own image is shown larger and first; the stat card comes second.
 - The owner reviews a dry run (new style next to the last live drafts) before it goes live.
+
+---
+
+## v1.4 change: image finder (2026-11-24)
+
+**Why:** Posts with pictures get more reach on X. The owner doesn't know where to find good images, and the article's own photo is often licensed (Getty, Reuters). The owner wants the bot to find candidate images per post and show them on the page, so they can pick, download and edit one. Picking the right image takes judgement, so this is where an AI model earns its place. Auto-posting to X is **deferred** until the owner pays for the X API (pay-per-use, about $0.015 per post). It was designed as a local "Post" button with a per-post image choice (stat card / article image / own upload / none), and that design comes back later.
+
+**What the owner wants:** a mix of official images of the subject (game art, CEO or company photos, products) and proof screenshots (Metacritic score, Downdetector map), "whichever is easier to procure". Official images can be fetched automatically. Proof screenshots can't be taken reliably (Metacritic, Downdetector and X block bots or need a login, and the project rule is to not scrape sites that block bots), so the bot **suggests** a screenshot with a search link and the owner takes it by hand.
+
+**Goals**
+- Each new pick shows up to 4 candidate images that fit the post, best first, with source and licence credit, plus at most one "Screenshot idea" line with a link.
+- Free: the Claude Code call on the Pro plan (a few dozen extra output tokens per pick), free public APIs, and a local Ollama vision model.
+- A run never fails because of images.
+
+**Non-goals:** posting to X; downloading or storing images in the repo; taking screenshots automatically; editing images; images for old picks (only picks made from v1.4 on get them).
+
+**Anti-goals:** scraping sites that block bots or spoofing a User-Agent; images that clearly don't match the story shown as "best"; the 4-hourly run becoming slow enough to overlap the next one; the image step breaking the post drafts.
+
+**Approaches**
+- **(A, chosen) Haiku plans, plain code fetches, Ollama picks.** The existing Haiku call already understands each story, so it also writes 0–3 image searches and a screenshot idea. Plain Python calls the image sources. A local Ollama vision model looks at each candidate next to the post and scores it; the top ones are kept.
+- (B) A full Ollama agent (e.g. Google ADK) that decides what to search, calls tools and picks. Rejected: small local models are unreliable at multi-step tool use, it's slower and harder to test, and it re-reads stories Haiku already understood.
+- (C) No vision model: keep the first result per search. Rejected: nothing checks that the picture fits ("Xbox" can return a random accessory).
+
+**Design**
+
+1. **Haiku output (schema + prompt).** `Pick` gains two required fields:
+   - `image_searches`: list of 0–3 `{source, query}` where `source` is one of `wikimedia`, `steam`, `pexels`. Prompt guidance: `steam` for a named PC/console game (its exact title), `wikimedia` for a named person, company, product or place, `pexels` for a generic visual (a server room, a game controller, an office) when nothing specific fits. Queries are short (2–6 words), names spelled as in the story.
+   - `screenshot_idea`: `{text, search}`, or both empty strings when nothing fits. `text` is one line for the owner ("Metacritic user score page for GTA 6"); `search` is a web search phrase ("GTA 6 metacritic user score"). The link is built by code as `https://www.google.com/search?q=<url-encoded search>`, never taken from the model, so it can't be a broken or made-up URL.
+   - Invalid entries (unknown source, empty or >80-char query) are dropped silently; more than 3 searches are truncated.
+
+2. **Image sources (`newsbot/images.py`).** Each source is a function `(query, http_get) -> list[Candidate]` returning up to 5 candidates. A `Candidate` has `url` (full size), `thumb` (~640 px wide where available), `page_url` (where it lives), `source`, `credit`, `license`. Only http(s) URLs are kept (same check as feed links). Duplicates by `url` are removed.
+   - **wikimedia** (no key): Commons API search in the file namespace, bitmaps only, with `prop=imageinfo`, `iiprop=url|extmetadata|mime`, `iiurlwidth=640`. `credit` from `Artist` (HTML stripped), `license` from `LicenseShortName`. Wikimedia requires a descriptive User-Agent with contact info. Decided with the owner: every request the bot makes (feeds, Wikimedia, Steam, Pexels, image thumbnails) sends `newsbot/1.4 (+https://github.com/AbhishekKr11511/newsbot)`, defined once as a constant in `fetch.py` and replacing today's `newsbot/1.0`. No email. It's never a browser UA.
+   - **steam** (no key): store search `store.steampowered.com/api/storesearch/?term=<q>&l=english&cc=US`, take the top match, then `api/appdetails?appids=<id>` for `header_image` and the first 2 `screenshots` (3 candidates max, so one game can't crowd out everything else). `credit` = "Official art · Steam", `license` = "Promotional". These endpoints are public but undocumented; if they start refusing, the source returns nothing.
+   - **pexels** (free key, optional): `api.pexels.com/v1/search`, `Authorization: <PEXELS_API_KEY>` from `.env`. With no key, the source is skipped silently. `credit` = "Photo by <photographer> on Pexels", `license` = "Pexels".
+   - IGDB (needs a Twitch developer account) is left for later.
+   - The article's own `image_url` is not a candidate; it keeps its existing hero slot.
+
+3. **Ranking with Ollama.** For each candidate, the bot downloads the `thumb` into memory only (same 5 MB / 30 s caps as feeds, never written to disk) and asks Ollama (`POST {ollama_url}/api/chat`, `stream: false`, the image as base64, a JSON `format` schema) to score how well it fits the post from 0 to 10, with a reason of up to 12 words. Each pick scores at most `max_scored` candidates (default 8), taken round-robin across its searches (first of each search, then second of each, …) so every search gets a look. Images scoring below `min_score` (default 5) are dropped; the rest are sorted by score and the top `keep` (default 4) are kept, with at most 2 from any one source so the owner sees a mix (builder's call, 2026-11-24). Each kept image records its `score`.
+   - If Ollama isn't reachable, the model isn't installed, or a call errors or times out, ranking is skipped for the rest of the run. Picks keep their first `keep` candidates in the same round-robin order (still at most 2 per source) with `score: null`, and the page labels them "unranked".
+   - Model: `gemma3:4b` (vision-capable, ~3.3 GB, fine on the owner's 16 GB M5). The owner runs `ollama pull gemma3:4b` once. The Ollama app must be running for ranked results; it's not required for the run to succeed.
+
+4. **Time budget, two phases** (builder's call, 2026-11-24). Phase 1 fetches candidates for every pick (HTTP only, fast). Phase 2 ranks round-robin across picks (one candidate from pick 1, then pick 2, …), so a slow model can't leave a whole category unranked. The whole image step has a budget (`budget_s`, default 300). Each HTTP call uses `fetch_timeout_s`; each Ollama call has a 60 s timeout. When the budget runs out, each pick keeps its scored candidates and fills any remaining slots from its unscored ones in round-robin order (unscored ones carry `score: null`). Sizing: 7 picks × 8 = 56 calls × ~3 s ≈ 3 minutes, inside the budget.
+
+5. **Where it runs.** In `run.py`, after `curate_all` and before saving: for each new pick, run the searches, rank, and attach `images` (list of kept candidates with `score`) and `screenshot_idea` (`{text, url}` or `null`). Dry run does the image step too and prints one line per pick: "images: 3 ranked (wikimedia 2, steam 1)" plus the screenshot idea. `--no-images` skips the step. Any exception in the image step for a pick is caught: that pick gets `images: []` and the run continues.
+
+6. **Settings (`settings.yaml`).**
+   ```yaml
+   images:
+     enabled: true
+     sources: [wikimedia, steam, pexels]
+     ollama_url: http://localhost:11434
+     ollama_model: gemma3:4b
+     keep: 4
+     max_scored: 8
+     min_score: 5
+     budget_s: 300
+   ```
+   A missing block means the defaults. `enabled: false` skips the image step; Haiku still returns the image fields (one schema for both cases), and they're ignored.
+
+7. **Page.** Under each pick's article image (hero) and before the stat card: a "Found images" row of up to 4 thumbnails (`<img loading="lazy" referrerpolicy="no-referrer">`, built with DOM APIs, never `innerHTML`). Each shows the credit and licence under it and links "Open full size" (the full `url`, new tab, `safeHref`) and "Source" (`page_url`). Unranked sets show a small "unranked" note. If there's a screenshot idea: one line "Screenshot idea: <text>" with a "Search" link. Found images are never drawn on the canvas (that would block Download card). Picks without these fields render as before.
+
+8. **Data.** Only links and text are committed (in `picks.json`). No image files.
+
+9. **Cost.** Pro plan: roughly 40–80 extra output tokens per pick. HTTP: about 2–6 API calls per pick. Ollama: up to `max_scored` (8) local scoring calls per pick, roughly 2–5 s each once the model is loaded.
+
+**Left to the builder:** module layout inside `images.py`; exact prompt wording (following the rules above); how the Ollama prompt phrases the scoring; thumbnail sizes in CSS; how tests fake HTTP and Ollama (inject `http_get` and an Ollama callable, as the rest of the code does).
