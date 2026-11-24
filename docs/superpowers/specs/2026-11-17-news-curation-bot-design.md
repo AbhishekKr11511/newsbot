@@ -310,3 +310,11 @@ About 5 Claude calls per run × 6 runs/day = ~30 calls/day, each with up to a fe
 9. **Cost.** Pro plan: roughly 40–80 extra output tokens per pick. HTTP: about 2–6 API calls per pick. Ollama: up to `max_scored` (8) local scoring calls per pick, roughly 2–5 s each once the model is loaded.
 
 **Left to the builder:** module layout inside `images.py`; exact prompt wording (following the rules above); how the Ollama prompt phrases the scoring; thumbnail sizes in CSS; how tests fake HTTP and Ollama (inject `http_get` and an Ollama callable, as the rest of the code does).
+
+**Changed during the build (2026-11-24, from live runs):**
+- Ranking asks gemma3:4b "does this image clearly show <search term>?" (yes / partly / no → 9 / 6 / 2, −3 if not a clear usable picture) at temperature 0. A free 0–10 score gave almost everything 8.
+- Selection is **mix then fill**: at most 2 per source first, then the next best from any source up to `keep`, so single-source stories still get 4 images.
+- Steam only accepts a store match whose name contains every word of the query (it returned GTA V for "GTA VI").
+- Openverse is limited to jpg/png; an image Ollama can't read (HTTP 400) or a non-image download is skipped without stopping ranking.
+- Thumbnail downloads go through `public_get`, which refuses hosts that resolve to private, loopback or link-local addresses and re-checks each redirect.
+- The dry-run summary also prints the image searches.

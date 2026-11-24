@@ -20,6 +20,13 @@
 - [x] First live comparison run (results below)
 - [x] Final review fixes: the schedule commits only `site/data`, only on `main`, and stops cleanly if `git pull` fails
 
+### v1.4: image finder
+- [x] Haiku suggests 0–3 image searches + a screenshot idea per pick
+- [x] Wikimedia, Steam and Openverse search (no keys); Pexels dropped (new API keys paused)
+- [x] Local Ollama `gemma3:4b` judges each image (yes/partly/no vs the search term), 5-minute budget, round-robin across picks
+- [x] Page: "Found images" grid with credits and links, "Screenshot idea" with a search link
+- [x] Thumbnail downloads refuse private/local hosts (security review)
+
 ### v1.3: drama voice
 - [x] Pirat_Nation-style bulletin voice; 3 categories; 36 feeds; image-first page
 
@@ -38,6 +45,8 @@
 3. ~~Install the schedule~~ ✅ done 2026-11-23, running from `~/code/newsbot` (macOS blocked `~/Documents`). Earlier notes: `bash scripts/install_schedule.sh` and `launchctl kickstart gui/$(id -u)/com.newsbot.run`. Check `logs/run.log` for a new entry: macOS may block background jobs in `~/Documents` (see the README). If it does, move the project to e.g. `~/code/newsbot`. Keep `DRY_RUN=true` in `.env` for the first day, then remove it.
 4. Put your X handle in `settings.yaml` → `card_handle`.
 5. Optional: add a few of your own past posts at the bottom of `prompts/curator.md` to sharpen the voice.
+6. Keep the Ollama app running so found images are ranked (`ollama pull gemma3:4b` done 2026-11-24).
+7. Later: "Post" button on a local page once the X API is paid for (design in the spec, v1.4 section).
 
 ## Open decisions
 
@@ -71,6 +80,8 @@ On Pro you don't pay the $ column. Sonnet uses more of your Pro allowance per ru
 - The All tab has no "nothing new" line for empty categories.
 
 ## Log
+
+- **2026-11-24**: v1.4 image finder (166 tests). Live runs: ~145 s per run incl. ~60 s of ranking; Nvidia/Outlook drafts got relevant Wikimedia photos. Learned: gemma3:4b scores nearly everything 8/10 on a free scale, so it answers yes/partly/no instead; Steam returns GTA V for "GTA VI" (now requires a name match); Openverse SVGs broke ranking (now jpg/png only, bad images skipped); Flickr sometimes 403s the bot's honest User-Agent (those images are skipped).
 
 - **2026-11-17**: Design agreed: categories, 0–3 picks each, static page, GitHub Pages.
 - **2026-11-18**: v1 plan written.

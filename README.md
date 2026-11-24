@@ -54,6 +54,16 @@ Uninstall the schedule: `launchctl bootout gui/$(id -u)/com.newsbot.run && rm ~/
 
 ---
 
+## Image finder (v1.4)
+
+Each new draft gets up to 4 **found images** on the page (with credit, licence, "Open full size" and "Source" links), plus an optional **Screenshot idea** with a search link.
+
+- Haiku suggests the searches; the bot looks in **Steam** (official game art), **Wikimedia Commons** (people, companies, products) and **Openverse** (generic photos with licences that allow editing and commercial use). No keys or accounts.
+- A local vision model judges each picture ("does this clearly show *Grand Theft Auto V*?") and keeps the best ones. One-time setup: `ollama pull gemma3:4b`, and keep the **Ollama app running** (menu bar). If it isn't running, you still get images, marked "unranked".
+- Settings live under `images:` in `settings.yaml` (switch off with `enabled: false`, or try `ollama_model: qwen2.5vl:7b`). Skip for one run with `python -m newsbot --dry-run --no-images`.
+- **Licences are your call.** Steam art is promotional; Wikimedia and Openverse images mostly need a credit (shown under each image), so add it to your post if you use one.
+- Adds about 2–3 minutes per run. Only links are saved; no image files go into the repo.
+
 ## Changing what it covers
 
 All of this is plain text editing. No code changes are needed. Push the change to GitHub and the next run picks it up.
