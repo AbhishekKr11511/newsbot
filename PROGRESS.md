@@ -81,7 +81,7 @@ On Pro you don't pay the $ column. Sonnet uses more of your Pro allowance per ru
 
 ## Log
 
-- **2026-11-24**: v1.4 image finder (166 tests). Live runs: ~145 s per run incl. ~60 s of ranking; Nvidia/Outlook drafts got relevant Wikimedia photos. Learned: gemma3:4b scores nearly everything 8/10 on a free scale, so it answers yes/partly/no instead; Steam returns GTA V for "GTA VI" (now requires a name match); Openverse SVGs broke ranking (now jpg/png only, bad images skipped); Flickr sometimes 403s the bot's honest User-Agent (those images are skipped).
+- **2026-11-24**: v1.4 image finder (157 tests). Live runs: ~145 s per run incl. ~60 s of ranking; Nvidia/Outlook drafts got relevant Wikimedia photos. Learned: gemma3:4b scores nearly everything 8/10 on a free scale, so it answers yes/partly/no instead; Steam returns GTA V for "GTA VI" (now requires a name match); Openverse SVGs broke ranking (now jpg/png only, bad images skipped); Flickr sometimes 403s the bot's honest User-Agent (those images are skipped).
 
 - **2026-11-17**: Design agreed: categories, 0–3 picks each, static page, GitHub Pages.
 - **2026-11-18**: v1 plan written.
