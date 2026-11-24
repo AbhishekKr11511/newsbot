@@ -222,11 +222,11 @@ Ranker = Callable[[bytes, str, str], int]
 
 
 class RankError(Exception):
-    """Ranking can't continue this run (Ollama down, model missing, junk answers)."""
+    """Ranking can't continue this run (Ollama down or erroring). Subclass BadImage = just this one image."""
 
 
 class BadImage(RankError):
-    """Ollama couldn't read this one image (HTTP 400). Skip it; keep ranking the rest."""
+    """This one image couldn't be judged (HTTP 400, or a garbled answer). Skip it; keep ranking the rest."""
 
 
 RASTER_MAGIC = (b"\xff\xd8\xff", b"\x89PNG", b"GIF8")
@@ -242,7 +242,7 @@ def ollama_ranker(cfg: ImageSettings, post=requests.post) -> Ranker:
             "model": cfg.ollama_model,
             "stream": False,
             "format": RANK_SCHEMA,
-            "options": {"temperature": 0, "num_predict": 128},  # short answers; a rambling model can't eat the timeout
+            "options": {"temperature": 0, "num_predict": 256},  # bounded, so a rambling model can't eat the timeout
             "messages": [{"role": "user", "content": RANK_PROMPT.format(post=post_text, query=query),
                           "images": [base64.b64encode(image).decode()]}],
         }
@@ -259,8 +259,8 @@ def ollama_ranker(cfg: ImageSettings, post=requests.post) -> Ranker:
             answer = json.loads(resp.json()["message"]["content"])
             score = MATCH_SCORES[answer["match"]] - (0 if answer.get("usable", True) else UNUSABLE_PENALTY)
             return max(0, min(10, score))
-        except Exception as e:  # junk output: can't rank
-            raise RankError(str(e)) from e
+        except Exception as e:  # garbled or cut-off answer for this image: skip it (3 in a row stops ranking)
+            raise BadImage(f"unreadable answer: {e}") from e
     return rank
 
 

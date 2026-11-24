@@ -583,7 +583,7 @@ def test_ranker_caps_generation_length():  # M4
     sent = []
     ollama_ranker(ImageSettings(), post=fake_post('{"shows": "x", "match": "yes", "usable": true}', record=sent))(
         b"i", "p", "q")
-    assert sent[0][1]["options"]["num_predict"] == 128
+    assert sent[0][1]["options"]["num_predict"] == 256
 
 
 def test_openverse_credit_is_plain_text():  # M6
@@ -592,3 +592,27 @@ def test_openverse_credit_is_plain_text():  # M6
                                     "license_version": "2.0", "foreign_landing_url": "https://flickr.com/p/1"}]})
     out = search_openverse("x", Router({"openverse": data.encode()}), 5)
     assert out[0]["credit"] == "Rock & Roll by Ann (flickr)"
+
+
+def test_one_garbled_answer_skips_only_that_image():
+    # regression: a cut-off JSON answer ("Unterminated string") used to stop ranking for the whole run
+    answers = iter(['{"shows": "a very long descr', '{"shows": "x", "match": "yes", "usable": true}',
+                    '{"shows": "x", "match": "yes", "usable": true}'])
+
+    def post(url, json=None, timeout=None):
+        return FakePostResp({"message": {"content": next(answers)}})
+
+    rank = ollama_ranker(ImageSettings(), post=post)
+    with pytest.raises(BadImage):
+        rank(b"i", "p", "q")
+    src = fake_sources({("wikimedia", "q"): [cand("wikimedia", "a"), cand("wikimedia", "b")]})
+    p = pick(("wikimedia", "q"))
+    find_images([p], ImageSettings(), 5, thumb_get=thumb_get, ranker=rank, sources=src)
+    assert [(i["credit"], i["score"]) for i in p["images"]] == [("a", 9), ("b", 9)]
+
+
+def test_ollama_down_still_stops_ranking_at_once():
+    rank = ollama_ranker(ImageSettings(), post=fake_post(exc=requests.ConnectionError("refused")))
+    with pytest.raises(RankError) as e:
+        rank(b"i", "p", "q")
+    assert not isinstance(e.value, BadImage)
