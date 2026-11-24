@@ -5,6 +5,7 @@ import base64
 import ipaddress
 import json
 import logging
+import re
 import socket
 import time
 from typing import Callable
@@ -95,13 +96,20 @@ def search_wikimedia(query: str, http_get, timeout: int) -> list[dict]:
     return out[:PER_QUERY]
 
 
+def _words(text: str) -> list[str]:
+    return re.findall(r"[a-z0-9]+", text.lower())
+
+
 def search_steam(query: str, http_get, timeout: int) -> list[dict]:
     found = _get_json(f"https://store.steampowered.com/api/storesearch/?term={quote(query)}&l=english&cc=US",
                       http_get, timeout)
-    items = found.get("items") or []
-    if not items:
+    # Steam returns its nearest match even for games it doesn't sell ("GTA VI" -> GTA V), and the vision
+    # model can't tell those apart, so the store name must contain every word of the query.
+    wanted = set(_words(query))
+    match = next((i for i in found.get("items") or [] if wanted <= set(_words(i.get("name", "")))), None)
+    if not match:
         return []
-    app_id = items[0].get("id")
+    app_id = match.get("id")
     details = _get_json(f"https://store.steampowered.com/api/appdetails?appids={app_id}", http_get, timeout)
     entry = details.get(str(app_id)) or {}
     if not entry.get("success"):

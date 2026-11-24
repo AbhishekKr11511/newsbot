@@ -215,3 +215,10 @@ def test_summary_unranked_and_none(root):
     run(Paths(root), NOW, True, FakeClient(), http_get=http_get, out=out, image_finder=finder)
     assert "images: 1 unranked (steam 1)" in out.getvalue()
     assert "images: none" in out.getvalue()
+
+
+def test_summary_prints_searches(root):
+    extra = {"image_searches": [{"source": "steam", "query": "Halo"}, {"source": "wikimedia", "query": "Xbox"}]}
+    out = io.StringIO()
+    run(Paths(root), NOW, True, FakeClient(extra=extra), http_get=http_get, out=out)
+    assert 'searches: steam "Halo", wikimedia "Xbox"' in out.getvalue()

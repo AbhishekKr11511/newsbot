@@ -183,6 +183,8 @@ def _print_summary(out, now, dry_run, categories, result, fetched, feed_errors, 
             if p["flags"]:
                 w(f"    ⚠ flags: {', '.join(p['flags'])}")
             w(f"    why: {p['reason']}")
+            if p.get("image_searches"):
+                w("    searches: " + ", ".join(f'{q["source"]} "{q["query"]}"' for q in p["image_searches"]))
             if "images" in p:
                 w(f"    {_images_line(p['images'])}")
             if p.get("screenshot_idea"):

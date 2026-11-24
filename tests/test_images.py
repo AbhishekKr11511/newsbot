@@ -473,3 +473,24 @@ def test_public_get_too_many_redirects(monkeypatch):
 def test_find_images_default_thumb_get_is_public_get():
     import inspect
     assert inspect.signature(find_images).parameters["thumb_get"].default is images_mod.public_get
+
+
+def test_steam_requires_name_match():
+    search = json.dumps({"total": 2, "items": [{"type": "app", "name": "Grand Theft Auto V Enhanced", "id": 1},
+                                               {"type": "app", "name": "Grand Theft Auto VI", "id": 3240220}]}).encode()
+    get = Router({"storesearch": search, "appdetails": fixture_bytes("steam_appdetails.json")})
+    out = search_steam("Grand Theft Auto VI", get, 5)
+    assert "appids=3240220" in get.calls[1] and len(out) == 3
+
+
+def test_steam_no_name_match_empty():
+    search = json.dumps({"total": 1, "items": [{"type": "app", "name": "Grand Theft Auto V Enhanced", "id": 1}]}).encode()
+    get = Router({"storesearch": search})
+    assert search_steam("Grand Theft Auto VI", get, 5) == []
+    assert len(get.calls) == 1
+
+
+def test_steam_name_match_ignores_case_and_punctuation():
+    search = json.dumps({"total": 1, "items": [{"type": "app", "name": "Call of Duty®: Black Ops 7", "id": 3240220}]}).encode()
+    get = Router({"storesearch": search, "appdetails": fixture_bytes("steam_appdetails.json")})
+    assert len(search_steam("call of duty black ops 7", get, 5)) == 3
