@@ -106,6 +106,8 @@ def search_steam(query: str, http_get, timeout: int) -> list[dict]:
     # Steam returns its nearest match even for games it doesn't sell ("GTA VI" -> GTA V), and the vision
     # model can't tell those apart, so the store name must contain every word of the query.
     wanted = set(_words(query))
+    if not wanted:  # nothing to check the store name against
+        return []
     match = next((i for i in found.get("items") or [] if wanted <= set(_words(i.get("name", "")))), None)
     if not match:
         return []
@@ -137,7 +139,9 @@ def search_openverse(query: str, http_get, timeout: int) -> list[dict]:
     data = _get_json(url, http_get, timeout)
     out = []
     for r in data.get("results") or []:
-        credit = f"{r.get('title') or 'Untitled'} by {r.get('creator') or 'unknown'} ({r.get('source') or 'openverse'})"
+        title = _clean_text(str(r.get("title") or "")) or "Untitled"
+        creator = _clean_text(str(r.get("creator") or "")) or "unknown"
+        credit = f"{title} by {creator} ({_clean_text(str(r.get('source') or '')) or 'openverse'})"
         # thumb = the direct image: Openverse's own /thumb/ endpoint counts against its anonymous rate limit.
         c = _candidate("openverse", r.get("url"), r.get("url"), r.get("foreign_landing_url"), credit,
                        _openverse_license(r.get("license"), r.get("license_version") or ""))
@@ -238,7 +242,7 @@ def ollama_ranker(cfg: ImageSettings, post=requests.post) -> Ranker:
             "model": cfg.ollama_model,
             "stream": False,
             "format": RANK_SCHEMA,
-            "options": {"temperature": 0},
+            "options": {"temperature": 0, "num_predict": 128},  # short answers; a rambling model can't eat the timeout
             "messages": [{"role": "user", "content": RANK_PROMPT.format(post=post_text, query=query),
                           "images": [base64.b64encode(image).decode()]}],
         }

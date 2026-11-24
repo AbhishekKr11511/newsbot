@@ -569,3 +569,26 @@ def test_bad_image_streak_resets_after_a_success():
     p = pick(("wikimedia", "q"))
     find_images([p], ImageSettings(), 5, thumb_get=thumb_get, ranker=ranker, sources=src)
     assert names(p) == ["c"] and p["images"][0]["score"] == 9
+
+
+# ---- regression: deferred review minors -----------------------------------------
+
+def test_steam_query_without_latin_words_matches_nothing():  # M3
+    get = Router({"storesearch": fixture_bytes("steam_search.json")})
+    assert search_steam("東方", get, 5) == []
+    assert search_steam("!!!", get, 5) == []
+
+
+def test_ranker_caps_generation_length():  # M4
+    sent = []
+    ollama_ranker(ImageSettings(), post=fake_post('{"shows": "x", "match": "yes", "usable": true}', record=sent))(
+        b"i", "p", "q")
+    assert sent[0][1]["options"]["num_predict"] == 128
+
+
+def test_openverse_credit_is_plain_text():  # M6
+    data = json.dumps({"results": [{"title": "Rock &amp; <b>Roll</b>", "creator": "<i>Ann</i>", "source": "flickr",
+                                    "url": "https://live.staticflickr.com/1.jpg", "license": "by",
+                                    "license_version": "2.0", "foreign_landing_url": "https://flickr.com/p/1"}]})
+    out = search_openverse("x", Router({"openverse": data.encode()}), 5)
+    assert out[0]["credit"] == "Rock & Roll by Ann (flickr)"
