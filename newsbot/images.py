@@ -133,17 +133,27 @@ def _openverse_license(code: str, version: str) -> str:
     return f"CC {code.upper()} {version}".strip()
 
 
+_WIKIMEDIA_ORIGINAL = re.compile(r"(https://upload\.wikimedia\.org/wikipedia/commons)/(\w)/(\w\w)/([^/?#]+)$")
+
+
+def _wikimedia_thumb(url) -> str | None:
+    """Wikimedia originals can be many MB; use its standard 960 px rendition for previews and judging."""
+    m = _WIKIMEDIA_ORIGINAL.match(url or "")
+    return f"{m[1]}/thumb/{m[2]}/{m[3]}/{m[4]}/960px-{m[4]}" if m else url
+
+
 def search_openverse(query: str, http_get, timeout: int) -> list[dict]:
     url = (f"https://api.openverse.org/v1/images/?q={quote(query)}&page_size={PER_QUERY}"
-           "&license_type=commercial,modification&extension=jpg,png")
+           "&license_type=commercial,modification&extension=jpg,png"
+           "&excluded_source=flickr")  # Flickr refuses the bot's User-Agent, so its images can't be judged
     data = _get_json(url, http_get, timeout)
     out = []
     for r in data.get("results") or []:
         title = _clean_text(str(r.get("title") or "")) or "Untitled"
         creator = _clean_text(str(r.get("creator") or "")) or "unknown"
         credit = f"{title} by {creator} ({_clean_text(str(r.get('source') or '')) or 'openverse'})"
-        # thumb = the direct image: Openverse's own /thumb/ endpoint counts against its anonymous rate limit.
-        c = _candidate("openverse", r.get("url"), r.get("url"), r.get("foreign_landing_url"), credit,
+        # Not Openverse's /thumb/ endpoint: it counts against the anonymous rate limit.
+        c = _candidate("openverse", r.get("url"), _wikimedia_thumb(r.get("url")), r.get("foreign_landing_url"), credit,
                        _openverse_license(r.get("license"), r.get("license_version") or ""))
         if c:
             out.append(c)

@@ -616,3 +616,25 @@ def test_ollama_down_still_stops_ranking_at_once():
     with pytest.raises(RankError) as e:
         rank(b"i", "p", "q")
     assert not isinstance(e.value, BadImage)
+
+
+def test_openverse_excludes_flickr():
+    # Flickr refuses the bot's User-Agent, so its images can never be judged
+    get = Router({"api.openverse.org/v1/images/?": fixture_bytes("openverse.json")})
+    search_openverse("server room", get, 5)
+    assert "excluded_source=flickr" in get.calls[0]
+
+
+def test_openverse_wikimedia_original_gets_small_thumb():
+    url = "https://upload.wikimedia.org/wikipedia/commons/e/e0/A_view_of_the_server_room.jpg"
+    data = json.dumps({"results": [{"title": "t", "creator": "c", "source": "wikimedia", "url": url,
+                                    "license": "by", "license_version": "4.0", "foreign_landing_url": url}]})
+    out = search_openverse("x", Router({"openverse": data.encode()}), 5)
+    assert out[0]["url"] == url
+    assert out[0]["thumb"] == ("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/"
+                               "A_view_of_the_server_room.jpg/960px-A_view_of_the_server_room.jpg")
+
+
+def test_openverse_other_hosts_keep_url_as_thumb():
+    out = search_openverse("x", Router({"openverse": fixture_bytes("openverse.json")}), 5)
+    assert all(c["thumb"] == c["url"] for c in out)
