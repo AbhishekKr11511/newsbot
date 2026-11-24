@@ -16,3 +16,12 @@ banned_words:
   - masterstroke
   - master-stroke
   - revolutionary
+images:                 # v1.4 image finder (see README)
+  enabled: true
+  sources: [wikimedia, steam, openverse]
+  ollama_url: http://localhost:11434
+  ollama_model: gemma3:4b   # vision model; try qwen2.5vl:7b if picks look off
+  keep: 4                   # images shown per pick
+  max_scored: 8             # images judged per pick
+  min_score: 5              # 0-10; below this an image is dropped
+  budget_s: 300             # time limit for the whole image step

@@ -62,3 +62,32 @@ def test_load_settings_card_defaults(tmp_path):
     s = load_settings(p)
     assert s.card_handle == "@yourhandle" and s.card_tagline == ""
     assert load_settings(ROOT / "settings.yaml").card_handle.startswith("@")
+
+
+def test_load_settings_image_defaults(tmp_path):
+    p = tmp_path / "s.yaml"
+    p.write_text("model: haiku\n")
+    im = load_settings(p).images
+    assert (im.keep, im.max_scored, im.min_score, im.budget_s) == (4, 8, 5, 300)
+    assert im.enabled is True
+    assert im.ollama_model == "gemma3:4b"
+    assert im.ollama_url == "http://localhost:11434"
+    assert im.sources == ["wikimedia", "steam", "openverse"]
+
+
+def test_load_settings_image_overrides(tmp_path):
+    p = tmp_path / "s.yaml"
+    p.write_text("model: haiku\nimages:\n  keep: 2\n  enabled: false\n")
+    im = load_settings(p).images
+    assert im.keep == 2 and im.enabled is False and im.max_scored == 8
+
+
+def test_load_settings_unknown_image_source(tmp_path):
+    p = tmp_path / "s.yaml"
+    p.write_text("model: haiku\nimages:\n  sources: [pexels]\n")
+    with pytest.raises(ConfigError):
+        load_settings(p)
+
+
+def test_real_settings_has_image_block():
+    assert load_settings(ROOT / "settings.yaml").images.sources == ["wikimedia", "steam", "openverse"]

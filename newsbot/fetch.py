@@ -163,10 +163,14 @@ def parse_feed(content: bytes, source: Source, now: datetime, window_hours: int)
     return out
 
 
+# Honest bot identity with a contact link (Wikimedia asks for one). Never a browser UA.
+USER_AGENT = "newsbot/1.4 (+https://github.com/AbhishekKr11511/newsbot)"
+
+
 def default_get(url: str, timeout: int) -> bytes:
     """GET with a 5 MB body cap and a total wall-clock limit."""
     started = time.monotonic()
-    resp = requests.get(url, timeout=timeout, headers={"User-Agent": "newsbot/1.0"}, stream=True)
+    resp = requests.get(url, timeout=timeout, headers={"User-Agent": USER_AGENT}, stream=True)
     try:
         resp.raise_for_status()
         if int(resp.headers.get("Content-Length") or 0) > MAX_FEED_BYTES:

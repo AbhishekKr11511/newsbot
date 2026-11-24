@@ -189,3 +189,16 @@ def test_old_article_json_without_image_loads():
     d = parse("rss_basic.xml")[0].to_dict()
     d.pop("image_url")
     assert Article.from_dict(d).image_url is None
+
+
+def test_default_get_sends_user_agent(monkeypatch):
+    from newsbot import fetch
+    seen = {}
+
+    def fake_get(url, **k):
+        seen.update(k.get("headers") or {})
+        return FakeResp([b"ok"])
+
+    monkeypatch.setattr(fetch.requests, "get", fake_get)
+    fetch.default_get("https://x.test/rss", 5)
+    assert seen["User-Agent"] == "newsbot/1.4 (+https://github.com/AbhishekKr11511/newsbot)"
