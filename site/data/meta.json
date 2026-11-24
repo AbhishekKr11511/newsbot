@@ -1,5 +1,5 @@
 {
- "last_run_at": "2026-11-23T18:50:42Z",
+ "last_run_at": "2026-11-24T02:33:52Z",
  "categories": [
   {
    "id": "gaming",
@@ -15,8 +15,15 @@
   }
  ],
  "feed_errors": [
-  "Kotaku: ReadTimeout: HTTPSConnectionPool(host='kotaku.com', port=443): Read timed out. (read timeout=15)",
-  "Mint Technology: ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+  "TechCrunch: TimeoutError: feed download took too long",
+  "TechCrunch AI: TimeoutError: feed download took too long",
+  "VGC: TimeoutError: feed download took too long",
+  "Insider Gaming: TimeoutError: feed download took too long",
+  "GameSpot: TimeoutError: feed download took too long",
+  "Polygon: ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+  "Kotaku: TimeoutError: feed download took too long",
+  "Reuters World: ReadTimeout: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out. (read timeout=15)",
+  "AP Business: ConnectionError: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out."
  ],
  "card": {
   "handle": "@nomicsexpress",

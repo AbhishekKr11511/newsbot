@@ -492,5 +492,134 @@
    "thinking_tokens": 4213,
    "cost_usd_equiv": 0.022339
   }
+ },
+ {
+  "run_at": "2026-11-24T02:33:52Z",
+  "categories": {
+   "gaming": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "d887a036ddcc8777",
+      "title": "Xbox Has Looked Into Eliminating Paid Multiplayer – Report",
+      "url": "https://insider-gaming.com/xbox-eliminating-paid-multiplayer/",
+      "source": "Insider Gaming",
+      "published_at": "2026-11-23T16:19:15Z",
+      "post": "According to a new report, Xbox looked into eliminating paid multiplayer as part of its Xbox Helix strategy.\n\nThe report says the idea was considered, not that it was decided.",
+      "reason": "Taking away a paid feature players already pay for is a classic fan-versus-company flashpoint.",
+      "card_text": "Looked into eliminating paid multiplayer",
+      "image_url": null,
+      "flags": []
+     },
+     {
+      "article_id": "62dd85f9e880b08e",
+      "title": "Call of Duty's Player Count Dropped by Over 40% Following GTA 6's Release, According to Analysts",
+      "url": "https://www.ign.com/articles/call-of-dutys-player-count-dropped-by-over-40-following-gta-6s-release-according-to-analysts",
+      "source": "IGN",
+      "published_at": "2026-11-23T23:37:01Z",
+      "post": "A new analyst report says Call of Duty's player count fell by over 40% after GTA 6 launched.\n\nThe report ties the drop to GTA 6's release, which came out just days earlier.",
+      "reason": "Big franchise, big percentage, and a direct rivalry with GTA 6 that fans will argue over.",
+      "card_text": "Over 40% drop in players",
+      "image_url": "https://assets-prd.ignimgs.com/2026/11/23/gta-6-jason-and-lucia-cigar-1795473956655.jpg",
+      "flags": []
+     },
+     {
+      "article_id": "d4c63bd7cfd5bacc",
+      "title": "Resident Evil creator Shinji Mikami says he wishes AI would disappear entirely, but that he experiments with it as a tool",
+      "url": "https://www.videogameschronicle.com/news/resident-evil-creator-shinji-mikami-says-he-wishes-ai-would-disappear-entirely-but-that-he-experiments-with-it-as-a-tool/",
+      "source": "VGC",
+      "published_at": "2026-11-23T13:23:03Z",
+      "post": "Resident Evil creator Shinji Mikami says he wishes AI would disappear entirely, fearing mass job losses.\n\nHe still experiments with AI as a tool, and Stellar Blade's CEO shared a G-CON 2026 panel with opposing views.",
+      "reason": "A famous developer taking a bold stance on AI and jobs, with a public rival view.",
+      "card_text": "Wishes AI would \"vanish entirely\"",
+      "image_url": "https://www.videogameschronicle.com/files/2022/08/mikami.png",
+      "flags": []
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 16,
+     "cache_creation_input_tokens": 24974,
+     "cache_read_input_tokens": 174818,
+     "output_tokens": 2996,
+     "thinking_tokens": 2450,
+     "cost_usd_equiv": 0.01167808
+    }
+   },
+   "tech-ai": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "3e16575787cf150b",
+      "title": "EXCLUSIVE: Some US banks tighten AI-agent controls on concern about models escaping safeguards",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPb0pELTVieEVteWV5TWE5cU80T1M4MmNHVmxQVjNmb0tkQ3diUHRFSTg0X1NJTnhEMGZHcS1CaFZfRHUyeWUyQ0RSMWVOa2drMEY0VG1Ba3puU0FmamtxdzF3dFFLaXl0TGloeVIteHFxMkNiRlFLMU5Yc0FUeDNvVzJZS0lLS2t1TWo5Tmk1RWJjMGlHQ2Q2eXlwc1NRU0lXNEFxODVLZ1FmQm4xLUR0QWFoRTRTS1FqSE5FRGVfUzNPaFZGUlNJREtSb0ZjUQ?oc=5",
+      "source": "Reuters Technology",
+      "published_at": "2026-11-23T22:45:12Z",
+      "post": "Some US banks are tightening controls on AI agents, software that acts on its own for users, Reuters reports.\n\nThe concern is that AI models could escape their safeguards.",
+      "reason": "Fear of AI escaping safeguards, tied to banks and customers' money, is an easy topic to take sides on.",
+      "card_text": "Models escaping safeguards",
+      "image_url": null,
+      "flags": []
+     },
+     {
+      "article_id": "a3cfe28cbe36e035",
+      "title": "US to blacklist Asian AI firm Megaspeed after Nvidia scandal",
+      "url": "https://www.bbc.co.uk/news/articles/cv98xpg5dg5zo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC Technology",
+      "published_at": "2026-11-23T23:16:08Z",
+      "post": "The US plans to blacklist Asian AI firm Megaspeed over accusations it funneled AI chips to China.\n\nThe scandal began when a former Megaspeed executive's affair with Nvidia CEO Jensen Huang became public.",
+      "reason": "Huang's affair scandal plus alleged chip smuggling to China gives a clear villain and a famous name.",
+      "card_text": "Accused of funneling AI chips to China",
+      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4a66/live/7c413f70-e78a-11f1-a5c2-c57ab9df3111.jpg",
+      "flags": []
+     },
+     {
+      "article_id": "1f165a47af18053b",
+      "title": "Figma employee sues, alleging company forced her to confront harassers",
+      "url": "https://techcrunch.com/2026/11/23/figma-employee-sues-alleging-company-forced-her-to-confront-harassers/",
+      "source": "TechCrunch Startups",
+      "published_at": "2026-11-23T23:07:49Z",
+      "post": "Figma and its CEO are being sued by a current employee over alleged sexual harassment and discrimination.\n\nShe says the company forced her to confront the people harassing her.",
+      "reason": "Well-known app company and CEO accused of workplace harassment; people will pick sides on the company's response.",
+      "card_text": "Forced to confront harassers",
+      "image_url": null,
+      "flags": []
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 18712,
+     "cache_read_input_tokens": 633,
+     "output_tokens": 3247,
+     "thinking_tokens": 2754,
+     "cost_usd_equiv": 0.005372429999999999
+    }
+   },
+   "trending": {
+    "status": "ok",
+    "error": null,
+    "picks": [],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 25963,
+     "cache_read_input_tokens": 633,
+     "output_tokens": 2197,
+     "thinking_tokens": 2143,
+     "cost_usd_equiv": 0.00629763
+    }
+   }
+  },
+  "usage_total": {
+   "input_tokens": 20,
+   "cache_creation_input_tokens": 69649,
+   "cache_read_input_tokens": 176084,
+   "output_tokens": 8440,
+   "thinking_tokens": 7347,
+   "cost_usd_equiv": 0.023348
+  }
  }
 ]
