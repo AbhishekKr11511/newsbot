@@ -318,3 +318,4 @@ About 5 Claude calls per run × 6 runs/day = ~30 calls/day, each with up to a fe
 - Openverse is limited to jpg/png; an image Ollama can't read (HTTP 400) or a non-image download is skipped without stopping ranking.
 - Thumbnail downloads go through `public_get`, which refuses hosts that resolve to private, loopback or link-local addresses and re-checks each redirect.
 - The dry-run summary also prints the image searches.
+- Regression pass (2026-11-24): Openverse excludes Flickr (it 403s the bot's User-Agent every time) and previews Wikimedia originals at 960 px; a garbled Ollama answer skips one image (3 in a row stops ranking); Ollama answers capped at 256 tokens; a mistyped `images:` block gives a clear ConfigError naming the setting (counts must be ≥ 1, `min_score` 0–10, `enabled` a real true/false); Steam ignores queries with no Latin letters or digits; Openverse credits are plain text.

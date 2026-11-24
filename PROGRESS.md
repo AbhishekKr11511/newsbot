@@ -26,6 +26,7 @@
 - [x] Local Ollama `gemma3:4b` judges each image (yes/partly/no vs the search term), 5-minute budget, round-robin across picks
 - [x] Page: "Found images" grid with credits and links, "Screenshot idea" with a search link
 - [x] Thumbnail downloads refuse private/local hosts (security review)
+- [x] Regression pass: 6 review minors fixed, plus two bugs found by end-to-end runs (cut-off Ollama answers stopped ranking; Openverse unusable because Flickr blocks the bot)
 
 ### v1.3: drama voice
 - [x] Pirat_Nation-style bulletin voice; 3 categories; 36 feeds; image-first page
@@ -81,7 +82,7 @@ On Pro you don't pay the $ column. Sonnet uses more of your Pro allowance per ru
 
 ## Log
 
-- **2026-11-24**: v1.4 image finder (157 tests). Live runs: ~145 s per run incl. ~60 s of ranking; Nvidia/Outlook drafts got relevant Wikimedia photos. Learned: gemma3:4b scores nearly everything 8/10 on a free scale, so it answers yes/partly/no instead; Steam returns GTA V for "GTA VI" (now requires a name match); Openverse SVGs broke ranking (now jpg/png only, bad images skipped); Flickr sometimes 403s the bot's honest User-Agent (those images are skipped).
+- **2026-11-24**: v1.4 image finder (157 tests). Live runs: ~145 s per run incl. ~60 s of ranking; Nvidia/Outlook drafts got relevant Wikimedia photos. Learned: gemma3:4b scores nearly everything 8/10 on a free scale, so it answers yes/partly/no instead; Steam returns GTA V for "GTA VI" (now requires a name match); Openverse SVGs broke ranking (now jpg/png only, bad images skipped); Flickr 403s the bot's honest User-Agent, so Openverse now excludes Flickr.
 
 - **2026-11-17**: Design agreed: categories, 0–3 picks each, static page, GitHub Pages.
 - **2026-11-18**: v1 plan written.
