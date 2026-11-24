@@ -91,3 +91,42 @@ def test_load_settings_unknown_image_source(tmp_path):
 
 def test_real_settings_has_image_block():
     assert load_settings(ROOT / "settings.yaml").images.sources == ["wikimedia", "steam", "openverse"]
+
+
+# ---- regression: a mistyped images: block (M1) ---------------------------------
+
+@pytest.mark.parametrize("block", ["images:\n  keep: five\n", "images:\n  budget_s: [1]\n", "images: 7\n"])
+def test_bad_image_values_give_clear_config_error(tmp_path, block):
+    p = tmp_path / "s.yaml"
+    p.write_text("model: haiku\n" + block)
+    with pytest.raises(ConfigError, match="images"):
+        load_settings(p)
+
+
+def test_image_sources_as_single_string(tmp_path):
+    p = tmp_path / "s.yaml"
+    p.write_text("model: haiku\nimages:\n  sources: wikimedia\n")
+    assert load_settings(p).images.sources == ["wikimedia"]
+
+
+@pytest.mark.parametrize("value", ['"no"', '"yes"', "1"])
+def test_image_enabled_must_be_true_or_false(tmp_path, value):
+    p = tmp_path / "s.yaml"
+    p.write_text(f"model: haiku\nimages:\n  enabled: {value}\n")
+    with pytest.raises(ConfigError, match="enabled"):
+        load_settings(p)
+
+
+@pytest.mark.parametrize("field", ["keep", "max_scored", "budget_s"])
+def test_image_counts_must_be_positive(tmp_path, field):
+    p = tmp_path / "s.yaml"
+    p.write_text(f"model: haiku\nimages:\n  {field}: 0\n")
+    with pytest.raises(ConfigError, match=field):
+        load_settings(p)
+
+
+def test_image_min_score_range(tmp_path):
+    p = tmp_path / "s.yaml"
+    p.write_text("model: haiku\nimages:\n  min_score: 11\n")
+    with pytest.raises(ConfigError, match="min_score"):
+        load_settings(p)

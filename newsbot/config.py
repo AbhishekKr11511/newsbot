@@ -60,25 +60,47 @@ class Settings:
     images: ImageSettings = field(default_factory=ImageSettings)
 
 
+def _image_int(d: dict, key: str, default: int, path, low: int, high: int | None = None) -> int:
+    value = d.get(key, default)
+    if isinstance(value, bool) or not isinstance(value, (int, str)):
+        raise ConfigError(f"{path}: images.{key} must be a whole number, got {value!r}")
+    try:
+        n = int(value)
+    except ValueError:
+        raise ConfigError(f"{path}: images.{key} must be a whole number, got {value!r}") from None
+    if n < low or (high is not None and n > high):
+        bounds = f"between {low} and {high}" if high is not None else f"at least {low}"
+        raise ConfigError(f"{path}: images.{key} must be {bounds}, got {n}")
+    return n
+
+
 def _load_images(d, path) -> ImageSettings:
     if d is None:
         return ImageSettings()
     if not isinstance(d, dict):
         raise ConfigError(f"{path}: images must be a mapping")
     base = ImageSettings()
-    sources = [str(x) for x in d.get("sources", base.sources)]
+    enabled = d.get("enabled", base.enabled)
+    if not isinstance(enabled, bool):
+        raise ConfigError(f"{path}: images.enabled must be true or false (no quotes), got {enabled!r}")
+    raw_sources = d.get("sources", base.sources)
+    if isinstance(raw_sources, str):
+        raw_sources = [raw_sources]
+    if not isinstance(raw_sources, list):
+        raise ConfigError(f"{path}: images.sources must be a list like [wikimedia, steam, openverse]")
+    sources = [str(x).strip() for x in raw_sources]
     unknown = [x for x in sources if x not in IMAGE_SOURCES]
     if unknown:
         raise ConfigError(f"{path}: unknown image source(s) {', '.join(unknown)}; use {', '.join(IMAGE_SOURCES)}")
     return ImageSettings(
-        enabled=bool(d.get("enabled", base.enabled)),
+        enabled=enabled,
         sources=sources,
         ollama_url=str(d.get("ollama_url", base.ollama_url)).rstrip("/"),
         ollama_model=str(d.get("ollama_model", base.ollama_model)),
-        keep=int(d.get("keep", base.keep)),
-        max_scored=int(d.get("max_scored", base.max_scored)),
-        min_score=int(d.get("min_score", base.min_score)),
-        budget_s=int(d.get("budget_s", base.budget_s)),
+        keep=_image_int(d, "keep", base.keep, path, 1),
+        max_scored=_image_int(d, "max_scored", base.max_scored, path, 1),
+        min_score=_image_int(d, "min_score", base.min_score, path, 0, 10),
+        budget_s=_image_int(d, "budget_s", base.budget_s, path, 1),
     )
 
 
