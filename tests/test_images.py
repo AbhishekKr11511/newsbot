@@ -121,3 +121,280 @@ def test_other_http_errors_propagate():
     resp.status_code = 500
     with pytest.raises(requests.HTTPError):
         search_wikimedia("x", Router({"commons": requests.HTTPError(response=resp)}), 5)
+
+
+# ---- ranker + find_images ----------------------------------------------------
+import base64  # noqa: E402
+
+from newsbot.config import ImageSettings  # noqa: E402
+from newsbot.images import RankError, find_images, ollama_ranker  # noqa: E402
+
+
+class FakePostResp:
+    def __init__(self, payload=None, exc=None):
+        self.payload, self.exc = payload, exc
+
+    def raise_for_status(self):
+        if self.exc:
+            raise self.exc
+
+    def json(self):
+        return self.payload
+
+
+def fake_post(content=None, exc=None, record=None):
+    def post(url, json=None, timeout=None):
+        if record is not None:
+            record.append((url, json, timeout))
+        if isinstance(exc, requests.ConnectionError):
+            raise exc
+        return FakePostResp({"message": {"content": content}}, exc)
+    return post
+
+
+def test_ranker_parses_match():
+    sent = []
+    rank = ollama_ranker(ImageSettings(), post=fake_post('{"shows": "GTA cover art", "match": "yes", "usable": true}',
+                                                         record=sent))
+    assert rank(b"img", "GTA 6 is being review-bombed", "Grand Theft Auto VI") == 9
+    url, body, timeout = sent[0]
+    assert url == "http://localhost:11434/api/chat" and timeout == 60
+    assert body["model"] == "gemma3:4b" and body["stream"] is False
+    assert body["options"]["temperature"] == 0
+    assert body["messages"][0]["images"] == [base64.b64encode(b"img").decode()]
+    assert "Grand Theft Auto VI" in body["messages"][0]["content"]
+    assert set(body["format"]["required"]) == {"shows", "match", "usable"}
+
+
+def test_ranker_score_mapping():
+    def score(match, usable):
+        content = json.dumps({"shows": "x", "match": match, "usable": usable})
+        return ollama_ranker(ImageSettings(), post=fake_post(content))(b"i", "p", "q")
+    assert score("yes", True) == 9
+    assert score("partly", True) == 6
+    assert score("no", True) == 2
+    assert score("yes", False) == 6
+    assert score("no", False) == 0
+
+
+def test_ranker_bad_json_raises():
+    with pytest.raises(RankError):
+        ollama_ranker(ImageSettings(), post=fake_post("nope"))(b"i", "p", "q")
+    with pytest.raises(RankError):
+        ollama_ranker(ImageSettings(), post=fake_post('{"shows": "x", "usable": true}'))(b"i", "p", "q")
+    with pytest.raises(RankError):
+        ollama_ranker(ImageSettings(), post=fake_post('{"shows": "x", "match": "maybe", "usable": true}'))(b"i", "p", "q")
+    with pytest.raises(RankError):
+        ollama_ranker(ImageSettings(), post=fake_post(exc=requests.ConnectionError("refused")))(b"i", "p", "q")
+    with pytest.raises(RankError):
+        ollama_ranker(ImageSettings(), post=fake_post(exc=requests.HTTPError("404 model not found")))(b"i", "p", "q")
+
+
+def cand(source, name):
+    url = f"https://img.test/{name}.jpg"
+    return {"url": url, "thumb": url, "page_url": url, "source": source, "credit": name, "license": "L"}
+
+
+def fake_sources(results, calls=None):
+    """results: {(source, query): list | Exception}"""
+    def make(source):
+        def search(query, http_get, timeout):
+            if calls is not None:
+                calls.append((source, query))
+            r = results.get((source, query), [])
+            if isinstance(r, Exception):
+                raise r
+            return list(r)
+        return search
+    return {s: make(s) for s in ("wikimedia", "steam", "openverse")}
+
+
+def thumb_get(url, timeout):
+    return url.encode()
+
+
+def scorer(scores, calls=None):
+    """Ranker scoring by image name; records the order of calls."""
+    def rank(img, post, query):
+        name = img.decode().rsplit("/", 1)[1].removesuffix(".jpg")
+        if calls is not None:
+            calls.append(name)
+        return scores[name]
+    return rank
+
+
+def pick(*searches, post="post"):
+    return {"post": post, "image_searches": [{"source": s, "query": q} for s, q in searches]}
+
+
+class Clock:
+    def __init__(self):
+        self.t = 0.0
+
+    def __call__(self):
+        return self.t
+
+
+def names(p):
+    return [i["credit"] for i in p["images"]]
+
+
+def test_find_images_ranks_and_keeps_top():
+    p = pick(("wikimedia", "q"))
+    src = fake_sources({("wikimedia", "q"): [cand("wikimedia", n) for n in "abcd"]})
+    find_images([p], ImageSettings(), 5, http_get=thumb_get, ranker=scorer({"a": 9, "b": 3, "c": 7, "d": 6}),
+                sources=src)
+    # max 2 per source applies, so of 9, 7, 6 only the top two wikimedia stay
+    assert names(p) == ["a", "c"]
+    assert [i["score"] for i in p["images"]] == [9, 7]
+
+
+def test_scores_sorted_and_low_dropped_across_sources():
+    p = pick(("wikimedia", "q"), ("openverse", "q"))
+    src = fake_sources({("wikimedia", "q"): [cand("wikimedia", "a"), cand("wikimedia", "b")],
+                        ("openverse", "q"): [cand("openverse", "c"), cand("openverse", "d")]})
+    find_images([p], ImageSettings(), 5, http_get=thumb_get,
+                ranker=scorer({"a": 9, "b": 3, "c": 7, "d": 6}), sources=src)
+    assert names(p) == ["a", "c", "d"]
+
+
+def test_max_two_per_source():
+    p = pick(("steam", "g"), ("wikimedia", "w"))
+    src = fake_sources({("steam", "g"): [cand("steam", f"s{i}") for i in range(5)],
+                        ("wikimedia", "w"): [cand("wikimedia", "w1")]})
+    scores = {f"s{i}": 9 for i in range(5)} | {"w1": 6}
+    find_images([p], ImageSettings(), 5, http_get=thumb_get, ranker=scorer(scores), sources=src)
+    assert [i["source"] for i in p["images"]] == ["steam", "steam", "wikimedia"]
+
+
+def test_max_scored_round_robin():
+    p = pick(("wikimedia", "1"), ("openverse", "2"))
+    src = fake_sources({("wikimedia", "1"): [cand("wikimedia", f"1{c}") for c in "abcde"],
+                        ("openverse", "2"): [cand("openverse", f"2{c}") for c in "abcde"]})
+    calls = []
+    find_images([p], ImageSettings(max_scored=4), 5, http_get=thumb_get,
+                ranker=scorer({n: 5 for n in ["1a", "2a", "1b", "2b"]}, calls), sources=src)
+    assert calls == ["1a", "2a", "1b", "2b"]
+
+
+def test_ranker_down_gives_unranked_images():
+    p1, p2 = pick(("wikimedia", "a")), pick(("steam", "b"))
+    src = fake_sources({("wikimedia", "a"): [cand("wikimedia", n) for n in ("a1", "a2", "a3")],
+                        ("steam", "b"): [cand("steam", n) for n in ("b1", "b2")]})
+    calls = []
+
+    def dead(img, post, query):
+        calls.append(img)
+        raise RankError("connection refused")
+
+    find_images([p1, p2], ImageSettings(), 5, http_get=thumb_get, ranker=dead, sources=src)
+    assert len(calls) == 1
+    assert names(p1) == ["a1", "a2"] and names(p2) == ["b1", "b2"]
+    assert all(i["score"] is None for i in p1["images"] + p2["images"])
+
+
+def test_no_ranker_gives_unranked_images():
+    p = pick(("wikimedia", "a"), ("openverse", "b"))
+    src = fake_sources({("wikimedia", "a"): [cand("wikimedia", n) for n in ("a1", "a2", "a3")],
+                        ("openverse", "b"): [cand("openverse", n) for n in ("b1", "b2", "b3")]})
+    find_images([p], ImageSettings(), 5, http_get=thumb_get, ranker=None, sources=src)
+    assert names(p) == ["a1", "b1", "a2", "b2"]
+
+
+def test_budget_exhausted_in_phase1():
+    clock = Clock()
+    p1, p2 = pick(("wikimedia", "a")), pick(("steam", "b"))
+    calls = []
+    base = fake_sources({("wikimedia", "a"): [cand("wikimedia", "a1")], ("steam", "b"): [cand("steam", "b1")]}, calls)
+
+    def slow_wikimedia(q, g, t):
+        clock.t += 1000
+        return base["wikimedia"](q, g, t)
+
+    src = {**base, "wikimedia": slow_wikimedia}
+    rank_calls = []
+    find_images([p1, p2], ImageSettings(budget_s=300), 5, http_get=thumb_get,
+                ranker=scorer({"a1": 9, "b1": 9}, rank_calls), clock=clock, sources=src)
+    assert names(p1) == ["a1"] and p1["images"][0]["score"] is None
+    assert p2["images"] == []
+    assert ("steam", "b") not in calls and rank_calls == []
+
+
+def test_rank_round_robin_across_picks():
+    clock = Clock()
+    p1, p2 = pick(("wikimedia", "a")), pick(("steam", "b"))
+    src = fake_sources({("wikimedia", "a"): [cand("wikimedia", n) for n in ("a1", "a2")],
+                        ("steam", "b"): [cand("steam", n) for n in ("b1", "b2")]})
+    calls = []
+    inner = scorer({"a1": 9, "a2": 8, "b1": 7, "b2": 6}, calls)
+
+    def ranker(img, post, query):
+        clock.t += 100
+        return inner(img, post, query)
+
+    find_images([p1, p2], ImageSettings(budget_s=200), 5, http_get=thumb_get, ranker=ranker, clock=clock,
+                sources=src)
+    assert calls == ["a1", "b1"]
+    assert [(i["credit"], i["score"]) for i in p1["images"]] == [("a1", 9), ("a2", None)]
+    assert [(i["credit"], i["score"]) for i in p2["images"]] == [("b1", 7), ("b2", None)]
+
+
+def test_disabled_source_skipped():
+    calls = []
+    src = fake_sources({("openverse", "x"): SourceUnavailable("429"), ("openverse", "y"): [cand("openverse", "o")],
+                        ("wikimedia", "w"): [cand("wikimedia", "w1")]}, calls)
+    p1, p2 = pick(("openverse", "x")), pick(("openverse", "y"), ("wikimedia", "w"))
+    find_images([p1, p2], ImageSettings(), 5, http_get=thumb_get, ranker=None, sources=src)
+    assert ("openverse", "y") not in calls
+    assert names(p2) == ["w1"]
+
+
+def test_search_exception_isolated():
+    src = fake_sources({("steam", "x"): ValueError("bad json"), ("wikimedia", "w"): [cand("wikimedia", "w1")]})
+    p = pick(("steam", "x"), ("wikimedia", "w"))
+    find_images([p], ImageSettings(), 5, http_get=thumb_get, ranker=None, sources=src)
+    assert names(p) == ["w1"]
+
+
+def test_source_not_enabled_is_skipped():
+    calls = []
+    src = fake_sources({("steam", "x"): [cand("steam", "s")]}, calls)
+    p = pick(("steam", "x"))
+    find_images([p], ImageSettings(sources=["wikimedia"]), 5, http_get=thumb_get, ranker=None, sources=src)
+    assert calls == [] and p["images"] == []
+
+
+def test_thumb_download_failure_drops_candidate():
+    src = fake_sources({("wikimedia", "q"): [cand("wikimedia", "a"), cand("wikimedia", "b")]})
+
+    def get(url, timeout):
+        if url.endswith("a.jpg"):
+            raise TimeoutError("slow")
+        return url.encode()
+
+    p = pick(("wikimedia", "q"))
+    find_images([p], ImageSettings(), 5, http_get=get, ranker=scorer({"b": 8}), sources=src)
+    assert names(p) == ["b"]
+
+
+def test_duplicate_urls_removed():
+    src = fake_sources({("wikimedia", "1"): [cand("wikimedia", "a")], ("wikimedia", "2"): [cand("wikimedia", "a"),
+                                                                                        cand("wikimedia", "b")]})
+    p = pick(("wikimedia", "1"), ("wikimedia", "2"))
+    find_images([p], ImageSettings(), 5, http_get=thumb_get, ranker=None, sources=src)
+    assert names(p) == ["a", "b"]
+
+
+def test_pick_without_searches_gets_empty_images():
+    p = {"post": "x"}
+    find_images([p], ImageSettings(), 5, http_get=thumb_get, ranker=None, sources=fake_sources({}))
+    assert p["images"] == []
+
+
+def test_ranker_gets_the_search_query():
+    seen = []
+    src = fake_sources({("steam", "Halo Infinite"): [cand("steam", "h")]})
+    p = pick(("steam", "Halo Infinite"), post="Halo news")
+    find_images([p], ImageSettings(), 5, http_get=thumb_get,
+                ranker=lambda img, post, query: seen.append((post, query)) or 9, sources=src)
+    assert seen == [("Halo news", "Halo Infinite")]

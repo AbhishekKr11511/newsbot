@@ -1,13 +1,19 @@
 """Find candidate images for each pick: search free sources, rank with a local Ollama vision model."""
 from __future__ import annotations
 
+import base64
 import json
+import logging
+import time
+from typing import Callable
 from urllib.parse import quote, quote_plus
 
 import requests
 
-from .config import IMAGE_SOURCES
-from .fetch import _clean_text, _http_url
+from .config import IMAGE_SOURCES, ImageSettings
+from .fetch import _clean_text, _http_url, default_get
+
+log = logging.getLogger(__name__)
 
 MAX_SEARCHES = 3
 MAX_QUERY_CHARS = 80
@@ -131,3 +137,156 @@ def search_openverse(query: str, http_get, timeout: int) -> list[dict]:
 
 
 SOURCES = {"wikimedia": search_wikimedia, "steam": search_steam, "openverse": search_openverse}
+
+
+# ---- ranking -----------------------------------------------------------------
+
+OLLAMA_TIMEOUT_S = 60
+MAX_PER_SOURCE = 2
+_DROPPED = object()  # thumbnail couldn't be downloaded: never shown
+
+# A small local model (gemma3:4b) describes images well but gives almost everything 8/10 when asked
+# for a free score. A yes / partly / no check against the search term separates them reliably.
+RANK_PROMPT = (
+    "A news account wants a picture for this X post:\n\n{post}\n\n"
+    "Describe what this image shows in at most 12 words. Then answer: does it clearly show {query}? "
+    "Answer \"yes\", \"partly\" or \"no\". Also say whether it is a clear, usable picture "
+    "(not mostly text, not blank, not blurry)."
+)
+RANK_SCHEMA = {
+    "type": "object",
+    "properties": {"shows": {"type": "string"}, "match": {"type": "string", "enum": ["yes", "partly", "no"]},
+                   "usable": {"type": "boolean"}},
+    "required": ["shows", "match", "usable"],
+}
+MATCH_SCORES = {"yes": 9, "partly": 6, "no": 2}
+UNUSABLE_PENALTY = 3
+
+# (image bytes, post text, search query) -> score 0..10; raises RankError on any failure
+Ranker = Callable[[bytes, str, str], int]
+
+
+class RankError(Exception):
+    pass
+
+
+def ollama_ranker(cfg: ImageSettings, post=requests.post) -> Ranker:
+    def rank(image: bytes, post_text: str, query: str) -> int:
+        body = {
+            "model": cfg.ollama_model,
+            "stream": False,
+            "format": RANK_SCHEMA,
+            "options": {"temperature": 0},
+            "messages": [{"role": "user", "content": RANK_PROMPT.format(post=post_text, query=query),
+                          "images": [base64.b64encode(image).decode()]}],
+        }
+        try:
+            resp = post(f"{cfg.ollama_url}/api/chat", json=body, timeout=OLLAMA_TIMEOUT_S)
+            resp.raise_for_status()
+            answer = json.loads(resp.json()["message"]["content"])
+            score = MATCH_SCORES[answer["match"]] - (0 if answer.get("usable", True) else UNUSABLE_PENALTY)
+            return max(0, min(10, score))
+        except Exception as e:  # connection refused, model missing, junk output: all mean "can't rank"
+            raise RankError(str(e)) from e
+    return rank
+
+
+# ---- orchestration -------------------------------------------------------------
+
+def _interleave(lists: list[list[dict]]) -> list[dict]:
+    out, seen = [], set()
+    for i in range(max((len(x) for x in lists), default=0)):
+        for lst in lists:
+            if i < len(lst) and lst[i]["url"] not in seen:
+                seen.add(lst[i]["url"])
+                out.append(lst[i])
+    return out
+
+
+def _gather(pick, cfg, timeout, http_get, sources, disabled, over) -> list[dict]:
+    results = []
+    for s in pick.get("image_searches") or []:
+        src = s.get("source")
+        if src not in cfg.sources or src in disabled or src not in sources:
+            continue
+        if over():
+            break
+        try:
+            found = sources[src](s["query"], http_get, timeout)
+            results.append([{**c, "query": s["query"]} for c in found])
+        except SourceUnavailable:
+            log.warning("image source %s unavailable (rate limited); skipping it this run", src)
+            disabled.add(src)
+        except Exception as e:  # one bad search never costs the others
+            log.warning("image search %s %r failed: %s", src, s.get("query"), e)
+    return _interleave(results)
+
+
+def _select(pool: list[dict], scores: dict, fully_ranked: bool, cfg: ImageSettings) -> list[dict]:
+    ranked = [(c, scores[c["url"]]) for c in pool
+              if c["url"] in scores and scores[c["url"]] is not _DROPPED and scores[c["url"]] >= cfg.min_score]
+    ranked.sort(key=lambda cs: cs[1], reverse=True)
+    ordered = [{**c, "score": s} for c, s in ranked]
+    if not fully_ranked:  # ranking was cut short (or never ran): fill with what wasn't judged
+        ordered += [{**c, "score": None} for c in pool if c["url"] not in scores]
+    out, per_source = [], {}
+    for c in ordered:
+        if per_source.get(c["source"], 0) < MAX_PER_SOURCE:
+            per_source[c["source"]] = per_source.get(c["source"], 0) + 1
+            out.append(c)
+    return out[:cfg.keep]
+
+
+def find_images(picks: list[dict], cfg: ImageSettings, fetch_timeout: int, http_get=default_get,
+                ranker: Ranker | None = None, clock=time.monotonic, sources=None) -> None:
+    """Set pick["images"] on every pick, in place. Never raises for a single pick's trouble."""
+    sources = sources or SOURCES
+    start = clock()
+
+    def over() -> bool:
+        return clock() - start >= cfg.budget_s
+
+    # Phase 1: search (HTTP only).
+    disabled: set[str] = set()
+    pools: list[list[dict]] = []
+    for pick in picks:
+        try:
+            pools.append([] if over() else _gather(pick, cfg, fetch_timeout, http_get, sources, disabled, over))
+        except Exception as e:
+            log.warning("image search failed for a pick: %s", e)
+            pools.append([])
+
+    # Phase 2: rank round-robin across picks, so a slow model can't starve the last category.
+    queues = [pool[:cfg.max_scored] for pool in pools]
+    scores: list[dict] = [{} for _ in picks]
+    done = [0] * len(picks)
+    alive = ranker is not None
+    while alive and any(done[k] < len(queues[k]) for k in range(len(picks))):
+        for k, queue in enumerate(queues):
+            if done[k] >= len(queue):
+                continue
+            if over():
+                alive = False
+                break
+            c = queue[done[k]]
+            done[k] += 1
+            try:
+                image = http_get(c["thumb"], fetch_timeout)
+            except Exception:
+                scores[k][c["url"]] = _DROPPED
+                continue
+            try:
+                scores[k][c["url"]] = ranker(image, picks[k].get("post", ""), c.get("query", ""))
+            except RankError as e:
+                log.warning("image ranking stopped for this run: %s", e)
+                done[k] -= 1  # not judged
+                alive = False
+                break
+
+    for k, pick in enumerate(picks):
+        try:
+            fully_ranked = ranker is not None and done[k] >= len(queues[k])
+            pick["images"] = _select(pools[k], scores[k], fully_ranked, cfg)
+        except Exception as e:
+            log.warning("image selection failed for a pick: %s", e)
+            pick["images"] = []
