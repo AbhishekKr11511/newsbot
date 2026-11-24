@@ -270,14 +270,14 @@ About 5 Claude calls per run × 6 runs/day = ~30 calls/day, each with up to a fe
 **Design**
 
 1. **Haiku output (schema + prompt).** `Pick` gains two required fields:
-   - `image_searches`: list of 0–3 `{source, query}` where `source` is one of `wikimedia`, `steam`, `pexels`. Prompt guidance: `steam` for a named PC/console game (its exact title), `wikimedia` for a named person, company, product or place, `pexels` for a generic visual (a server room, a game controller, an office) when nothing specific fits. Queries are short (2–6 words), names spelled as in the story.
+   - `image_searches`: list of 0–3 `{source, query}` where `source` is one of `wikimedia`, `steam`, `openverse`. Prompt guidance: `steam` for a named PC/console game (its exact title), `wikimedia` for a named person, company, product or place, `openverse` for a generic visual (a server room, a game controller, an office) when nothing specific fits. Queries are short (2–6 words), names spelled as in the story.
    - `screenshot_idea`: `{text, search}`, or both empty strings when nothing fits. `text` is one line for the owner ("Metacritic user score page for GTA 6"); `search` is a web search phrase ("GTA 6 metacritic user score"). The link is built by code as `https://www.google.com/search?q=<url-encoded search>`, never taken from the model, so it can't be a broken or made-up URL.
    - Invalid entries (unknown source, empty or >80-char query) are dropped silently; more than 3 searches are truncated.
 
 2. **Image sources (`newsbot/images.py`).** Each source is a function `(query, http_get) -> list[Candidate]` returning up to 5 candidates. A `Candidate` has `url` (full size), `thumb` (~640 px wide where available), `page_url` (where it lives), `source`, `credit`, `license`. Only http(s) URLs are kept (same check as feed links). Duplicates by `url` are removed.
-   - **wikimedia** (no key): Commons API search in the file namespace, bitmaps only, with `prop=imageinfo`, `iiprop=url|extmetadata|mime`, `iiurlwidth=640`. `credit` from `Artist` (HTML stripped), `license` from `LicenseShortName`. Wikimedia requires a descriptive User-Agent with contact info. Decided with the owner: every request the bot makes (feeds, Wikimedia, Steam, Pexels, image thumbnails) sends `newsbot/1.4 (+https://github.com/AbhishekKr11511/newsbot)`, defined once as a constant in `fetch.py` and replacing today's `newsbot/1.0`. No email. It's never a browser UA.
+   - **wikimedia** (no key): Commons API search in the file namespace, bitmaps only, with `prop=imageinfo`, `iiprop=url|extmetadata|mime`, `iiurlwidth=640`. `credit` from `Artist` (HTML stripped), `license` from `LicenseShortName`. Wikimedia requires a descriptive User-Agent with contact info. Decided with the owner: every request the bot makes (feeds, Wikimedia, Steam, Openverse, image thumbnails) sends `newsbot/1.4 (+https://github.com/AbhishekKr11511/newsbot)`, defined once as a constant in `fetch.py` and replacing today's `newsbot/1.0`. No email. It's never a browser UA.
    - **steam** (no key): store search `store.steampowered.com/api/storesearch/?term=<q>&l=english&cc=US`, take the top match, then `api/appdetails?appids=<id>` for `header_image` and the first 2 `screenshots` (3 candidates max, so one game can't crowd out everything else). `credit` = "Official art · Steam", `license` = "Promotional". These endpoints are public but undocumented; if they start refusing, the source returns nothing.
-   - **pexels** (free key, optional): `api.pexels.com/v1/search`, `Authorization: <PEXELS_API_KEY>` from `.env`. With no key, the source is skipped silently. `credit` = "Photo by <photographer> on Pexels", `license` = "Pexels".
+   - **openverse** (no key; replaces Pexels, which paused new API keys on 2026-11-24): `api.openverse.org/v1/images/?q=<q>&page_size=5&license_type=commercial,modification`, so only licences that allow editing and commercial use (CC BY, BY-SA, CC0, PDM). `credit` = "<title> by <creator> (<source>)", `license` = upper-cased licence + version (e.g. "CC BY-SA 2.0"), `page_url` = `foreign_landing_url`, `thumb` = the result's `thumbnail` or `url`. Anonymous limits are 20/min and 200/day; the bot uses at most ~42/day. A 429 response returns nothing for the rest of the run (no retries). Checked live 2026-11-24.
    - IGDB (needs a Twitch developer account) is left for later.
    - The article's own `image_url` is not a candidate; it keeps its existing hero slot.
 
@@ -293,7 +293,7 @@ About 5 Claude calls per run × 6 runs/day = ~30 calls/day, each with up to a fe
    ```yaml
    images:
      enabled: true
-     sources: [wikimedia, steam, pexels]
+     sources: [wikimedia, steam, openverse]
      ollama_url: http://localhost:11434
      ollama_model: gemma3:4b
      keep: 4
