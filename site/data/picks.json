@@ -408,5 +408,89 @@
    "thinking_tokens": 5598,
    "cost_usd_equiv": 0.013448
   }
+ },
+ {
+  "run_at": "2026-11-23T18:50:42Z",
+  "categories": {
+   "gaming": {
+    "status": "ok",
+    "error": null,
+    "picks": [],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 20,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 240840,
+     "output_tokens": 1882,
+     "thinking_tokens": 1727,
+     "cost_usd_equiv": 0.008751899999999998
+    }
+   },
+   "tech-ai": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "423071d6f76d6bca",
+      "title": "Dutch privacy authority urges consumers not to buy ‘pervert glasses’",
+      "url": "https://techcrunch.com/2026/11/23/dutch-privacy-authority-urges-consumers-not-to-buy-pervert-glasses/",
+      "source": "TechCrunch",
+      "published_at": "2026-11-23T15:29:49Z",
+      "post": "The Netherlands' data protection agency is urging consumers not to buy smart glasses, which it calls \"pervert glasses\" in its warning.\n\nIt says the wearables violate people's privacy, get information wrong and can lead to unsafe situations.",
+      "reason": "Privacy fears about camera glasses hit everyday people, and the 'pervert glasses' label invites debate.",
+      "card_text": "\"Violate people's privacy\"",
+      "image_url": null,
+      "flags": []
+     },
+     {
+      "article_id": "592d4094ad35db8f",
+      "title": "Microsoft explains the Outlook outage that hit millions",
+      "url": "https://www.windowscentral.com/microsoft/microsoft-reveals-how-a-hidden-software-defect-spiraled-into-a-global-outlook-outage",
+      "source": "Windows Central",
+      "published_at": "2026-11-23T16:17:09Z",
+      "post": "Microsoft says a months-old bug and a chain of cascading failures brought Outlook and other services down worldwide.\n\nThe outage hit millions, and Microsoft warns scammers are already using it to convince people their emails are lost.",
+      "reason": "Huge outage affecting millions plus a scam angle people will share and argue about.",
+      "card_text": "Months-old bug took Outlook down",
+      "image_url": "https://cdn.mos.cms.futurecdn.net/VH8Lmm8X2ZMbJeXyD8qPtR-1920-80.jpg",
+      "flags": []
+     },
+     {
+      "article_id": "98acaafb9fc652b2",
+      "title": "Drone attack on Colombian police base injures civilians and damages homes",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPNWVWaDVwQXhxWWRlbUY3dlRJYUdURkR6NExILWpzRGNvdWltUW1MRktxTEZTcktxcmhwa290T0NiZFJtQVhrbXNNWHExdjdXYjBucWtiZFp5SVVQMFlrTGlmbGtVN3lmLW1nOHNYaHpXRWMyaVdhdnBtRUp0MXNiR3RMUXhRbk4xLVFxZDVWek14dHNhUk42RTR2OXhSS0E?oc=5",
+      "source": "AP Technology",
+      "published_at": "2026-11-23T17:30:00Z",
+      "post": "Meta has dropped its 2030 net zero goal in its 2026 sustainability report.\n\nThe decision could send ripples across the tech industry, and it lands as climate pledges become a point of debate.",
+      "reason": "A big-name company abandoning a climate promise is a clear trust and hypocrisy argument.",
+      "card_text": "2030 net zero goal dropped",
+      "image_url": null,
+      "flags": []
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 26,
+     "cache_creation_input_tokens": 17969,
+     "cache_read_input_tokens": 223857,
+     "output_tokens": 3102,
+     "thinking_tokens": 2486,
+     "cost_usd_equiv": 0.01358697
+    }
+   },
+   "trending": {
+    "status": "curation_failed",
+    "error": "claude CLI error: Request timed out. If the API is slow to answer, or a proxy or gateway holds responses, set API_TIMEOUT_MS above the limit in force (600000 by default).",
+    "picks": [],
+    "usage": null
+   }
+  },
+  "usage_total": {
+   "input_tokens": 46,
+   "cache_creation_input_tokens": 17969,
+   "cache_read_input_tokens": 464697,
+   "output_tokens": 4984,
+   "thinking_tokens": 4213,
+   "cost_usd_equiv": 0.022339
+  }
  }
 ]
