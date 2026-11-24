@@ -164,3 +164,54 @@ def test_old_fake_pick_without_image_fields(root):
     run(Paths(root), NOW, False, FakeClient(), http_get=http_get, out=io.StringIO())
     pick = data(root, "picks")[0]["categories"]["tech-ai"]["picks"][0]
     assert pick["image_searches"] == [] and pick["screenshot_idea"] is None
+
+
+def test_image_finder_called_with_all_picks(root):
+    got = []
+
+    def finder(picks):
+        got.extend(picks)
+        for p in picks:
+            p["images"] = [{"url": "https://i.test/a.jpg", "thumb": "https://i.test/a.jpg", "page_url": "https://i.test",
+                            "source": "steam", "credit": "c", "license": "l", "score": 9}]
+
+    run(Paths(root), NOW, False, FakeClient(), http_get=http_get, out=io.StringIO(), image_finder=finder)
+    saved = [p for c in data(root, "picks")[0]["categories"].values() for p in c["picks"]]
+    assert len(got) == len(saved) >= 2
+    assert all(p["images"][0]["score"] == 9 for p in saved)
+
+
+def test_image_finder_crash_does_not_fail_run(root):
+    def finder(picks):
+        raise RuntimeError("ollama exploded")
+
+    code = run(Paths(root), NOW, False, FakeClient(), http_get=http_get, out=io.StringIO(), image_finder=finder)
+    assert code == 0
+    assert data(root, "picks")[0]["categories"]["tech-ai"]["picks"]
+
+
+def test_summary_prints_images_line(root):
+    extra = {"screenshot_idea": {"text": "Metacritic page", "search": "gta metacritic"}}
+
+    def finder(picks):
+        for p in picks:
+            p["images"] = [{"source": "wikimedia", "score": 9}, {"source": "wikimedia", "score": 6},
+                           {"source": "steam", "score": 9}]
+
+    out = io.StringIO()
+    run(Paths(root), NOW, True, FakeClient(extra=extra), http_get=http_get, out=out, image_finder=finder)
+    text = out.getvalue()
+    assert "images: 3 ranked (wikimedia 2, steam 1)" in text
+    assert "screenshot: Metacritic page" in text
+
+
+def test_summary_unranked_and_none(root):
+    def finder(picks):
+        picks[0]["images"] = [{"source": "steam", "score": None}]
+        for p in picks[1:]:
+            p["images"] = []
+
+    out = io.StringIO()
+    run(Paths(root), NOW, True, FakeClient(), http_get=http_get, out=out, image_finder=finder)
+    assert "images: 1 unranked (steam 1)" in out.getvalue()
+    assert "images: none" in out.getvalue()
