@@ -297,12 +297,15 @@ def _select(pool: list[dict], scores: dict, fully_ranked: bool, cfg: ImageSettin
     ordered = [{**c, "score": s} for c, s in ranked]
     if not fully_ranked:  # ranking was cut short (or never ran): fill with what wasn't judged
         ordered += [{**c, "score": None} for c in pool if c["url"] not in scores]
-    out, per_source = [], {}
+    # Mix first (at most 2 per source), then fill any empty slots with the next best from any source.
+    mixed, rest, per_source = [], [], {}
     for c in ordered:
         if per_source.get(c["source"], 0) < MAX_PER_SOURCE:
             per_source[c["source"]] = per_source.get(c["source"], 0) + 1
-            out.append(c)
-    return out[:cfg.keep]
+            mixed.append(c)
+        else:
+            rest.append(c)
+    return (mixed + rest)[:cfg.keep]
 
 
 def find_images(picks: list[dict], cfg: ImageSettings, fetch_timeout: int, http_get=default_get,

@@ -248,9 +248,9 @@ def test_find_images_ranks_and_keeps_top():
     src = fake_sources({("wikimedia", "q"): [cand("wikimedia", n) for n in "abcd"]})
     find_images([p], ImageSettings(), 5, thumb_get=thumb_get, ranker=scorer({"a": 9, "b": 3, "c": 7, "d": 6}),
                 sources=src)
-    # max 2 per source applies, so of 9, 7, 6 only the top two wikimedia stay
-    assert names(p) == ["a", "c"]
-    assert [i["score"] for i in p["images"]] == [9, 7]
+    # one source only: the per-source cap gives way so empty slots are filled
+    assert names(p) == ["a", "c", "d"]
+    assert [i["score"] for i in p["images"]] == [9, 7, 6]
 
 
 def test_scores_sorted_and_low_dropped_across_sources():
@@ -268,7 +268,8 @@ def test_max_two_per_source():
                         ("wikimedia", "w"): [cand("wikimedia", "w1")]})
     scores = {f"s{i}": 9 for i in range(5)} | {"w1": 6}
     find_images([p], ImageSettings(), 5, thumb_get=thumb_get, ranker=scorer(scores), sources=src)
-    assert [i["source"] for i in p["images"]] == ["steam", "steam", "wikimedia"]
+    # mix first (2 steam + the wikimedia), then fill the last slot with the next best steam
+    assert [i["source"] for i in p["images"]] == ["steam", "steam", "wikimedia", "steam"]
 
 
 def test_max_scored_round_robin():
@@ -293,7 +294,7 @@ def test_ranker_down_gives_unranked_images():
 
     find_images([p1, p2], ImageSettings(), 5, thumb_get=thumb_get, ranker=dead, sources=src)
     assert len(calls) == 1
-    assert names(p1) == ["a1", "a2"] and names(p2) == ["b1", "b2"]
+    assert names(p1) == ["a1", "a2", "a3"] and names(p2) == ["b1", "b2"]
     assert all(i["score"] is None for i in p1["images"] + p2["images"])
 
 
