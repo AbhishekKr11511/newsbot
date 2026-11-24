@@ -621,5 +621,110 @@
    "thinking_tokens": 7347,
    "cost_usd_equiv": 0.023348
   }
+ },
+ {
+  "run_at": "2026-11-24T10:30:07Z",
+  "categories": {
+   "gaming": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "d57343493e645f85",
+      "title": "More than 39 million people have played GTA 6 on PlayStation alone, Sony says, as the game breaks all-time player numbers on the platform",
+      "url": "https://www.eurogamer.net/more-than-39-million-people-have-played-gta-6-on-playstation-alone-sony-says-as-the-game-breaks-all-time-player-numbers-on-the-platform",
+      "source": "Eurogamer",
+      "published_at": "2026-11-24T10:08:20Z",
+      "post": "Sony says more than 39 million unique people have played GTA 6 on PlayStation alone.\n\nThat's more than the 32.5 million day-one sales Take-Two reported across all platforms.",
+      "reason": "A huge, specific number on GTA 6 that invites a fight over what player counts actually measure versus sales.",
+      "card_text": "39M+ PS5 players vs 32.5M day-one sales",
+      "image_url": "https://assetsio.gnwcdn.com/jason-lucia-gta-6.jpg?width=690&quality=85&format=jpg&auto=webp",
+      "flags": []
+     },
+     {
+      "article_id": "37e4044ef4935283",
+      "title": "Cyberleek releases executable for GTA 6 Xbox build leaked last week: 'The torch passes to the open source recomp and emulation projects'",
+      "url": "https://www.pcgamer.com/games/grand-theft-auto/cyberleek-releases-executable-for-gta-6-xbox-build-leaked-last-week-the-torch-passes-to-the-open-source-recomp-and-emulation-projects/",
+      "source": "PC Gamer",
+      "published_at": "2026-11-23T17:54:30Z",
+      "post": "Leaker CyberLeek has released the executable for a near-full GTA 6 Xbox build that leaked last week.\n\nThere is still no official PC version, and the torch has now passed to open source emulation projects.",
+      "reason": "Leak-versus-publisher tension on the most-hyped game, with fans split on piracy and an unannounced PC release.",
+      "card_text": "\"An early Christmas gift\"",
+      "image_url": "https://cdn.mos.cms.futurecdn.net/dwxifSrgRWzUwvmTbTdSRV-1920-80.jpg",
+      "flags": []
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 26386,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 2690,
+     "thinking_tokens": 2326,
+     "cost_usd_equiv": 0.0066224000000000005
+    }
+   },
+   "tech-ai": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "043cbc17260631d3",
+      "title": "World stocks are mixed after Wall Street's rebound as Jensen Huang returns as Nvidia’s CEO",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQbEdHU1ZWMjgzb1lYODBaTEJpdWNXUXVpUmlDTmVxSTBjUVlOYlBBWmZXSzVrMWR3SE9NYTg5cVNuemZFZHlJdU1PdGdybnh1NUFQVTVINkJUUk1Sb0hmNnI5YS1LQTl5SUJibWpWekVQU1BqR3NuQWhVeHZlUVJ3bDEtRmZZNmVHWVFFRTA2RUhFcTQ?oc=5",
+      "source": "AP Technology",
+      "published_at": "2026-11-24T09:52:00Z",
+      "post": "SpaceX and Tesla have appointed five directors to guide merger talks, the FT reports.\n\nBoth companies are run by Elon Musk, and no deal has been announced.",
+      "reason": "Musk running both sides of a possible merger invites strong opinions on fairness to shareholders.",
+      "card_text": "5 directors to guide merger talks",
+      "image_url": null,
+      "flags": []
+     },
+     {
+      "article_id": "61a6843624197b9c",
+      "title": "Big Tech could face billions of dollars in fines under Australian internet safety bill",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxORG5QdGdxRm1nOGVuczhoUXJVbnYwakY5NUxEVEVSbzhaRUtYdGx0X25LeGhQbVE0X05XeHI3OUNkZTJDWjA5aTRHN0FSSGRQZllJUjJ1Qm1wWkI4REhSbFhDUnZXRmc3UjBpWng0aExBX1JWSGJlNlNZNUwteFFEY0daYnA5LUJEa1JlakpkcUNBUDlyRTRuSnFpZ3dzU05lMV8xNHQ4YnpUODMxbHFBWXpRLW9jZk9v?oc=5",
+      "source": "Reuters Technology",
+      "published_at": "2026-11-24T02:24:00Z",
+      "post": "Big Tech could face fines in the billions under an Australian internet safety bill.\n\nThe size of the penalties is the number that will split people over how far online platforms should be policed.",
+      "reason": "Billion-dollar fines on Big Tech for online safety draw strong views from users and critics.",
+      "card_text": "Fines could reach billions of dollars",
+      "image_url": null,
+      "flags": []
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 19360,
+     "cache_read_input_tokens": 633,
+     "output_tokens": 2853,
+     "thinking_tokens": 2528,
+     "cost_usd_equiv": 0.00530503
+    }
+   },
+   "trending": {
+    "status": "ok",
+    "error": null,
+    "picks": [],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 23960,
+     "cache_read_input_tokens": 633,
+     "output_tokens": 922,
+     "thinking_tokens": 868,
+     "cost_usd_equiv": 0.00525953
+    }
+   }
+  },
+  "usage_total": {
+   "input_tokens": 6,
+   "cache_creation_input_tokens": 69706,
+   "cache_read_input_tokens": 1266,
+   "output_tokens": 6465,
+   "thinking_tokens": 5722,
+   "cost_usd_equiv": 0.017187
+  }
  }
 ]

@@ -1,5 +1,5 @@
 {
- "last_run_at": "2026-11-24T02:33:52Z",
+ "last_run_at": "2026-11-24T10:30:07Z",
  "categories": [
   {
    "id": "gaming",
@@ -15,15 +15,7 @@
   }
  ],
  "feed_errors": [
-  "TechCrunch: TimeoutError: feed download took too long",
-  "TechCrunch AI: TimeoutError: feed download took too long",
-  "VGC: TimeoutError: feed download took too long",
-  "Insider Gaming: TimeoutError: feed download took too long",
-  "GameSpot: TimeoutError: feed download took too long",
-  "Polygon: ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
-  "Kotaku: TimeoutError: feed download took too long",
-  "Reuters World: ReadTimeout: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out. (read timeout=15)",
-  "AP Business: ConnectionError: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out."
+  "AP Business: HTTPError: 429 Client Error: Too Many Requests for url: https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=site:apnews.com+business+when:1d"
  ],
  "card": {
   "handle": "@nomicsexpress",
