@@ -1778,5 +1778,539 @@
    "thinking_tokens": 8670,
    "cost_usd_equiv": 0.02389
   }
+ },
+ {
+  "run_at": "2026-11-25T14:30:05Z",
+  "categories": {
+   "gaming": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "b43bd61a6e37587e",
+      "title": "Capcom dinosaur shooter Exoprimal's servers will go extinct next year, as shutdown meteor looms",
+      "url": "https://www.rockpapershotgun.com/capcom-dinosaur-shooter-exoprimals-servers-will-go-extinct-next-year-as-shutdown-meteor-looms",
+      "source": "Rock Paper Shotgun",
+      "published_at": "2026-11-25T12:30:00Z",
+      "post": "Capcom is shutting down the online servers for its 2023 team shooter Exoprimal in late September 2027.\n\nOnce they go dark, the game won't be playable at all, even for people who already own it. It also gets pulled from stores in March.",
+      "reason": "A paid game being switched off within about two years leaves owners with nothing.",
+      "card_text": "Unplayable after late September 2027",
+      "image_url": "https://assetsio.gnwcdn.com/exoprimal-t-rex-header.jpg?width=690&quality=85&format=jpg&auto=webp",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "steam",
+        "query": "Exoprimal"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Capcom"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Official Exoprimal end-of-service notice",
+       "url": "https://www.google.com/search?q=Exoprimal+end+of+service+announcement"
+      },
+      "images": [
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1286320/header.jpg?t=1795568630",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1286320/header.jpg?t=1795568630",
+        "page_url": "https://store.steampowered.com/app/1286320/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Exoprimal",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/07/CAPCOM%E6%9C%AC%E7%A4%BE.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/CAPCOM%E6%9C%AC%E7%A4%BE.jpg/960px-CAPCOM%E6%9C%AC%E7%A4%BE.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:CAPCOM%E6%9C%AC%E7%A4%BE.jpg",
+        "source": "wikimedia",
+        "credit": "Tokumeigakarinoaoshima",
+        "license": "CC0",
+        "query": "Capcom",
+        "score": 9
+       },
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1286320/ss_dcba3dc9938cd9a284aa0449a1e69c8d7f5dbf0a.1920x1080.jpg?t=1795568630",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1286320/ss_dcba3dc9938cd9a284aa0449a1e69c8d7f5dbf0a.600x338.jpg?t=1795568630",
+        "page_url": "https://store.steampowered.com/app/1286320/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Exoprimal",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Capcom-3DO-Fighting-Controller.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Capcom-3DO-Fighting-Controller.jpg/960px-Capcom-3DO-Fighting-Controller.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Capcom-3DO-Fighting-Controller.jpg",
+        "source": "wikimedia",
+        "credit": "Evan-Amos",
+        "license": "Public domain",
+        "query": "Capcom",
+        "score": 9
+       }
+      ]
+     },
+     {
+      "article_id": "66df6c2ecaa2e6c7",
+      "title": "Rust Will Officially Introduce Premium Paid Service With a Most-Requested Feature",
+      "url": "https://www.polygon.com/rust-premium-character-customization-details/",
+      "source": "Polygon",
+      "published_at": "2026-11-25T11:20:45Z",
+      "post": "Facepunch is adding a paid Rust Premium tier, and its perks include the game's most-requested feature: model customization.\n\nThe perks are in the staging test build for now. Players will decide whether the feature they asked for is worth paying for.",
+      "reason": "A paywall on a popular game's most-requested feature will split players straight away.",
+      "card_text": "Model customization behind paid Premium",
+      "image_url": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/08/rust-player-customization.jpg",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "steam",
+        "query": "Rust"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Facepunch Studios"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Rust Premium in the staging branch build notes",
+       "url": "https://www.google.com/search?q=Rust+Premium+staging+branch"
+      },
+      "images": [
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252490/header.jpg?t=1781536981",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252490/header.jpg?t=1781536981",
+        "page_url": "https://store.steampowered.com/app/252490/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Rust",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/S%26box_logo_new.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/a7/S%26box_logo_new.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:S%26box_logo_new.png",
+        "source": "wikimedia",
+        "credit": "Facepunch Studios",
+        "license": "Public domain",
+        "query": "Facepunch Studios",
+        "score": 9
+       },
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252490/ss_271feae67943bdc141c1249aba116349397e9ba9.1920x1080.jpg?t=1781536981",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252490/ss_271feae67943bdc141c1249aba116349397e9ba9.600x338.jpg?t=1781536981",
+        "page_url": "https://store.steampowered.com/app/252490/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Rust",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/S%26box-Logo.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/S%26box-Logo.png/960px-S%26box-Logo.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:S%26box-Logo.png",
+        "source": "wikimedia",
+        "credit": "Facepunch Studios",
+        "license": "Public domain",
+        "query": "Facepunch Studios",
+        "score": 9
+       }
+      ]
+     },
+     {
+      "article_id": "fee78129a2df99d5",
+      "title": "Atari Homebrew Awards Canceled Over Torrent Of AI Games: ‘I Saw No Path Forward’",
+      "url": "https://kotaku.com/atari-homebrew-awards-canceled-over-torrent-of-ai-games-i-saw-no-path-forward-2001000096",
+      "source": "Kotaku",
+      "published_at": "2026-11-24T21:00:14Z",
+      "post": "The Atari Homebrew Awards has been canceled after being flooded with AI-made game entries.\n\nThe cancellation statement says \"I saw no path forward.\" It would have been the event's ninth year.",
+      "reason": "Indie game scene split over AI-generated games flooding a long-running event.",
+      "card_text": "\"I saw no path forward\"",
+      "image_url": "https://kotaku.com/app/uploads/2026/11/GettyImages-2178400107-e1795551443398-1280x753.jpg",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Atari"
+       },
+       {
+        "source": "openverse",
+        "query": "video game controller"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Atari Homebrew Awards cancellation statement",
+       "url": "https://www.google.com/search?q=Atari+Homebrew+Awards+canceled+AI+games+statement"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Atari-2600-Wood-4Sw-Set.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Atari-2600-Wood-4Sw-Set.jpg/960px-Atari-2600-Wood-4Sw-Set.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Atari-2600-Wood-4Sw-Set.jpg",
+        "source": "wikimedia",
+        "credit": "Evan-Amos",
+        "license": "Public domain",
+        "query": "Atari",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Mahjong_video_game_control_panel_2023-04-13.jpg",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Mahjong_video_game_control_panel_2023-04-13.jpg/960px-Mahjong_video_game_control_panel_2023-04-13.jpg",
+        "page_url": "https://commons.wikimedia.org/w/index.php?curid=131318457",
+        "source": "openverse",
+        "credit": "Mahjong video game control panel 2023-04-13 by Asanagi (wikimedia)",
+        "license": "CC0",
+        "query": "video game controller",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Atari_Vcs_Oynx.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/Atari_Vcs_Oynx.jpg/960px-Atari_Vcs_Oynx.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Atari_Vcs_Oynx.jpg",
+        "source": "wikimedia",
+        "credit": "Elosnoc",
+        "license": "CC BY-SA 4.0",
+        "query": "Atari",
+        "score": 9
+       },
+       {
+        "url": "https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdXB3azYyMDU2Mzk2LXdpa2ltZWRpYS1pbWFnZS1rb3dvMmg1Zy5qcGc.jpg",
+        "thumb": "https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdXB3azYyMDU2Mzk2LXdpa2ltZWRpYS1pbWFnZS1rb3dvMmg1Zy5qcGc.jpg",
+        "page_url": "https://www.rawpixel.com/image/3298255/free-photo-image-playstation-game-controller-gaming-control",
+        "source": "openverse",
+        "credit": "New video game controller exposed by unknown (rawpixel)",
+        "license": "CC0",
+        "query": "video game controller",
+        "score": 9
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 24421,
+     "cache_read_input_tokens": 2820,
+     "output_tokens": 4021,
+     "thinking_tokens": 3249,
+     "cost_usd_equiv": 0.0069231000000000015
+    }
+   },
+   "tech-ai": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "91ce7b4c109c6cb4",
+      "title": "Microsoft declares a Code Red in response to worst ever outage",
+      "url": "https://9to5mac.com/2026/11/25/microsoft-declares-a-code-red-in-response-to-worst-ever-outage/",
+      "source": "9to5Mac",
+      "published_at": "2026-11-25T12:23:19Z",
+      "post": "Microsoft says its recent Microsoft 365 outage was its worst ever, with more than 80% of servers unresponsive at the worst point.\n\nIt has now declared an internal \"Code Red\" to change how it prevents and responds to major failures.",
+      "reason": "Huge brand, record-breaking outage that hit millions of work and email users, and an unusually dramatic internal response.",
+      "card_text": "More than 80% of servers unresponsive",
+      "image_url": "https://9to5mac.com/wp-content/uploads/sites/6/2026/11/Microsoft-declares-a-Code-Red-in-response-to-worst-ever-outage.jpg?quality=82&strip=all&w=1600",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Microsoft 365"
+       },
+       {
+        "source": "openverse",
+        "query": "server room"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Microsoft 365 service health page showing recent outage",
+       "url": "https://www.google.com/search?q=Microsoft+365+service+status+outage+history"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Microsoft_365.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Microsoft_365.jpeg/960px-Microsoft_365.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Microsoft_365.jpeg",
+        "source": "wikimedia",
+        "credit": "KK IN HK",
+        "license": "CC BY-SA 4.0",
+        "query": "Microsoft 365",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Argonite_automatic_fire_suppression_system_server_room.jpg",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Argonite_automatic_fire_suppression_system_server_room.jpg/960px-Argonite_automatic_fire_suppression_system_server_room.jpg",
+        "page_url": "https://commons.wikimedia.org/w/index.php?curid=5288522",
+        "source": "openverse",
+        "credit": "Argonite automatic fire suppression system server room by Froztbyte (wikimedia)",
+        "license": "CC BY-SA 3.0",
+        "query": "server room",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Microsoft_365.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Microsoft_365.JPG/960px-Microsoft_365.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Microsoft_365.JPG",
+        "source": "wikimedia",
+        "credit": "KK IN HK",
+        "license": "CC BY-SA 4.0",
+        "query": "Microsoft 365",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/A_view_of_the_server_room_at_The_National_Archives.jpg",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/A_view_of_the_server_room_at_The_National_Archives.jpg/960px-A_view_of_the_server_room_at_The_National_Archives.jpg",
+        "page_url": "https://commons.wikimedia.org/w/index.php?curid=16886979",
+        "source": "openverse",
+        "credit": "A view of the server room at The National Archives by The National Archives (UK) (wikimedia)",
+        "license": "CC BY 3.0",
+        "query": "server room",
+        "score": 9
+       }
+      ]
+     },
+     {
+      "article_id": "f5ef2a358697d369",
+      "title": "Todoist confirms 6% of customers’ details were stolen in data breach",
+      "url": "https://techcrunch.com/2026/11/25/todoist-confirms-6-of-customers-details-were-stolen-in-data-breach/",
+      "source": "TechCrunch",
+      "published_at": "2026-11-25T14:20:28Z",
+      "post": "Todoist says a hacker stole customer data from 6% of its customers in a data breach.\n\nThe stolen data includes email addresses, password hashes and account creation dates.",
+      "reason": "Privacy breach at a popular app with password hashes exposed, which people care about directly.",
+      "card_text": "6% of customers' details stolen",
+      "image_url": null,
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Todoist"
+       },
+       {
+        "source": "openverse",
+        "query": "data breach"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Todoist's official breach notice or security update",
+       "url": "https://www.google.com/search?q=Todoist+data+breach+notice"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Healthcare_Data_Breaches_Affecting_500_Individuals_or_More.jpg",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Healthcare_Data_Breaches_Affecting_500_Individuals_or_More.jpg/960px-Healthcare_Data_Breaches_Affecting_500_Individuals_or_More.jpg",
+        "page_url": "https://commons.wikimedia.org/w/index.php?curid=164370519",
+        "source": "openverse",
+        "credit": "Healthcare Data Breaches Affecting 500 Individuals or More by Asyed49 (wikimedia)",
+        "license": "CC0",
+        "query": "data breach",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Ferramentas_de_organiza%C3%A7%C3%A3o_e_produtividade.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Ferramentas_de_organiza%C3%A7%C3%A3o_e_produtividade.png/960px-Ferramentas_de_organiza%C3%A7%C3%A3o_e_produtividade.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Ferramentas_de_organiza%C3%A7%C3%A3o_e_produtividade.png",
+        "source": "wikimedia",
+        "credit": "EPTrilhas",
+        "license": "CC BY 4.0",
+        "query": "Todoist",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Ferramentas_de_organiza%C3%A7%C3%A3o%2C_produtividade_e_gest%C3%A3o_de_tempo.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Ferramentas_de_organiza%C3%A7%C3%A3o%2C_produtividade_e_gest%C3%A3o_de_tempo.png/960px-Ferramentas_de_organiza%C3%A7%C3%A3o%2C_produtividade_e_gest%C3%A3o_de_tempo.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Ferramentas_de_organiza%C3%A7%C3%A3o,_produtividade_e_gest%C3%A3o_de_tempo.png",
+        "source": "wikimedia",
+        "credit": "EPTrilhas",
+        "license": "CC BY 4.0",
+        "query": "Todoist",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/San_Francisquito_Reservoir_on_topo_v2.jpg",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/San_Francisquito_Reservoir_on_topo_v2.jpg/960px-San_Francisquito_Reservoir_on_topo_v2.jpg",
+        "page_url": "https://commons.wikimedia.org/w/index.php?curid=6968463",
+        "source": "openverse",
+        "credit": "San Francisquito Reservoir on topo v2 by Kbh3rd (wikimedia)",
+        "license": "CC BY-SA 3.0",
+        "query": "data breach",
+        "score": 9
+       }
+      ]
+     },
+     {
+      "article_id": "5f077d12f5abe5fa",
+      "title": "In all-hands meeting, Jensen Huang thanks White House and says he’s in therapy",
+      "url": "https://techcrunch.com/2026/11/24/in-all-hands-meeting-jensen-huang-thanks-white-house-and-says-hes-in-therapy/",
+      "source": "TechCrunch",
+      "published_at": "2026-11-24T21:48:27Z",
+      "post": "Nvidia CEO Jensen Huang says he's in therapy, in a staff all-hands on Tuesday.\n\nHe apologized to staff and thanked the White House, but reportedly told them it's \"not true\" Trump got him rehired.",
+      "reason": "Famous CEO saying something wild in the middle of a high-profile return saga that people already have strong opinions on.",
+      "card_text": "Says he's in therapy",
+      "image_url": null,
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Jensen Huang"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Nvidia"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "TechCrunch story on Huang's all-hands remarks",
+       "url": "https://www.google.com/search?q=Jensen+Huang+all-hands+therapy+TechCrunch"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Jensen_Huang_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Jensen_Huang_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Jensen_Huang_(cropped).jpg",
+        "source": "wikimedia",
+        "credit": "Prime Minister's Office",
+        "license": "GODL-India",
+        "query": "Jensen Huang",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/NVIDIA_Headquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/NVIDIA_Headquarters.jpg/960px-NVIDIA_Headquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:NVIDIA_Headquarters.jpg",
+        "source": "wikimedia",
+        "credit": "Coolcaesar",
+        "license": "CC BY-SA 4.0",
+        "query": "Nvidia",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Jensen_Huang_Stanford_2026-04-30_010_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Jensen_Huang_Stanford_2026-04-30_010_%28cropped%29.jpg/960px-Jensen_Huang_Stanford_2026-04-30_010_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Jensen_Huang_Stanford_2026-04-30_010_(cropped).jpg",
+        "source": "wikimedia",
+        "credit": "Anderseidesvik",
+        "license": "CC BY-SA 4.0",
+        "query": "Jensen Huang",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Jensen_huang_stanford_2026-04-30_011.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Jensen_huang_stanford_2026-04-30_011.jpg/960px-Jensen_huang_stanford_2026-04-30_011.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Jensen_huang_stanford_2026-04-30_011.jpg",
+        "source": "wikimedia",
+        "credit": "Anders Eidesvik",
+        "license": "CC BY 4.0",
+        "query": "Jensen Huang",
+        "score": 9
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 16775,
+     "cache_read_input_tokens": 2906,
+     "output_tokens": 5977,
+     "thinking_tokens": 5174,
+     "cost_usd_equiv": 0.00637276
+    }
+   },
+   "trending": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "e3d8f8b7638202af",
+      "title": "Airline Norse Atlantic says financial situation 'critical', shares plunge over 70%",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQUnBxTTlMWW9sR2p0cHd4OXk3enppYzRYOTFkOENpamtod1VHTExCQjRqZ1cxRWRjZ04wZlp4NzR1SVdQaGpPeWNTLVpmN09fc3R0WGxUMUFUQ0tOekxYV3ZSY2w2WTQtUDR6N2pETVotWWRlV1VrRVhXYTFYY19SRXRfZ3Z5bmFnb2xVVjNjRkJPdG9qRE4yRGxMMVNyMjlEdXBvSEw1SjMxYVFvNjVEckszYw?oc=5",
+      "source": "Reuters India Tech",
+      "published_at": "2026-11-25T13:19:45Z",
+      "post": "Airline Norse Atlantic says its financial situation is 'critical', and its shares have plunged more than 70%.\n\nAnyone with a booking on the airline now has a stake in what happens next.",
+      "reason": "Travellers with bookings are at risk, and a 70% share crash makes a possible airline collapse feel personal.",
+      "card_text": "Shares down over 70%",
+      "image_url": null,
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Norse Atlantic Airways"
+       },
+       {
+        "source": "openverse",
+        "query": "airplane wing airport"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Norse Atlantic share price page showing the drop",
+       "url": "https://www.google.com/search?q=Norse+Atlantic+Airways+share+price"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Berlin_Brandenburg_Airport_Norse_Atlantic_Airways_Boeing_787-9_Dreamliner_LN-FNA_%28DSC02373%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Berlin_Brandenburg_Airport_Norse_Atlantic_Airways_Boeing_787-9_Dreamliner_LN-FNA_%28DSC02373%29.jpg/960px-Berlin_Brandenburg_Airport_Norse_Atlantic_Airways_Boeing_787-9_Dreamliner_LN-FNA_%28DSC02373%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Berlin_Brandenburg_Airport_Norse_Atlantic_Airways_Boeing_787-9_Dreamliner_LN-FNA_(DSC02373).jpg",
+        "source": "wikimedia",
+        "credit": "MarcelX42",
+        "license": "CC BY-SA 4.0",
+        "query": "Norse Atlantic Airways",
+        "score": 9
+       },
+       {
+        "url": "https://live.staticflickr.com/4036/4476474060_e75112a23b_b.jpg",
+        "thumb": "https://live.staticflickr.com/4036/4476474060_e75112a23b_b.jpg",
+        "page_url": "https://www.flickr.com/photos/24662369@N07/4476474060",
+        "source": "openverse",
+        "credit": "Global Hawk, NASA's New Remote-Controlled Plane by NASA Goddard Photo and Video (nasa)",
+        "license": "CC BY 2.0",
+        "query": "airplane wing airport",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Jul2024._Norse_Atlantic_Airways_waiting_at_Oslo_Gardemoen%2C_Norway.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Jul2024._Norse_Atlantic_Airways_waiting_at_Oslo_Gardemoen%2C_Norway.jpg/960px-Jul2024._Norse_Atlantic_Airways_waiting_at_Oslo_Gardemoen%2C_Norway.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Jul2024._Norse_Atlantic_Airways_waiting_at_Oslo_Gardemoen,_Norway.jpg",
+        "source": "wikimedia",
+        "credit": "Ridiculopathy",
+        "license": "CC0",
+        "query": "Norse Atlantic Airways",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Norse_Atlantic_logo.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/4/42/Norse_Atlantic_logo.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Norse_Atlantic_logo.png",
+        "source": "wikimedia",
+        "credit": "Norse Atlantic Airways",
+        "license": "Public domain",
+        "query": "Norse Atlantic Airways",
+        "score": 9
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 21852,
+     "cache_read_input_tokens": 2831,
+     "output_tokens": 2911,
+     "thinking_tokens": 2602,
+     "cost_usd_equiv": 0.00585441
+    }
+   }
+  },
+  "usage_total": {
+   "input_tokens": 6,
+   "cache_creation_input_tokens": 63048,
+   "cache_read_input_tokens": 8557,
+   "output_tokens": 12909,
+   "thinking_tokens": 11025,
+   "cost_usd_equiv": 0.01915
+  }
  }
 ]

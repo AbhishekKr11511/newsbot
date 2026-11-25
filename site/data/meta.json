@@ -1,5 +1,5 @@
 {
- "last_run_at": "2026-11-25T10:30:43Z",
+ "last_run_at": "2026-11-25T14:30:05Z",
  "categories": [
   {
    "id": "gaming",
@@ -14,10 +14,7 @@
    "name": "Trending for everyone"
   }
  ],
- "feed_errors": [
-  "IGN: ReadTimeout: HTTPSConnectionPool(host='feeds.feedburner.com', port=443): Read timed out. (read timeout=15)",
-  "Mint Technology: ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))"
- ],
+ "feed_errors": [],
  "card": {
   "handle": "@nomicsexpress",
   "tagline": ""
