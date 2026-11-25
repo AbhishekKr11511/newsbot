@@ -1274,5 +1274,509 @@
    "thinking_tokens": 0,
    "cost_usd_equiv": 0.0
   }
+ },
+ {
+  "run_at": "2026-11-25T10:30:43Z",
+  "categories": {
+   "gaming": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "ef6a8ef124d2d786",
+      "title": "Xbox Project Helix Was Reportedly Designed To Make Online Multiplayer Free",
+      "url": "https://www.gamespot.com/articles/xbox-project-helix-was-reportedly-designed-to-make-online-multiplayer-free/",
+      "source": "GameSpot",
+      "published_at": "2026-11-24T12:03:22Z",
+      "post": "According to Windows Central, Microsoft's next Xbox, Project Helix, was designed to make online multiplayer free.\n\nOnline play on Xbox has been behind a paywall for years, through Xbox Live and Game Pass.",
+      "reason": "Free vs paid online play on Xbox is a fight players already have strong opinions about.",
+      "card_text": "Online multiplayer free on Project Helix",
+      "image_url": "https://www.gamespot.com/wp-content/uploads/2026/06/Xbox.png?w=300",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Xbox Series X"
+       },
+       {
+        "source": "openverse",
+        "query": "game console"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Windows Central report on Project Helix free multiplayer",
+       "url": "https://www.google.com/search?q=Project+Helix+free+online+multiplayer+Windows+Central"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/3D0_game_console.jpg",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/3D0_game_console.jpg/960px-3D0_game_console.jpg",
+        "page_url": "https://commons.wikimedia.org/w/index.php?curid=483288",
+        "source": "openverse",
+        "credit": "3D0 game console by Bidou (take screenshot) ; NaSH (work on image) (wikimedia)",
+        "license": "CC BY-SA 3.0",
+        "query": "game console",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Xbox_Series_X%E3%81%A8Series_S.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Xbox_Series_X%E3%81%A8Series_S.jpg/960px-Xbox_Series_X%E3%81%A8Series_S.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Xbox_Series_X%E3%81%A8Series_S.jpg",
+        "source": "wikimedia",
+        "credit": "Kyu3a",
+        "license": "CC BY-SA 4.0",
+        "query": "Xbox Series X",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Dendy_Classic-2_Game_console.jpg",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Dendy_Classic-2_Game_console.jpg/960px-Dendy_Classic-2_Game_console.jpg",
+        "page_url": "https://commons.wikimedia.org/w/index.php?curid=47737578",
+        "source": "openverse",
+        "credit": "Dendy Classic-2 Game console by Thngs (wikimedia)",
+        "license": "CC BY 2.0",
+        "query": "game console",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/71/Games_console_%28AM_2017.92.11-1%29.jpg",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Games_console_%28AM_2017.92.11-1%29.jpg/960px-Games_console_%28AM_2017.92.11-1%29.jpg",
+        "page_url": "https://commons.wikimedia.org/w/index.php?curid=87491959",
+        "source": "openverse",
+        "credit": "Games console by Sportronic; Gifford Jackson; Osborne Professional Electronics Ltd (wikimedia)",
+        "license": "CC BY 4.0",
+        "query": "game console",
+        "score": 9
+       }
+      ]
+     },
+     {
+      "article_id": "9ecd2e4749a57f38",
+      "title": "Performance analysis reveals GTA 6 has a more stable frame-rate on Xbox Series X compared to PlayStation 5",
+      "url": "https://www.eurogamer.net/grand-theft-auto-6-frame-rate-xbox-series-x-ps5",
+      "source": "Eurogamer",
+      "published_at": "2026-11-25T09:15:10Z",
+      "post": "Performance analysis from Digital Foundry finds GTA 6 holds its 30fps target more steadily on Xbox Series X than on the base PS5.\n\nIf you don't own a PS5 Pro, the analysis says Xbox is the reported best way to play.",
+      "reason": "Console loyalists on both sides will argue over which version runs better.",
+      "card_text": "More stable 30fps on Xbox Series X",
+      "image_url": "https://assetsio.gnwcdn.com/GTA_6_Mission_List_4.jpg?width=690&quality=85&format=jpg&auto=webp",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "steam",
+        "query": "Grand Theft Auto VI"
+       },
+       {
+        "source": "wikimedia",
+        "query": "PlayStation 5"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Digital Foundry GTA 6 performance analysis page",
+       "url": "https://www.google.com/search?q=Digital+Foundry+GTA+6+performance+analysis+Xbox+Series+X+PS5"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png/960px-PlayStation_5_and_DualSense_with_transparent_background.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:PlayStation_5_and_DualSense_with_transparent_background.png",
+        "source": "wikimedia",
+        "credit": "Soberian (this retouched file) Osh33m (original photograph)",
+        "license": "CC BY-SA 4.0",
+        "query": "PlayStation 5",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/00/PlayStation_5_and_DualSense.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/PlayStation_5_and_DualSense.jpg/960px-PlayStation_5_and_DualSense.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:PlayStation_5_and_DualSense.jpg",
+        "source": "wikimedia",
+        "credit": "Osh33m",
+        "license": "CC BY-SA 4.0",
+        "query": "PlayStation 5",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/PlayStation_5_and_DualSense_%282%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/PlayStation_5_and_DualSense_%282%29.jpg/960px-PlayStation_5_and_DualSense_%282%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:PlayStation_5_and_DualSense_(2).jpg",
+        "source": "wikimedia",
+        "credit": "Osh33m",
+        "license": "CC BY-SA 4.0",
+        "query": "PlayStation 5",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Immagine_Playstation_5.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Immagine_Playstation_5.jpg/960px-Immagine_Playstation_5.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Immagine_Playstation_5.jpg",
+        "source": "wikimedia",
+        "credit": "Gianlupisa1",
+        "license": "CC BY-SA 4.0",
+        "query": "PlayStation 5",
+        "score": 9
+       }
+      ]
+     },
+     {
+      "article_id": "cd392fbdf72a7c7c",
+      "title": "Analyst estimates Call of Duty lost 44% of its players when GTA 6 came out, and unlike fans of its live-service competitors they've been slow to come back",
+      "url": "https://www.pcgamer.com/gaming-industry/analyst-says-call-of-duty-lost-an-estimated-44-percent-of-its-players-when-gta-6-came-out-and-unlike-fans-of-its-live-service-competitors-theyve-been-slow-to-come-back/",
+      "source": "PC Gamer",
+      "published_at": "2026-11-25T03:34:01Z",
+      "post": "An analyst estimates Call of Duty lost 44% of its players when GTA 6 came out.\n\nUnlike fans of rival live-service games, Call of Duty players have been slow to come back.",
+      "reason": "A huge franchise losing nearly half its players to one game sparks instant debate.",
+      "card_text": "-44% players after GTA 6 launch",
+      "image_url": "https://cdn.mos.cms.futurecdn.net/5EWnGC9pvFVHwRsPbdM4uV-1920-80.jpg",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "steam",
+        "query": "Call of Duty"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Activision Blizzard"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Analyst estimate of Call of Duty player drop after GTA 6",
+       "url": "https://www.google.com/search?q=Call+of+Duty+players+GTA+6+launch+analyst+estimate"
+      },
+      "images": [
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1938090/23af6cf41e2d09620caa07700a4cb3288dbcbaa8/header.jpg?t=1794591176",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1938090/23af6cf41e2d09620caa07700a4cb3288dbcbaa8/header.jpg?t=1794591176",
+        "page_url": "https://store.steampowered.com/app/1938090/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Call of Duty",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/43/Activisionheadquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Activisionheadquarters.jpg/960px-Activisionheadquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Activisionheadquarters.jpg",
+        "source": "wikimedia",
+        "credit": "w:User:Coolcaesar",
+        "license": "CC BY-SA 3.0",
+        "query": "Activision Blizzard",
+        "score": 9
+       },
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1938090/ee5f6b6aebe4dc9e86b49c4e309d361b132df308/ss_ee5f6b6aebe4dc9e86b49c4e309d361b132df308.1920x1080.jpg?t=1794591176",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1938090/ee5f6b6aebe4dc9e86b49c4e309d361b132df308/ss_ee5f6b6aebe4dc9e86b49c4e309d361b132df308.600x338.jpg?t=1794591176",
+        "page_url": "https://store.steampowered.com/app/1938090/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Call of Duty",
+        "score": 9
+       },
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1938090/6b8f4040a1e923f036e04d9eb21ecb0f866be57e/ss_6b8f4040a1e923f036e04d9eb21ecb0f866be57e.1920x1080.jpg?t=1794591176",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1938090/6b8f4040a1e923f036e04d9eb21ecb0f866be57e/ss_6b8f4040a1e923f036e04d9eb21ecb0f866be57e.600x338.jpg?t=1794591176",
+        "page_url": "https://store.steampowered.com/app/1938090/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Call of Duty",
+        "score": 9
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 20,
+     "cache_creation_input_tokens": 25211,
+     "cache_read_input_tokens": 226899,
+     "output_tokens": 5472,
+     "thinking_tokens": 4607,
+     "cost_usd_equiv": 0.01336219
+    }
+   },
+   "tech-ai": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "64f5f4c679b70af1",
+      "title": "EA adds AI-generated John Motson to FC 27 video game",
+      "url": "https://www.bbc.co.uk/news/articles/c65y10j841jpo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC Technology",
+      "published_at": "2026-11-25T10:11:34Z",
+      "post": "EA is adding an AI-generated John Motson to its football game EA Sports FC 27, from 26 November.\n\nThe move has the consent of Motson's son and wife, but it puts a famous commentator's voice into a game through AI.",
+      "reason": "Famous commentator, AI replacing a real voice, and a consent angle people will argue over.",
+      "card_text": "Consent from his son and wife",
+      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5aca/live/065259e0-e4e5-11f1-b039-c1944465024e.jpg",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "steam",
+        "query": "EA Sports FC"
+       },
+       {
+        "source": "wikimedia",
+        "query": "John Motson"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "EA's official announcement of the AI Motson in FC 27",
+       "url": "https://www.google.com/search?q=EA+Sports+FC+27+John+Motson+AI+commentary"
+      },
+      "images": [
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4080220/ff6a3779f1ca83aae8ad3878454f6c11008ea24d/header.jpg?t=1793610006",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4080220/ff6a3779f1ca83aae8ad3878454f6c11008ea24d/header.jpg?t=1793610006",
+        "page_url": "https://store.steampowered.com/app/4080220/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "EA Sports FC",
+        "score": 9
+       },
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4080220/5adfa6a72f1ba6f269580d106ef6d6a760aa5119/ss_5adfa6a72f1ba6f269580d106ef6d6a760aa5119.1920x1080.jpg?t=1793610006",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4080220/5adfa6a72f1ba6f269580d106ef6d6a760aa5119/ss_5adfa6a72f1ba6f269580d106ef6d6a760aa5119.600x338.jpg?t=1793610006",
+        "page_url": "https://store.steampowered.com/app/4080220/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "EA Sports FC",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/John_Motson.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/e/ed/John_Motson.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:John_Motson.jpg",
+        "source": "wikimedia",
+        "credit": "gordonflood",
+        "license": "CC BY 2.0",
+        "query": "John Motson",
+        "score": 6
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/92/John_Motson_2018.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/9/92/John_Motson_2018.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:John_Motson_2018.jpg",
+        "source": "wikimedia",
+        "credit": "Everton Football Club",
+        "license": "CC BY 3.0",
+        "query": "John Motson",
+        "score": 6
+       }
+      ]
+     },
+     {
+      "article_id": "26c3ceae08944feb",
+      "title": "Tidal to ban and remove millions of AI-generated tracks as AI slop inundates music streaming",
+      "url": "https://techcrunch.com/2026/11/24/tidal-to-ban-and-remove-millions-of-ai-generated-tracks-as-ai-slop-inundates-music-streaming/",
+      "source": "TechCrunch",
+      "published_at": "2026-11-24T16:46:00Z",
+      "post": "Tidal will ban AI-generated music from 9 December and delete around 29 million AI-generated songs.\n\nIt expects to reject 80,000 to 85,000 tracks a day. Songs made with some AI help will still be accepted.",
+      "reason": "Huge deletion number and a streaming service drawing a line on AI music people pay for.",
+      "card_text": "29 million AI-generated songs deleted",
+      "image_url": null,
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Tidal music streaming"
+       },
+       {
+        "source": "openverse",
+        "query": "headphones music streaming"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Tidal's AI music policy announcement",
+       "url": "https://www.google.com/search?q=Tidal+ban+AI-generated+music+December+9"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Availability_of_Tidal_in_the_World.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Availability_of_Tidal_in_the_World.png/960px-Availability_of_Tidal_in_the_World.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Availability_of_Tidal_in_the_World.png",
+        "source": "wikimedia",
+        "credit": "MapChart.net & Arunava Ghosh",
+        "license": "CC BY-SA 4.0",
+        "query": "Tidal music streaming",
+        "score": 9
+       }
+      ]
+     },
+     {
+      "article_id": "f4b8c1692ea542a8",
+      "title": "Trump reportedly says pardoning Jensen Huang is ‘an option’",
+      "url": "https://techcrunch.com/2026/11/24/trump-reportedly-says-pardoning-jensen-huang-is-an-option-but-that-he-doesnt-think-it-will-be-necessary/",
+      "source": "TechCrunch",
+      "published_at": "2026-11-25T00:10:27Z",
+      "post": "Trump has reportedly said pardoning Nvidia CEO Jensen Huang is \"an option.\"\n\nHuang faces questions about his ties to Alice Huang, an executive with alleged links to Chinese intelligence.",
+      "reason": "Trump, Nvidia's CEO and a possible pardon make a politically charged story people will pick sides on.",
+      "card_text": "Pardoning Jensen Huang is \"an option\"",
+      "image_url": null,
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Jensen Huang"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Nvidia"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "TechCrunch report on Trump and a possible Huang pardon",
+       "url": "https://www.google.com/search?q=Trump+pardon+Jensen+Huang+option+TechCrunch"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Jensen_Huang_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Jensen_Huang_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Jensen_Huang_(cropped).jpg",
+        "source": "wikimedia",
+        "credit": "Prime Minister's Office",
+        "license": "GODL-India",
+        "query": "Jensen Huang",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/NVIDIA_Headquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/NVIDIA_Headquarters.jpg/960px-NVIDIA_Headquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:NVIDIA_Headquarters.jpg",
+        "source": "wikimedia",
+        "credit": "Coolcaesar",
+        "license": "CC BY-SA 4.0",
+        "query": "Nvidia",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Jensen_Huang_Stanford_2026-04-30_010_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Jensen_Huang_Stanford_2026-04-30_010_%28cropped%29.jpg/960px-Jensen_Huang_Stanford_2026-04-30_010_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Jensen_Huang_Stanford_2026-04-30_010_(cropped).jpg",
+        "source": "wikimedia",
+        "credit": "Anderseidesvik",
+        "license": "CC BY-SA 4.0",
+        "query": "Jensen Huang",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/37/Nvidia_SLI_GTX280.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Nvidia_SLI_GTX280.jpg/960px-Nvidia_SLI_GTX280.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Nvidia_SLI_GTX280.jpg",
+        "source": "wikimedia",
+        "credit": "Ростислав Александрович Луценко",
+        "license": "CC BY-SA 4.0",
+        "query": "Nvidia",
+        "score": 9
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 18127,
+     "cache_read_input_tokens": 904,
+     "output_tokens": 3657,
+     "thinking_tokens": 2792,
+     "cost_usd_equiv": 0.00546314
+    }
+   },
+   "trending": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "2f68837013f75b88",
+      "title": "Energy bills to rise by 26% from January after gas prices surge",
+      "url": "https://www.bbc.co.uk/news/articles/cm20qnq33e90o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "published_at": "2026-11-25T10:30:43Z",
+      "post": "Energy bills are set to rise 26% from January after gas prices surged.\n\nFor a typical household, the annual bill would go from £1,723 to £2,166 if that level lasts a full year.\n\nThat is an extra £443 a year.",
+      "reason": "Everyone pays energy bills, and a 26% jump with a clear yearly cost will split people.",
+      "card_text": "£1,723 to £2,166 a year",
+      "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb60/live/6bdfdbb0-e8ba-11f1-99b6-a35a62fa4264.jpg",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Ofgem"
+       },
+       {
+        "source": "openverse",
+        "query": "energy bill"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Ofgem announcement page on the energy price cap",
+       "url": "https://www.google.com/search?q=Ofgem+energy+price+cap+announcement"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Route_map_of_cables_for_Eastern_HVDC_projeccts.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/0/08/Route_map_of_cables_for_Eastern_HVDC_projeccts.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Route_map_of_cables_for_Eastern_HVDC_projeccts.jpg",
+        "source": "wikimedia",
+        "credit": "Ofgem: Crown copyright",
+        "license": "OGL 3",
+        "query": "Ofgem",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Impact_of_a_commodity_price_shock_on_average_household_energy_bills_in_advanced_economies_in_2030_by_scenario.png",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Impact_of_a_commodity_price_shock_on_average_household_energy_bills_in_advanced_economies_in_2030_by_scenario.png/960px-Impact_of_a_commodity_price_shock_on_average_household_energy_bills_in_advanced_economies_in_2030_by_scenario.png",
+        "page_url": "https://commons.wikimedia.org/w/index.php?curid=118115243",
+        "source": "openverse",
+        "credit": "Impact of a commodity price shock on average household energy bills in advanced economies in 2030 by scenario by International Energy Agency (wikimedia)",
+        "license": "CC BY 4.0",
+        "query": "energy bill",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Great_Britain_Natural_Gas_Prices.webp?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Great_Britain_Natural_Gas_Prices.webp/960px-Great_Britain_Natural_Gas_Prices.webp?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Great_Britain_Natural_Gas_Prices.webp",
+        "source": "wikimedia",
+        "credit": "Wikideas1",
+        "license": "CC0",
+        "query": "Ofgem",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Annual_energy_bill_increase_in_the_UK.png",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Annual_energy_bill_increase_in_the_UK.png/960px-Annual_energy_bill_increase_in_the_UK.png",
+        "page_url": "https://commons.wikimedia.org/w/index.php?curid=126621067",
+        "source": "openverse",
+        "credit": "Annual energy bill increase in the UK by IEA (wikimedia)",
+        "license": "CC BY 4.0",
+        "query": "energy bill",
+        "score": 9
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 21317,
+     "cache_read_input_tokens": 904,
+     "output_tokens": 1584,
+     "thinking_tokens": 1271,
+     "cost_usd_equiv": 0.00506464
+    }
+   }
+  },
+  "usage_total": {
+   "input_tokens": 24,
+   "cache_creation_input_tokens": 64655,
+   "cache_read_input_tokens": 228707,
+   "output_tokens": 10713,
+   "thinking_tokens": 8670,
+   "cost_usd_equiv": 0.02389
+  }
  }
 ]
