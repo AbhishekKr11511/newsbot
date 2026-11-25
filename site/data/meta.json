@@ -1,5 +1,5 @@
 {
- "last_run_at": "2026-11-24T14:30:07Z",
+ "last_run_at": "2026-11-24T18:34:16Z",
  "categories": [
   {
    "id": "gaming",
@@ -14,7 +14,13 @@
    "name": "Trending for everyone"
   }
  ],
- "feed_errors": [],
+ "feed_errors": [
+  "BBC Technology: ReadTimeout: HTTPSConnectionPool(host='feeds.bbci.co.uk', port=443): Read timed out. (read timeout=15)",
+  "TechCrunch: TimeoutError: feed download took too long",
+  "Reuters Gaming: ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+  "IGN: ReadTimeout: HTTPSConnectionPool(host='feeds.feedburner.com', port=443): Read timed out. (read timeout=15)",
+  "Reuters World: ReadTimeout: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out. (read timeout=15)"
+ ],
  "card": {
   "handle": "@nomicsexpress",
   "tagline": ""

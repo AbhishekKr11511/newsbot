@@ -1243,5 +1243,36 @@
    "thinking_tokens": 10798,
    "cost_usd_equiv": 0.020029
   }
+ },
+ {
+  "run_at": "2026-11-24T18:34:16Z",
+  "categories": {
+   "gaming": {
+    "status": "curation_failed",
+    "error": "claude CLI error: Request timed out. If the API is slow to answer, or a proxy or gateway holds responses, set API_TIMEOUT_MS above the limit in force (600000 by default).",
+    "picks": [],
+    "usage": null
+   },
+   "tech-ai": {
+    "status": "curation_failed",
+    "error": "claude CLI timed out after 300s",
+    "picks": [],
+    "usage": null
+   },
+   "trending": {
+    "status": "curation_failed",
+    "error": "claude CLI error: API Error: Can't reach the API server — check your internet or DNS (ENOTFOUND)",
+    "picks": [],
+    "usage": null
+   }
+  },
+  "usage_total": {
+   "input_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "output_tokens": 0,
+   "thinking_tokens": 0,
+   "cost_usd_equiv": 0.0
+  }
  }
 ]
