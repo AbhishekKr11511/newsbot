@@ -2312,5 +2312,245 @@
    "thinking_tokens": 11025,
    "cost_usd_equiv": 0.01915
   }
+ },
+ {
+  "run_at": "2026-11-25T18:34:18Z",
+  "categories": {
+   "gaming": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "c1eac3eab80a293a",
+      "title": "Ubisoft is reportedly requiring developers to justify not using generative AI",
+      "url": "https://www.videogameschronicle.com/news/ubisoft-is-reportedly-requiring-developers-to-justify-not-using-generative-ai/",
+      "source": "VGC",
+      "published_at": "2026-11-25T19:30:44Z",
+      "post": "Ubisoft is reportedly requiring developers to justify not using generative AI.\n\nThe report says Ubisoft wants every project to use it, and staff who opt out must explain why.",
+      "reason": "Ubisoft plus forced generative AI is a flashpoint for both players and developers.",
+      "card_text": "\"Justify not using generative AI\"",
+      "image_url": "https://www.videogameschronicle.com/files/2026/01/Untitled-1_Gl6tynN.jpg",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Ubisoft"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Report on Ubisoft requiring developers to justify not using generative AI",
+       "url": "https://www.google.com/search?q=Ubisoft+developers+justify+not+using+generative+AI"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Ubisoft2017.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Ubisoft2017.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Ubisoft2017.png",
+        "source": "wikimedia",
+        "credit": "Ubisoft",
+        "license": "Public domain",
+        "query": "Ubisoft",
+        "score": null
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Rue_Armand_Carrel%2C_28_%28Montreuil%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Rue_Armand_Carrel%2C_28_%28Montreuil%29.jpg/960px-Rue_Armand_Carrel%2C_28_%28Montreuil%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Rue_Armand_Carrel,_28_(Montreuil).jpg",
+        "source": "wikimedia",
+        "credit": "Tangopaso",
+        "license": "Public domain",
+        "query": "Ubisoft",
+        "score": null
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Gamescom_2009_-_Ubisoft_%285070%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Gamescom_2009_-_Ubisoft_%285070%29.jpg/960px-Gamescom_2009_-_Ubisoft_%285070%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Gamescom_2009_-_Ubisoft_(5070).jpg",
+        "source": "wikimedia",
+        "credit": "Raimond Spekking",
+        "license": "CC BY-SA 4.0",
+        "query": "Ubisoft",
+        "score": null
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Ubisoft_-_Flickr.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Ubisoft_-_Flickr.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Ubisoft_-_Flickr.jpg",
+        "source": "wikimedia",
+        "credit": "map",
+        "license": "CC BY 2.0",
+        "query": "Ubisoft",
+        "score": null
+       }
+      ]
+     },
+     {
+      "article_id": "8d9f56b6c6960d6b",
+      "title": "Another Gaming Console Price Hike Could Be Coming, Thanks To New Tariffs",
+      "url": "https://www.gamespot.com/articles/another-gaming-console-price-hike-could-be-coming-thanks-to-new-tariffs/",
+      "source": "GameSpot",
+      "published_at": "2026-11-25T17:00:26Z",
+      "post": "Proposed new US tariffs could mean another gaming console price rise.\n\nChina faces duties of up to 40% when they take effect next year, and Japan and the EU are also targeted.",
+      "reason": "Higher console prices hit every player's wallet and invite blame on companies and governments.",
+      "card_text": "Up to 40% tariff on China",
+      "image_url": "https://www.gamespot.com/wp-content/uploads/2026/08/4540889-9441912227-ps5-p.webp?w=300",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "PlayStation 5"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Xbox Series X"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "GameSpot article on new tariffs and possible console price hike",
+       "url": "https://www.google.com/search?q=gaming+console+price+hike+new+tariffs+China+40%25"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png/960px-PlayStation_5_and_DualSense_with_transparent_background.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:PlayStation_5_and_DualSense_with_transparent_background.png",
+        "source": "wikimedia",
+        "credit": "Soberian (this retouched file) Osh33m (original photograph)",
+        "license": "CC BY-SA 4.0",
+        "query": "PlayStation 5",
+        "score": null
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/43/Xbox-console.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Xbox-console.jpg/960px-Xbox-console.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Xbox-console.jpg",
+        "source": "wikimedia",
+        "credit": "Evan-Amos",
+        "license": "Public domain",
+        "query": "Xbox Series X",
+        "score": null
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/00/PlayStation_5_and_DualSense.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/PlayStation_5_and_DualSense.jpg/960px-PlayStation_5_and_DualSense.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:PlayStation_5_and_DualSense.jpg",
+        "source": "wikimedia",
+        "credit": "Osh33m",
+        "license": "CC BY-SA 4.0",
+        "query": "PlayStation 5",
+        "score": null
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Xbox_Series_X%E3%81%A8Series_S.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Xbox_Series_X%E3%81%A8Series_S.jpg/960px-Xbox_Series_X%E3%81%A8Series_S.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Xbox_Series_X%E3%81%A8Series_S.jpg",
+        "source": "wikimedia",
+        "credit": "Kyu3a",
+        "license": "CC BY-SA 4.0",
+        "query": "Xbox Series X",
+        "score": null
+       }
+      ]
+     },
+     {
+      "article_id": "9c52c7ab15953ded",
+      "title": "Why GTA 6 Doesn’t Let You Replay Missions–It Felt “Alien And Disconnected”",
+      "url": "https://www.gamespot.com/articles/why-gta-6-doesnt-let-you-replay-missions-it-felt-alien-and-disconnected/",
+      "source": "GameSpot",
+      "published_at": "2026-11-25T17:57:36Z",
+      "post": "Rockstar has left mission replay out of GTA 6, a feature that GTA 5 and Red Dead Redemption 2 both had.\n\nSenior design director Scott Butchard says replays would have felt \"alien and disconnected\".",
+      "reason": "Fans of GTA 5 and Red Dead 2 will split over losing a beloved feature for story reasons.",
+      "card_text": "\"Alien and disconnected\"",
+      "image_url": "https://www.gamespot.com/wp-content/uploads/2026/11/Lucia_Caminos_13_242d72.jpg?w=300",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "steam",
+        "query": "Grand Theft Auto V"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Rockstar Games"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "GameSpot article on why GTA 6 has no mission replay",
+       "url": "https://www.google.com/search?q=GTA+6+mission+replay+Scott+Butchard+Kotaku"
+      },
+      "images": [
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/header.jpg?t=1781187782",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/header.jpg?t=1781187782",
+        "page_url": "https://store.steampowered.com/app/3240220/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Grand Theft Auto V",
+        "score": null
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Rockstar_Games_buses_at_E3_2005.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Rockstar_Games_buses_at_E3_2005.jpg/960px-Rockstar_Games_buses_at_E3_2005.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Rockstar_Games_buses_at_E3_2005.jpg",
+        "source": "wikimedia",
+        "credit": "Cian Ginty",
+        "license": "Attribution",
+        "query": "Rockstar Games",
+        "score": null
+       },
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/d61184a98c1cf2db2b08b2999c04b0519e3615bb/ss_d61184a98c1cf2db2b08b2999c04b0519e3615bb.1920x1080.jpg?t=1781187782",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/d61184a98c1cf2db2b08b2999c04b0519e3615bb/ss_d61184a98c1cf2db2b08b2999c04b0519e3615bb.600x338.jpg?t=1781187782",
+        "page_url": "https://store.steampowered.com/app/3240220/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Grand Theft Auto V",
+        "score": null
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Biggest_Rockstar_Games_fan_ever_-_Flickr_-_Sergey_Galyonkin.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Biggest_Rockstar_Games_fan_ever_-_Flickr_-_Sergey_Galyonkin.jpg/960px-Biggest_Rockstar_Games_fan_ever_-_Flickr_-_Sergey_Galyonkin.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Biggest_Rockstar_Games_fan_ever_-_Flickr_-_Sergey_Galyonkin.jpg",
+        "source": "wikimedia",
+        "credit": "Sergey Galyonkin from Kyiv, Ukraine",
+        "license": "CC BY-SA 2.0",
+        "query": "Rockstar Games",
+        "score": null
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 14,
+     "cache_creation_input_tokens": 27934,
+     "cache_read_input_tokens": 167604,
+     "output_tokens": 4767,
+     "thinking_tokens": 3901,
+     "cost_usd_equiv": 0.01277524
+    }
+   },
+   "tech-ai": {
+    "status": "curation_failed",
+    "error": "claude CLI error: Request timed out. If the API is slow to answer, or a proxy or gateway holds responses, set API_TIMEOUT_MS above the limit in force (600000 by default).",
+    "picks": [],
+    "usage": null
+   },
+   "trending": {
+    "status": "curation_failed",
+    "error": "claude CLI error: API Error: Your computer went to sleep mid-response. The response above may be incomplete.",
+    "picks": [],
+    "usage": null
+   }
+  },
+  "usage_total": {
+   "input_tokens": 14,
+   "cache_creation_input_tokens": 27934,
+   "cache_read_input_tokens": 167604,
+   "output_tokens": 4767,
+   "thinking_tokens": 3901,
+   "cost_usd_equiv": 0.012775
+  }
  }
 ]

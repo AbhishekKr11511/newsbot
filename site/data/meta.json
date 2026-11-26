@@ -1,5 +1,5 @@
 {
- "last_run_at": "2026-11-25T14:30:05Z",
+ "last_run_at": "2026-11-25T18:34:18Z",
  "categories": [
   {
    "id": "gaming",
@@ -14,7 +14,11 @@
    "name": "Trending for everyone"
   }
  ],
- "feed_errors": [],
+ "feed_errors": [
+  "TechCrunch: TimeoutError: feed download took too long",
+  "Skill Up: ReadTimeout: HTTPSConnectionPool(host='www.youtube.com', port=443): Read timed out. (read timeout=15)",
+  "Reuters Markets: ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+ ],
  "card": {
   "handle": "@nomicsexpress",
   "tagline": ""
