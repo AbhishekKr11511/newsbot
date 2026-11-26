@@ -1,5 +1,5 @@
 {
- "last_run_at": "2026-11-26T06:34:16Z",
+ "last_run_at": "2026-11-26T10:33:08Z",
  "categories": [
   {
    "id": "gaming",
@@ -15,12 +15,17 @@
   }
  ],
  "feed_errors": [
-  "TechCrunch Startups: ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))",
-  "IGN: ReadTimeout: HTTPSConnectionPool(host='feeds.feedburner.com', port=443): Read timed out. (read timeout=15)",
-  "PC Gamer: ConnectionError: HTTPSConnectionPool(host='www.pcgamer.com', port=443): Read timed out.",
-  "Skill Up: ReadTimeout: HTTPSConnectionPool(host='www.youtube.com', port=443): Read timed out. (read timeout=15)",
-  "ET Tech: TimeoutError: feed download took too long",
-  "AP Business: ConnectionError: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out."
+  "TechCrunch AI: ConnectionError: HTTPSConnectionPool(host='techcrunch.com', port=443): Read timed out.",
+  "TechCrunch Startups: TimeoutError: feed download took too long",
+  "Reuters Chips: ChunkedEncodingError: ('Connection broken: IncompleteRead(5506 bytes read, 370 more expected)', IncompleteRead(5506 bytes read, 370 more expected))",
+  "EE Times: TimeoutError: feed download took too long",
+  "Dexerto: ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))",
+  "VGC: TimeoutError: feed download took too long",
+  "Insider Gaming: TimeoutError: feed download took too long",
+  "Polygon: ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+  "Mint Technology: TimeoutError: feed download took too long",
+  "Reuters World: ReadTimeout: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out. (read timeout=15)",
+  "AP Top Stories: ReadTimeout: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out. (read timeout=15)"
  ],
  "card": {
   "handle": "@nomicsexpress",
