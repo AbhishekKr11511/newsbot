@@ -1,5 +1,5 @@
 {
- "last_run_at": "2026-11-26T02:38:10Z",
+ "last_run_at": "2026-11-26T06:34:16Z",
  "categories": [
   {
    "id": "gaming",
@@ -15,11 +15,12 @@
   }
  ],
  "feed_errors": [
-  "Reuters Media: ReadTimeout: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out. (read timeout=15)",
-  "TechCrunch: TimeoutError: feed download took too long",
-  "EE Times: ReadTimeout: HTTPSConnectionPool(host='www.eetimes.com', port=443): Read timed out. (read timeout=15)",
-  "Polygon: ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))",
-  "Inc42: ChunkedEncodingError: ('Connection broken: IncompleteRead(6861 bytes read, 1331 more expected)', IncompleteRead(6861 bytes read, 1331 more expected))"
+  "TechCrunch Startups: ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))",
+  "IGN: ReadTimeout: HTTPSConnectionPool(host='feeds.feedburner.com', port=443): Read timed out. (read timeout=15)",
+  "PC Gamer: ConnectionError: HTTPSConnectionPool(host='www.pcgamer.com', port=443): Read timed out.",
+  "Skill Up: ReadTimeout: HTTPSConnectionPool(host='www.youtube.com', port=443): Read timed out. (read timeout=15)",
+  "ET Tech: TimeoutError: feed download took too long",
+  "AP Business: ConnectionError: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out."
  ],
  "card": {
   "handle": "@nomicsexpress",
