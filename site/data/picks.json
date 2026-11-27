@@ -2738,5 +2738,440 @@
    "thinking_tokens": 0,
    "cost_usd_equiv": 0.0
   }
+ },
+ {
+  "run_at": "2026-11-27T14:30:06Z",
+  "categories": {
+   "gaming": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "68bd172f94bcdc9f",
+      "title": "Rockstar Games employees vote against union recognition",
+      "url": "https://www.eurogamer.net/rockstar-games-employees-vote-against-union-recognition",
+      "source": "Eurogamer",
+      "published_at": "2026-11-26T15:29:00Z",
+      "post": "Around 75% of Rockstar Games' UK staff have voted against formal union recognition.\n\nThe vote came days after GTA 6's record launch, and the organisers say they will keep fighting.",
+      "reason": "Union defeat at the studio behind GTA 6 splits workers, fans and critics on labour rights.",
+      "card_text": "About 75% voted against union deal",
+      "image_url": "https://assetsio.gnwcdn.com/grand-theft-auto-6-character-4k-wallpaper-uhdpaper.com-269%401%40n.jpg?width=690&quality=85&format=jpg&auto=webp",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "steam",
+        "query": "Grand Theft Auto"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Rockstar Games"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "IWGB statement on the Rockstar union vote result",
+       "url": "https://www.google.com/search?q=IWGB+Rockstar+union+vote+result"
+      },
+      "images": [
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/header.jpg?t=1781187782",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/header.jpg?t=1781187782",
+        "page_url": "https://store.steampowered.com/app/3240220/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Grand Theft Auto",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Rockstar_Games_buses_at_E3_2005.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Rockstar_Games_buses_at_E3_2005.jpg/960px-Rockstar_Games_buses_at_E3_2005.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Rockstar_Games_buses_at_E3_2005.jpg",
+        "source": "wikimedia",
+        "credit": "Cian Ginty",
+        "license": "Attribution",
+        "query": "Rockstar Games",
+        "score": 9
+       },
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/d61184a98c1cf2db2b08b2999c04b0519e3615bb/ss_d61184a98c1cf2db2b08b2999c04b0519e3615bb.1920x1080.jpg?t=1781187782",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/d61184a98c1cf2db2b08b2999c04b0519e3615bb/ss_d61184a98c1cf2db2b08b2999c04b0519e3615bb.600x338.jpg?t=1781187782",
+        "page_url": "https://store.steampowered.com/app/3240220/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Grand Theft Auto",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Biggest_Rockstar_Games_fan_ever_-_Flickr_-_Sergey_Galyonkin.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Biggest_Rockstar_Games_fan_ever_-_Flickr_-_Sergey_Galyonkin.jpg/960px-Biggest_Rockstar_Games_fan_ever_-_Flickr_-_Sergey_Galyonkin.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Biggest_Rockstar_Games_fan_ever_-_Flickr_-_Sergey_Galyonkin.jpg",
+        "source": "wikimedia",
+        "credit": "Sergey Galyonkin from Kyiv, Ukraine",
+        "license": "CC BY-SA 2.0",
+        "query": "Rockstar Games",
+        "score": 9
+       }
+      ]
+     },
+     {
+      "article_id": "e3c939754971cfc4",
+      "title": "Microsoft-Owned Github Deletes Unhinged Post Celebrating PlayStation 5 Emulator’s Success Following Launch Of GTA 6",
+      "url": "https://kotaku.com/github-microsoft-ps5-anyps5-emulation-sony-grand-theft-auto-gta6-2001000617",
+      "source": "Kotaku",
+      "published_at": "2026-11-26T15:44:01Z",
+      "post": "Microsoft-owned GitHub has deleted a post that celebrated a PS5 emulator passing 58K stars right after mentioning GTA 6.\n\nThe emulator is used to make unofficial PC ports of console games.",
+      "reason": "Big tech brand caught celebrating piracy-adjacent tool, then deleting it, fuels distrust.",
+      "card_text": "Passing 58K stars",
+      "image_url": "https://kotaku.com/app/uploads/2026/11/github-1.jpg",
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "steam",
+        "query": "Grand Theft Auto"
+       },
+       {
+        "source": "wikimedia",
+        "query": "GitHub"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Deleted GitHub post about the AnyPS5 emulator",
+       "url": "https://www.google.com/search?q=AnyPS5+emulator+GitHub+GTA+6+post"
+      },
+      "images": [
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/header.jpg?t=1781187782",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/header.jpg?t=1781187782",
+        "page_url": "https://store.steampowered.com/app/3240220/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Grand Theft Auto",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/47/GitHub_Codespaces_screenshot.webp?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/GitHub_Codespaces_screenshot.webp/960px-GitHub_Codespaces_screenshot.webp?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:GitHub_Codespaces_screenshot.webp",
+        "source": "wikimedia",
+        "credit": "Wikideas1",
+        "license": "CC0",
+        "query": "GitHub",
+        "score": 9
+       },
+       {
+        "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/d61184a98c1cf2db2b08b2999c04b0519e3615bb/ss_d61184a98c1cf2db2b08b2999c04b0519e3615bb.1920x1080.jpg?t=1781187782",
+        "thumb": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/d61184a98c1cf2db2b08b2999c04b0519e3615bb/ss_d61184a98c1cf2db2b08b2999c04b0519e3615bb.600x338.jpg?t=1781187782",
+        "page_url": "https://store.steampowered.com/app/3240220/",
+        "source": "steam",
+        "credit": "Official art · Steam",
+        "license": "Promotional",
+        "query": "Grand Theft Auto",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a9/GitHub_Codespaces_side_by_side_terminal.webp?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/GitHub_Codespaces_side_by_side_terminal.webp/960px-GitHub_Codespaces_side_by_side_terminal.webp?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:GitHub_Codespaces_side_by_side_terminal.webp",
+        "source": "wikimedia",
+        "credit": "Wikideas1",
+        "license": "CC0",
+        "query": "GitHub",
+        "score": 9
+       }
+      ]
+     },
+     {
+      "article_id": "3321f618c0bc0c13",
+      "title": "Simpsons Hit & Run and Prototype Studio Have Just Had Their Unannounced Game Canceled",
+      "url": "https://insider-gaming.com/simpsons-hit-and-run-canceled/",
+      "source": "Insider Gaming",
+      "published_at": "2026-11-27T08:14:46Z",
+      "post": "Simpsons Hit & Run and Radical Entertainment have had an unannounced game canceled, according to one developer on social media.\n\nFans had been speculating about a Simpsons Hit & Run remake since Matt Groening suggested it was coming.",
+      "reason": "Beloved classic franchise and a cancelled project that fans were hoping for.",
+      "card_text": "Unannounced game canceled",
+      "image_url": null,
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "steam",
+        "query": "The Simpsons"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Radical Entertainment"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Developer social media post about the canceled game",
+       "url": "https://www.google.com/search?q=Radical+Entertainment+canceled+game+Simpsons+Hit+%26+Run"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Radical_Axis_Exterior_2010.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Radical_Axis_Exterior_2010.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Radical_Axis_Exterior_2010.jpg",
+        "source": "wikimedia",
+        "credit": "Debaser583 ( talk)",
+        "license": "Public domain",
+        "query": "Radical Entertainment",
+        "score": 6
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 22141,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 5250,
+     "thinking_tokens": 4431,
+     "cost_usd_equiv": 0.0070534000000000005
+    }
+   },
+   "tech-ai": {
+    "status": "ok",
+    "error": null,
+    "picks": [
+     {
+      "article_id": "25927c0f40db1fbf",
+      "title": "Is Alice Huang a spy or not?",
+      "url": "https://techcrunch.com/2026/11/26/is-alice-huang-a-spy-or-not/",
+      "source": "TechCrunch",
+      "published_at": "2026-11-26T20:00:00Z",
+      "post": "Nvidia CEO Jensen Huang is at the centre of a scandal over an affair with Alice Huang, a former Megaspeed executive.\n\nThe central claim that she is a Chinese spy is still unproven, and it is what the whole story turns on.",
+      "reason": "Famous CEO, affair plus espionage claim, and a clear unproven accusation people will pick sides on.",
+      "card_text": "Unproven claim: Chinese spy",
+      "image_url": null,
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Jensen Huang"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Nvidia"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "TechCrunch article on the Alice Huang Nvidia scandal",
+       "url": "https://www.google.com/search?q=Is+Alice+Huang+a+spy+or+not+TechCrunch"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Jensen_Huang_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Jensen_Huang_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Jensen_Huang_(cropped).jpg",
+        "source": "wikimedia",
+        "credit": "Prime Minister's Office",
+        "license": "GODL-India",
+        "query": "Jensen Huang",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/NVIDIA_Headquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/NVIDIA_Headquarters.jpg/960px-NVIDIA_Headquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:NVIDIA_Headquarters.jpg",
+        "source": "wikimedia",
+        "credit": "Coolcaesar",
+        "license": "CC BY-SA 4.0",
+        "query": "Nvidia",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Jensen_Huang_Stanford_2026-04-30_010_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Jensen_Huang_Stanford_2026-04-30_010_%28cropped%29.jpg/960px-Jensen_Huang_Stanford_2026-04-30_010_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Jensen_Huang_Stanford_2026-04-30_010_(cropped).jpg",
+        "source": "wikimedia",
+        "credit": "Anderseidesvik",
+        "license": "CC BY-SA 4.0",
+        "query": "Jensen Huang",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Jensen_huang_stanford_2026-04-30_011.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Jensen_huang_stanford_2026-04-30_011.jpg/960px-Jensen_huang_stanford_2026-04-30_011.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Jensen_huang_stanford_2026-04-30_011.jpg",
+        "source": "wikimedia",
+        "credit": "Anders Eidesvik",
+        "license": "CC BY 4.0",
+        "query": "Jensen Huang",
+        "score": 9
+       }
+      ]
+     },
+     {
+      "article_id": "9ab1d867793feae9",
+      "title": "X finally gets parental controls after 20 years",
+      "url": "https://techcrunch.com/2026/11/26/x-finally-gets-parental-controls-after-20-years/",
+      "source": "TechCrunch",
+      "published_at": "2026-11-26T19:31:50Z",
+      "post": "Elon Musk's social network X has finally added parental controls for teenagers.\n\nIt took X around 20 years to offer tools that let parents and guardians manage what their kids see on the platform.",
+      "reason": "Musk's X and kids' safety; many will argue it came too late or is not enough.",
+      "card_text": "Parental controls, after 20 years",
+      "image_url": null,
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Elon Musk"
+       },
+       {
+        "source": "wikimedia",
+        "query": "X (social network)"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "X help page on parental controls for teen accounts",
+       "url": "https://www.google.com/search?q=X+parental+controls+teens+help+center"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/99/Elon_Musk_Colorado_2022_%28cropped2%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/9/99/Elon_Musk_Colorado_2022_%28cropped2%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Elon_Musk_Colorado_2022_(cropped2).jpg",
+        "source": "wikimedia",
+        "credit": "U.S. Air Force / Trevor Cokley",
+        "license": "Public domain",
+        "query": "Elon Musk",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Account_Suspended.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Account_Suspended.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Account_Suspended.png",
+        "source": "wikimedia",
+        "credit": "Twitter",
+        "license": "Public domain",
+        "query": "X (social network)",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg/960px-Elon_Musk_Royal_Society_%28crop2%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Elon_Musk_Royal_Society_(crop2).jpg",
+        "source": "wikimedia",
+        "credit": "Debbie Rowe",
+        "license": "CC BY-SA 3.0",
+        "query": "Elon Musk",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Community_Notes_Algorithms.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Community_Notes_Algorithms.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Community_Notes_Algorithms.png",
+        "source": "wikimedia",
+        "credit": "Twitter",
+        "license": "Public domain",
+        "query": "X (social network)",
+        "score": 9
+       }
+      ]
+     },
+     {
+      "article_id": "fc3f6c861a538768",
+      "title": "Android app developers will soon have to share their address publicly",
+      "url": "https://www.theverge.com/tech/1043228/android-play-store-google-developer-address-eu",
+      "source": "The Verge",
+      "published_at": "2026-11-26T17:06:24Z",
+      "post": "Google will require many independent Android app developers to share a phone number and home address publicly from next year.\n\nDevelopers say it is a privacy risk for small creators, while Google says the rule is needed to meet EU Digital Services Act rules.",
+      "reason": "Privacy hit for ordinary developers, with Google citing EU law; a clear fairness debate.",
+      "card_text": "Phone number and address, made public",
+      "image_url": null,
+      "flags": [],
+      "image_searches": [
+       {
+        "source": "wikimedia",
+        "query": "Android (operating system)"
+       },
+       {
+        "source": "wikimedia",
+        "query": "Google Play"
+       }
+      ],
+      "screenshot_idea": {
+       "text": "Google Play developer policy page on contact details",
+       "url": "https://www.google.com/search?q=Google+Play+developer+contact+details+verification+policy"
+      },
+      "images": [
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/The_most_popular_operating_system_between_Android_and_iOS.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/The_most_popular_operating_system_between_Android_and_iOS.jpg/960px-The_most_popular_operating_system_between_Android_and_iOS.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:The_most_popular_operating_system_between_Android_and_iOS.jpg",
+        "source": "wikimedia",
+        "credit": "Maps.interlude",
+        "license": "CC BY 4.0",
+        "query": "Android (operating system)",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Google_Play_App_Download.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://upload.wikimedia.org/wikipedia/commons/5/59/Google_Play_App_Download.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Google_Play_App_Download.png",
+        "source": "wikimedia",
+        "credit": "RWambua-WMF",
+        "license": "CC BY-SA 4.0",
+        "query": "Google Play",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Android_11_Homescreen.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Android_11_Homescreen.png/960px-Android_11_Homescreen.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Android_11_Homescreen.png",
+        "source": "wikimedia",
+        "credit": "The Android Open Source Project",
+        "license": "Apache License 2.0",
+        "query": "Android (operating system)",
+        "score": 9
+       },
+       {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Android_alap%C3%BA_Oper%C3%A1ci%C3%B3_Rendszer_diagram_%28hungarian%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Android_alap%C3%BA_Oper%C3%A1ci%C3%B3_Rendszer_diagram_%28hungarian%29.png/960px-Android_alap%C3%BA_Oper%C3%A1ci%C3%B3_Rendszer_diagram_%28hungarian%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Android_alap%C3%BA_Oper%C3%A1ci%C3%B3_Rendszer_diagram_(hungarian).png",
+        "source": "wikimedia",
+        "credit": "AlmásLé",
+        "license": "CC BY-SA 4.0",
+        "query": "Android (operating system)",
+        "score": 9
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 16241,
+     "cache_read_input_tokens": 904,
+     "output_tokens": 2750,
+     "thinking_tokens": 1916,
+     "cost_usd_equiv": 0.00463244
+    }
+   },
+   "trending": {
+    "status": "ok",
+    "error": null,
+    "picks": [],
+    "usage": {
+     "model": "claude-haiku-5-5",
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 19896,
+     "cache_read_input_tokens": 904,
+     "output_tokens": 2447,
+     "thinking_tokens": 2329,
+     "cost_usd_equiv": 0.00521194
+    }
+   }
+  },
+  "usage_total": {
+   "input_tokens": 6,
+   "cache_creation_input_tokens": 58278,
+   "cache_read_input_tokens": 1808,
+   "output_tokens": 10447,
+   "thinking_tokens": 8676,
+   "cost_usd_equiv": 0.016898
+  }
  }
 ]

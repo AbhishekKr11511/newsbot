@@ -1,5 +1,5 @@
 {
- "last_run_at": "2026-11-27T10:30:43Z",
+ "last_run_at": "2026-11-27T14:30:06Z",
  "categories": [
   {
    "id": "gaming",
@@ -14,10 +14,7 @@
    "name": "Trending for everyone"
   }
  ],
- "feed_errors": [
-  "Windows Central: ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))",
-  "IGN: ChunkedEncodingError: Response ended prematurely"
- ],
+ "feed_errors": [],
  "card": {
   "handle": "@nomicsexpress",
   "tagline": ""
