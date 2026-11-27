@@ -1,5 +1,5 @@
 {
- "last_run_at": "2026-11-26T22:40:34Z",
+ "last_run_at": "2026-11-27T10:30:43Z",
  "categories": [
   {
    "id": "gaming",
@@ -15,21 +15,8 @@
   }
  ],
  "feed_errors": [
-  "AP Technology: ConnectionError: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out.",
-  "TechCrunch: TimeoutError: feed download took too long",
-  "TechCrunch AI: TimeoutError: feed download took too long",
-  "TechCrunch Startups: TimeoutError: feed download took too long",
-  "Windows Central: ConnectionError: HTTPSConnectionPool(host='www.windowscentral.com', port=443): Read timed out.",
-  "IGN: ReadTimeout: HTTPSConnectionPool(host='feeds.feedburner.com', port=443): Read timed out. (read timeout=15)",
-  "Polygon: ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))",
-  "Kotaku: TimeoutError: feed download took too long",
-  "Skill Up: TimeoutError: feed download took too long",
-  "Inc42: TimeoutError: feed download took too long",
-  "Mint Technology: ReadTimeout: HTTPSConnectionPool(host='www.livemint.com', port=443): Read timed out. (read timeout=15)",
-  "Reuters India Tech: ConnectionError: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out.",
-  "Reuters World: ConnectionError: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out.",
-  "AP Top Stories: ReadTimeout: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out. (read timeout=15)",
-  "AP Business: ConnectTimeout: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?hl=en-US&gl=US&ceid=US:en&q=site:apnews.com+business+when:1d (Caused by ConnectTimeoutError(<HTTPSConnection(host='news.google.com', port=443) at 0x10b7bbce0>, 'Connection to news.google.com timed out. (connect timeout=15)'))"
+  "Windows Central: ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))",
+  "IGN: ChunkedEncodingError: Response ended prematurely"
  ],
  "card": {
   "handle": "@nomicsexpress",
