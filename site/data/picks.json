@@ -3204,5 +3204,36 @@
    "thinking_tokens": 0,
    "cost_usd_equiv": 0.0
   }
+ },
+ {
+  "run_at": "2026-11-28T06:31:23Z",
+  "categories": {
+   "gaming": {
+    "status": "curation_failed",
+    "error": "claude CLI error: Failed to authenticate: OAuth session expired and could not be refreshed",
+    "picks": [],
+    "usage": null
+   },
+   "tech-ai": {
+    "status": "curation_failed",
+    "error": "claude CLI error: Failed to authenticate: OAuth session expired and could not be refreshed",
+    "picks": [],
+    "usage": null
+   },
+   "trending": {
+    "status": "curation_failed",
+    "error": "claude CLI error: Failed to authenticate: OAuth session expired and could not be refreshed",
+    "picks": [],
+    "usage": null
+   }
+  },
+  "usage_total": {
+   "input_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "output_tokens": 0,
+   "thinking_tokens": 0,
+   "cost_usd_equiv": 0.0
+  }
  }
 ]
