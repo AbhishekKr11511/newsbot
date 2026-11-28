@@ -1,5 +1,5 @@
 {
- "last_run_at": "2026-11-27T14:30:06Z",
+ "last_run_at": "2026-11-27T18:44:14Z",
  "categories": [
   {
    "id": "gaming",
@@ -14,7 +14,32 @@
    "name": "Trending for everyone"
   }
  ],
- "feed_errors": [],
+ "feed_errors": [
+  "Reuters Technology: ReadTimeout: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out. (read timeout=15)",
+  "Reuters Media: ConnectionError: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out.",
+  "BBC Technology: ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))",
+  "TechCrunch: ReadTimeout: HTTPSConnectionPool(host='techcrunch.com', port=443): Read timed out. (read timeout=15)",
+  "TechCrunch Startups: ReadTimeout: HTTPSConnectionPool(host='techcrunch.com', port=443): Read timed out. (read timeout=15)",
+  "The Verge: ConnectionError: HTTPSConnectionPool(host='www.theverge.com', port=443): Read timed out.",
+  "9to5Mac: ChunkedEncodingError: ('Connection broken: IncompleteRead(4261 bytes read, 3931 more expected)', IncompleteRead(4261 bytes read, 3931 more expected))",
+  "EE Times: ReadTimeout: HTTPSConnectionPool(host='www.eetimes.com', port=443): Read timed out. (read timeout=15)",
+  "Dexerto: ReadTimeout: HTTPSConnectionPool(host='www.dexerto.com', port=443): Read timed out. (read timeout=15)",
+  "VGC: TimeoutError: feed download took too long",
+  "Insider Gaming: TimeoutError: feed download took too long",
+  "IGN: ReadTimeout: HTTPSConnectionPool(host='feeds.feedburner.com', port=443): Read timed out. (read timeout=15)",
+  "GameSpot: TimeoutError: feed download took too long",
+  "Polygon: ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+  "Eurogamer: ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))",
+  "PC Gamer: ConnectionError: HTTPSConnectionPool(host='www.pcgamer.com', port=443): Read timed out.",
+  "Kotaku: TimeoutError: feed download took too long",
+  "Skill Up: ReadTimeout: HTTPSConnectionPool(host='www.youtube.com', port=443): Read timed out. (read timeout=15)",
+  "Inc42: TimeoutError: feed download took too long",
+  "ET Tech: TimeoutError: feed download took too long",
+  "Reuters Markets: ChunkedEncodingError: ('Connection broken: IncompleteRead(3252 bytes read, 3973 more expected)', IncompleteRead(3252 bytes read, 3973 more expected))",
+  "AP Top Stories: ChunkedEncodingError: ('Connection broken: IncompleteRead(4893 bytes read, 2249 more expected)', IncompleteRead(4893 bytes read, 2249 more expected))",
+  "BBC News: ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+  "BBC Business: ReadTimeout: HTTPSConnectionPool(host='feeds.bbci.co.uk', port=443): Read timed out. (read timeout=15)"
+ ],
  "card": {
   "handle": "@nomicsexpress",
   "tagline": ""
